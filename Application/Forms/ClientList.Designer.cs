@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel3 = new Panel();
             labelCriticalIssues = new Label();
@@ -39,7 +39,7 @@
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             label1 = new Label();
             searchBox = new TextBox();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
+            iconAddClient = new FontAwesome.Sharp.IconButton();
             dataGridViewClientList = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -59,7 +59,7 @@
             panel1.Controls.Add(panel3);
             panel1.Controls.Add(panel2);
             panel1.Controls.Add(searchBox);
-            panel1.Controls.Add(iconButton1);
+            panel1.Controls.Add(iconAddClient);
             panel1.Controls.Add(dataGridViewClientList);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
@@ -174,26 +174,27 @@
             searchBox.Size = new Size(236, 36);
             searchBox.TabIndex = 2;
             // 
-            // iconButton1
+            // iconAddClient
             // 
-            iconButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            iconButton1.BackColor = Color.DeepSkyBlue;
-            iconButton1.FlatAppearance.BorderSize = 0;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            iconButton1.ForeColor = Color.White;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Add;
-            iconButton1.IconColor = Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 32;
-            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(254, 398);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(78, 36);
-            iconButton1.TabIndex = 1;
-            iconButton1.Text = "Add";
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = false;
+            iconAddClient.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            iconAddClient.BackColor = Color.DeepSkyBlue;
+            iconAddClient.FlatAppearance.BorderSize = 0;
+            iconAddClient.FlatStyle = FlatStyle.Flat;
+            iconAddClient.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconAddClient.ForeColor = Color.White;
+            iconAddClient.IconChar = FontAwesome.Sharp.IconChar.Add;
+            iconAddClient.IconColor = Color.White;
+            iconAddClient.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconAddClient.IconSize = 32;
+            iconAddClient.ImageAlign = ContentAlignment.MiddleLeft;
+            iconAddClient.Location = new Point(254, 398);
+            iconAddClient.Name = "iconAddClient";
+            iconAddClient.Size = new Size(78, 36);
+            iconAddClient.TabIndex = 1;
+            iconAddClient.Text = "Add";
+            iconAddClient.TextImageRelation = TextImageRelation.ImageBeforeText;
+            iconAddClient.UseVisualStyleBackColor = false;
+            iconAddClient.Click += iconAddClient_Click;
             // 
             // dataGridViewClientList
             // 
@@ -202,14 +203,14 @@
             dataGridViewClientList.BorderStyle = BorderStyle.None;
             dataGridViewClientList.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewClientList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(69, 68, 119);
-            dataGridViewCellStyle1.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Snow;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(41, 40, 71);
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(69, 68, 119);
+            dataGridViewCellStyle2.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(41, 40, 71);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewClientList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewClientList.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
             dataGridViewClientList.EnableHeadersVisualStyles = false;
@@ -279,7 +280,7 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton iconAddClient;
         private TextBox searchBox;
         private Panel panel2;
         private Label label1;

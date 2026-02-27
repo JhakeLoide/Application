@@ -31,5 +31,11 @@ namespace Application.Forms
         {
 
         }
+
+        private void iconAddClient_Click(object sender, EventArgs e)
+        {
+            using var addClientForm = new formAddingClient();
+            addClientForm.ShowDialog(this);
+        }
     }
 }
