@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             panelMenu = new Panel();
-            iconButton6 = new FontAwesome.Sharp.IconButton();
-            iconButton5 = new FontAwesome.Sharp.IconButton();
-            iconButton4 = new FontAwesome.Sharp.IconButton();
-            iconButton3 = new FontAwesome.Sharp.IconButton();
-            iconButton2 = new FontAwesome.Sharp.IconButton();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
+            btnSettings = new FontAwesome.Sharp.IconButton();
+            btnClientList = new FontAwesome.Sharp.IconButton();
+            btnDashboard = new FontAwesome.Sharp.IconButton();
             panelLogo = new Panel();
             iconButton10 = new FontAwesome.Sharp.IconButton();
             label1 = new Label();
@@ -44,7 +41,7 @@
             iconButton7 = new FontAwesome.Sharp.IconButton();
             lblStatic = new Label();
             iconStatic = new FontAwesome.Sharp.IconPictureBox();
-            panel1 = new Panel();
+            panelDesktop = new Panel();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             panelTitle.SuspendLayout();
@@ -54,12 +51,9 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(31, 30, 68);
-            panelMenu.Controls.Add(iconButton6);
-            panelMenu.Controls.Add(iconButton5);
-            panelMenu.Controls.Add(iconButton4);
-            panelMenu.Controls.Add(iconButton3);
-            panelMenu.Controls.Add(iconButton2);
-            panelMenu.Controls.Add(iconButton1);
+            panelMenu.Controls.Add(btnSettings);
+            panelMenu.Controls.Add(btnClientList);
+            panelMenu.Controls.Add(btnDashboard);
             panelMenu.Controls.Add(panelLogo);
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
@@ -67,138 +61,72 @@
             panelMenu.Size = new Size(220, 601);
             panelMenu.TabIndex = 0;
             // 
-            // iconButton6
+            // btnSettings
             // 
-            iconButton6.Cursor = Cursors.Hand;
-            iconButton6.Dock = DockStyle.Top;
-            iconButton6.FlatAppearance.BorderSize = 0;
-            iconButton6.FlatStyle = FlatStyle.Flat;
-            iconButton6.Font = new Font("Consolas", 12F);
-            iconButton6.ForeColor = Color.White;
-            iconButton6.IconChar = FontAwesome.Sharp.IconChar.Tools;
-            iconButton6.IconColor = Color.White;
-            iconButton6.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton6.IconSize = 32;
-            iconButton6.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton6.Location = new Point(0, 440);
-            iconButton6.Name = "iconButton6";
-            iconButton6.Size = new Size(220, 60);
-            iconButton6.TabIndex = 6;
-            iconButton6.Text = "Settings";
-            iconButton6.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton6.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton6.UseVisualStyleBackColor = true;
+            btnSettings.Cursor = Cursors.Hand;
+            btnSettings.Dock = DockStyle.Top;
+            btnSettings.FlatAppearance.BorderSize = 0;
+            btnSettings.FlatStyle = FlatStyle.Flat;
+            btnSettings.Font = new Font("Consolas", 12F);
+            btnSettings.ForeColor = Color.White;
+            btnSettings.IconChar = FontAwesome.Sharp.IconChar.Tools;
+            btnSettings.IconColor = Color.White;
+            btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSettings.IconSize = 32;
+            btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettings.Location = new Point(0, 260);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Size = new Size(220, 60);
+            btnSettings.TabIndex = 3;
+            btnSettings.Text = "Settings";
+            btnSettings.TextAlign = ContentAlignment.MiddleLeft;
+            btnSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSettings.UseVisualStyleBackColor = true;
             // 
-            // iconButton5
+            // btnClientList
             // 
-            iconButton5.Cursor = Cursors.Hand;
-            iconButton5.Dock = DockStyle.Top;
-            iconButton5.FlatAppearance.BorderSize = 0;
-            iconButton5.FlatStyle = FlatStyle.Flat;
-            iconButton5.Font = new Font("Consolas", 12F);
-            iconButton5.ForeColor = Color.White;
-            iconButton5.IconChar = FontAwesome.Sharp.IconChar.EnvelopesBulk;
-            iconButton5.IconColor = Color.White;
-            iconButton5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton5.IconSize = 32;
-            iconButton5.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton5.Location = new Point(0, 380);
-            iconButton5.Name = "iconButton5";
-            iconButton5.Size = new Size(220, 60);
-            iconButton5.TabIndex = 5;
-            iconButton5.Text = "suggestion?";
-            iconButton5.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton5.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton5.UseVisualStyleBackColor = true;
+            btnClientList.Cursor = Cursors.Hand;
+            btnClientList.Dock = DockStyle.Top;
+            btnClientList.FlatAppearance.BorderSize = 0;
+            btnClientList.FlatStyle = FlatStyle.Flat;
+            btnClientList.Font = new Font("Consolas", 12F);
+            btnClientList.ForeColor = Color.White;
+            btnClientList.IconChar = FontAwesome.Sharp.IconChar.ContactBook;
+            btnClientList.IconColor = Color.White;
+            btnClientList.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnClientList.IconSize = 32;
+            btnClientList.ImageAlign = ContentAlignment.MiddleLeft;
+            btnClientList.Location = new Point(0, 200);
+            btnClientList.Name = "btnClientList";
+            btnClientList.Size = new Size(220, 60);
+            btnClientList.TabIndex = 2;
+            btnClientList.Text = "Client List";
+            btnClientList.TextAlign = ContentAlignment.MiddleLeft;
+            btnClientList.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnClientList.UseVisualStyleBackColor = true;
             // 
-            // iconButton4
+            // btnDashboard
             // 
-            iconButton4.Cursor = Cursors.Hand;
-            iconButton4.Dock = DockStyle.Top;
-            iconButton4.FlatAppearance.BorderSize = 0;
-            iconButton4.FlatStyle = FlatStyle.Flat;
-            iconButton4.Font = new Font("Consolas", 12F);
-            iconButton4.ForeColor = Color.White;
-            iconButton4.IconChar = FontAwesome.Sharp.IconChar.ContactBook;
-            iconButton4.IconColor = Color.White;
-            iconButton4.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton4.IconSize = 32;
-            iconButton4.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton4.Location = new Point(0, 320);
-            iconButton4.Name = "iconButton4";
-            iconButton4.Size = new Size(220, 60);
-            iconButton4.TabIndex = 4;
-            iconButton4.Text = "Client List";
-            iconButton4.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton4.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton4.UseVisualStyleBackColor = true;
-            // 
-            // iconButton3
-            // 
-            iconButton3.Cursor = Cursors.Hand;
-            iconButton3.Dock = DockStyle.Top;
-            iconButton3.FlatAppearance.BorderSize = 0;
-            iconButton3.FlatStyle = FlatStyle.Flat;
-            iconButton3.Font = new Font("Consolas", 12F);
-            iconButton3.ForeColor = Color.White;
-            iconButton3.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            iconButton3.IconColor = Color.White;
-            iconButton3.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton3.IconSize = 32;
-            iconButton3.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton3.Location = new Point(0, 260);
-            iconButton3.Name = "iconButton3";
-            iconButton3.Size = new Size(220, 60);
-            iconButton3.TabIndex = 3;
-            iconButton3.Text = "suggestion?";
-            iconButton3.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton3.UseVisualStyleBackColor = true;
-            // 
-            // iconButton2
-            // 
-            iconButton2.Cursor = Cursors.Hand;
-            iconButton2.Dock = DockStyle.Top;
-            iconButton2.FlatAppearance.BorderSize = 0;
-            iconButton2.FlatStyle = FlatStyle.Flat;
-            iconButton2.Font = new Font("Consolas", 12F);
-            iconButton2.ForeColor = Color.White;
-            iconButton2.IconChar = FontAwesome.Sharp.IconChar.CartShopping;
-            iconButton2.IconColor = Color.White;
-            iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton2.IconSize = 32;
-            iconButton2.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton2.Location = new Point(0, 200);
-            iconButton2.Name = "iconButton2";
-            iconButton2.Size = new Size(220, 60);
-            iconButton2.TabIndex = 2;
-            iconButton2.Text = "suggestion?";
-            iconButton2.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton2.UseVisualStyleBackColor = true;
-            // 
-            // iconButton1
-            // 
-            iconButton1.Cursor = Cursors.Hand;
-            iconButton1.Dock = DockStyle.Top;
-            iconButton1.FlatAppearance.BorderSize = 0;
-            iconButton1.FlatStyle = FlatStyle.Flat;
-            iconButton1.Font = new Font("Consolas", 12F);
-            iconButton1.ForeColor = Color.White;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.BarChart;
-            iconButton1.IconColor = Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 32;
-            iconButton1.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButton1.Location = new Point(0, 140);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new Size(220, 60);
-            iconButton1.TabIndex = 1;
-            iconButton1.Text = "Dashboard";
-            iconButton1.TextAlign = ContentAlignment.MiddleLeft;
-            iconButton1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = true;
-            iconButton1.Click += iconButton1_Click;
+            btnDashboard.Cursor = Cursors.Hand;
+            btnDashboard.Dock = DockStyle.Top;
+            btnDashboard.FlatAppearance.BorderSize = 0;
+            btnDashboard.FlatStyle = FlatStyle.Flat;
+            btnDashboard.Font = new Font("Consolas", 12F);
+            btnDashboard.ForeColor = Color.White;
+            btnDashboard.IconChar = FontAwesome.Sharp.IconChar.BarChart;
+            btnDashboard.IconColor = Color.White;
+            btnDashboard.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnDashboard.IconSize = 32;
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(0, 140);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(220, 60);
+            btnDashboard.TabIndex = 1;
+            btnDashboard.Text = "Dashboard";
+            btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnDashboard.UseVisualStyleBackColor = true;
+            btnDashboard.Click += iconButton1_Click;
             // 
             // panelLogo
             // 
@@ -323,21 +251,21 @@
             iconStatic.TabIndex = 2;
             iconStatic.TabStop = false;
             // 
-            // panel1
+            // panelDesktop
             // 
-            panel1.BackColor = Color.FromArgb(34, 33, 74);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(220, 65);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(802, 536);
-            panel1.TabIndex = 2;
+            panelDesktop.BackColor = Color.FromArgb(34, 33, 74);
+            panelDesktop.Dock = DockStyle.Fill;
+            panelDesktop.Location = new Point(220, 65);
+            panelDesktop.Name = "panelDesktop";
+            panelDesktop.Size = new Size(802, 536);
+            panelDesktop.TabIndex = 2;
             // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1022, 601);
-            Controls.Add(panel1);
+            Controls.Add(panelDesktop);
             Controls.Add(panelTitle);
             Controls.Add(panelMenu);
             Name = "Menu";
@@ -347,7 +275,6 @@
             MouseDown += Menu_MouseDown;
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
-            panelLogo.PerformLayout();
             panelTitle.ResumeLayout(false);
             panelTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconStatic).EndInit();
@@ -358,17 +285,14 @@
 
         private Panel panelMenu;
         private Panel panelLogo;
-        private FontAwesome.Sharp.IconButton iconButton1;
-        private FontAwesome.Sharp.IconButton iconButton6;
-        private FontAwesome.Sharp.IconButton iconButton5;
-        private FontAwesome.Sharp.IconButton iconButton4;
-        private FontAwesome.Sharp.IconButton iconButton3;
-        private FontAwesome.Sharp.IconButton iconButton2;
+        private FontAwesome.Sharp.IconButton btnDashboard;
+        private FontAwesome.Sharp.IconButton btnSettings;
+        private FontAwesome.Sharp.IconButton btnClientList;
+        private Label label1;
         private Panel panelTitle;
         private FontAwesome.Sharp.IconPictureBox iconStatic;
         private Label lblStatic;
-        private Label label1;
-        private Panel panel1;
+        private Panel panelDesktop;
         private FontAwesome.Sharp.IconButton iconButton7;
         private FontAwesome.Sharp.IconButton iconButton9;
         private FontAwesome.Sharp.IconButton iconButton8;

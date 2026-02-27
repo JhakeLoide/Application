@@ -1,3 +1,4 @@
+using Application.Forms;
 using FontAwesome.Sharp;
 using System;
 using System.Drawing;
@@ -14,6 +15,7 @@ namespace Final_Project
         private const int menuCollapsedWidth = 60;
         private System.Windows.Forms.Timer? menuAnimationTimer;
         private int animationStep = 10;
+        private Form? currentChildForm;
 
         //Constructor
         public Menu()
@@ -30,12 +32,9 @@ namespace Final_Project
             leftBorderBtn.Enabled = false;
             panelMenu.Controls.Add(leftBorderBtn);
 
-            iconButton1.Click += iconButton1_Click;
-            iconButton2.Click += iconButton2_Click;
-            iconButton3.Click += iconButton3_Click;
-            iconButton4.Click += iconButton4_Click;
-            iconButton5.Click += iconButton5_Click;
-            iconButton6.Click += iconButton6_Click;
+            btnDashboard.Click += iconButton1_Click;
+            btnClientList.Click += iconButton2_Click;
+            btnSettings.Click += iconButton3_Click;
             iconButton10.Click += iconButton10_Click;
 
             // Initialize animation timer
@@ -49,9 +48,6 @@ namespace Final_Project
             public static Color color1 = Color.FromArgb(172, 126, 241);
             public static Color color2 = Color.FromArgb(249, 118, 176);
             public static Color color3 = Color.FromArgb(253, 138, 114);
-            public static Color color4 = Color.FromArgb(95, 77, 221);
-            public static Color color5 = Color.FromArgb(249, 88, 155);
-            public static Color color6 = Color.FromArgb(24, 161, 251);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -104,34 +100,40 @@ namespace Final_Project
             }
         }
 
+        private void OpenChildForm(Form childForm)
+        {
+            if(currentChildForm != null)
+            {
+                //open only form 
+                currentChildForm.Close();
+            }
+            currentChildForm = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(childForm);
+            panelDesktop.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            lblStatic.Text = childForm.Text;
+        }
+
         private void iconButton1_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
+            OpenChildForm(new Dashboard());
         }
 
         private void iconButton2_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
+            OpenChildForm(new ClientList());
         }
         private void iconButton3_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
+            OpenChildForm(new Settings());
         }
-        private void iconButton4_Click(object? sender, EventArgs e)
-        {
-            ActivateButton(sender, RGBColors.color4);
-        }
-
-        private void iconButton5_Click(object? sender, EventArgs e)
-        {
-            ActivateButton(sender, RGBColors.color5);
-        }
-        private void iconButton6_Click(object? sender, EventArgs e)
-        {
-            ActivateButton(sender, RGBColors.color6);
-
-        }
-
         private void Reset()
         {
             DisableButton();
@@ -165,7 +167,7 @@ namespace Final_Project
 
             if (result == DialogResult.Yes)
             {
-                Application.Exit();
+                System.Windows.Forms.Application.Exit();
             }
         }
 
@@ -209,24 +211,18 @@ namespace Final_Project
 
         private void HideMenuText()
         {
-            iconButton1.Text = "";
-            iconButton2.Text = "";
-            iconButton3.Text = "";
-            iconButton4.Text = "";
-            iconButton5.Text = "";
-            iconButton6.Text = "";
+            btnDashboard.Text = "";
+            btnClientList.Text = "";
+            btnSettings.Text = "";
             label1.Visible = false;
             SetMenuButtonLayout(isCollapsed: true);
         }
 
         private void ShowMenuText()
         {
-            iconButton1.Text = "Dashboard";
-            iconButton2.Text = "suggestion?";
-            iconButton3.Text = "suggestion?";
-            iconButton4.Text = "Client List";
-            iconButton5.Text = "suggestion?";
-            iconButton6.Text = "Settings";
+            btnDashboard.Text = "Dashboard";
+            btnClientList.Text = "suggestion?";
+            btnSettings.Text = "suggestion?";
             label1.Visible = true;
             SetMenuButtonLayout(isCollapsed: false);
         }
@@ -237,26 +233,17 @@ namespace Final_Project
             var textAlign = isCollapsed ? ContentAlignment.MiddleCenter : ContentAlignment.MiddleLeft;
             var textImageRelation = isCollapsed ? TextImageRelation.Overlay : TextImageRelation.ImageBeforeText;
 
-            iconButton1.ImageAlign = imageAlign;
-            iconButton2.ImageAlign = imageAlign;
-            iconButton3.ImageAlign = imageAlign;
-            iconButton4.ImageAlign = imageAlign;
-            iconButton5.ImageAlign = imageAlign;
-            iconButton6.ImageAlign = imageAlign;
+            btnDashboard.ImageAlign = imageAlign;
+            btnClientList.ImageAlign = imageAlign;
+            btnSettings.ImageAlign = imageAlign;
 
-            iconButton1.TextAlign = textAlign;
-            iconButton2.TextAlign = textAlign;
-            iconButton3.TextAlign = textAlign;
-            iconButton4.TextAlign = textAlign;
-            iconButton5.TextAlign = textAlign;
-            iconButton6.TextAlign = textAlign;
+            btnDashboard.TextAlign = textAlign;
+            btnClientList.TextAlign = textAlign;
+            btnSettings.TextAlign = textAlign;
 
-            iconButton1.TextImageRelation = textImageRelation;
-            iconButton2.TextImageRelation = textImageRelation;
-            iconButton3.TextImageRelation = textImageRelation;
-            iconButton4.TextImageRelation = textImageRelation;
-            iconButton5.TextImageRelation = textImageRelation;
-            iconButton6.TextImageRelation = textImageRelation;
+            btnDashboard.TextImageRelation = textImageRelation;
+            btnClientList.TextImageRelation = textImageRelation;
+            btnSettings.TextImageRelation = textImageRelation;
         }
 
 
