@@ -10,11 +10,26 @@ using System.Windows.Forms;
 
 namespace Application.Forms
 {
-    public partial class ClientList : Form
+    public partial class formClientList : Form
     {
-        public ClientList()
+        public formClientList()
         {
             InitializeComponent();
+        }
+
+        private void formClientList_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

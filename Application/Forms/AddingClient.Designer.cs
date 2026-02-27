@@ -1,6 +1,6 @@
 ﻿namespace Application.Forms
 {
-    partial class formDashboard
+    partial class AddingClient
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new Panel();
-            SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.BackColor = Color.FromArgb(34, 33, 74);
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(800, 450);
-            panel1.TabIndex = 0;
-            // 
-            // formDashboard
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
-            Name = "formDashboard";
-            Text = "Dashboard";
-            ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "AddingClient";
         }
 
         #endregion
-
-        private Panel panel1;
     }
 }

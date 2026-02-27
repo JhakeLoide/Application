@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Application.Forms
 {
-    public partial class formSettings : Form
+    public partial class AddingClient : Form
     {
-        public formSettings()
+        public AddingClient()
         {
             InitializeComponent();
         }

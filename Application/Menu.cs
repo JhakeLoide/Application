@@ -2,11 +2,21 @@ using Application.Forms;
 using FontAwesome.Sharp;
 using System;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 namespace Final_Project
 {
     public partial class Menu : Form
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern bool ReleaseCapture();
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, int wParam, int lParam);
+
+        private const int WmNclButtonDown = 0xA1;
+        private const int HtCaption = 0x2;
+
         //Fields
         private IconButton? currentBtn;
         private Panel leftBorderBtn;
@@ -16,6 +26,9 @@ namespace Final_Project
         private System.Windows.Forms.Timer? menuAnimationTimer;
         private int animationStep = 10;
         private Form? currentChildForm;
+        private Rectangle restoreBounds;
+        private bool isSnapped;
+        private const int SnapThreshold = 5;
 
         //Constructor
         public Menu()
@@ -36,6 +49,9 @@ namespace Final_Project
             btnClientList.Click += iconButton2_Click;
             btnSettings.Click += iconButton3_Click;
             iconButton10.Click += iconButton10_Click;
+            panelTitle.MouseDown += Menu_MouseDown;
+            panelTitle.MouseUp += Menu_MouseUp;
+            MouseUp += Menu_MouseUp;
 
             // Initialize animation timer
             menuAnimationTimer = new System.Windows.Forms.Timer();
@@ -121,18 +137,18 @@ namespace Final_Project
         private void iconButton1_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new Dashboard());
+            OpenChildForm(new formDashboard());
         }
 
         private void iconButton2_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            OpenChildForm(new ClientList());
+            OpenChildForm(new formClientList());
         }
         private void iconButton3_Click(object? sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            OpenChildForm(new Settings());
+            OpenChildForm(new formSettings());
         }
         private void Reset()
         {
@@ -173,7 +189,67 @@ namespace Final_Project
 
         private void Menu_MouseDown(object? sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left)
+            {
+                return;
+            }
 
+            if (isSnapped)
+            {
+                RestoreFromSnap();
+            }
+
+            ReleaseCapture();
+            SendMessage(Handle, WmNclButtonDown, HtCaption, 0);
+        }
+
+        private void Menu_MouseUp(object? sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left)
+            {
+                return;
+            }
+
+            SnapToScreenEdges();
+        }
+
+        private void SnapToScreenEdges()
+        {
+            var workingArea = Screen.FromControl(this).WorkingArea;
+            var bounds = Bounds;
+
+            var nearLeft = bounds.Left <= workingArea.Left + SnapThreshold;
+            var nearTop = bounds.Top <= workingArea.Top + SnapThreshold;
+            var nearRight = bounds.Right >= workingArea.Right - SnapThreshold;
+            var nearBottom = bounds.Bottom >= workingArea.Bottom - SnapThreshold;
+
+            if (nearLeft || nearTop || nearRight || nearBottom)
+            {
+                if (!isSnapped)
+                {
+                    restoreBounds = bounds;
+                }
+
+                Bounds = workingArea;
+                isSnapped = true;
+            }
+        }
+
+        private void RestoreFromSnap()
+        {
+            if (restoreBounds == Rectangle.Empty)
+            {
+                restoreBounds = new Rectangle(Location, Size);
+            }
+
+            var cursor = Cursor.Position;
+            var workingArea = Screen.FromControl(this).WorkingArea;
+            var relativeX = (double)(cursor.X - workingArea.Left) / workingArea.Width;
+            var newX = cursor.X - (int)(restoreBounds.Width * relativeX);
+            var newY = cursor.Y - (int)(restoreBounds.Height * 0.1);
+
+            Bounds = new Rectangle(newX, newY, restoreBounds.Width, restoreBounds.Height);
+            isSnapped = false;
         }
 
         private void iconButton10_Click(object? sender, EventArgs e)
@@ -221,8 +297,8 @@ namespace Final_Project
         private void ShowMenuText()
         {
             btnDashboard.Text = "Dashboard";
-            btnClientList.Text = "suggestion?";
-            btnSettings.Text = "suggestion?";
+            btnClientList.Text = "Client List";
+            btnSettings.Text = "Settings";
             label1.Visible = true;
             SetMenuButtonLayout(isCollapsed: false);
         }

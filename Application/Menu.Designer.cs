@@ -275,6 +275,7 @@
             MouseDown += Menu_MouseDown;
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
+            panelLogo.PerformLayout();
             panelTitle.ResumeLayout(false);
             panelTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconStatic).EndInit();
