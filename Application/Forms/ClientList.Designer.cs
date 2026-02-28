@@ -139,11 +139,11 @@
             // labelTotalClients
             // 
             labelTotalClients.AutoSize = true;
-            labelTotalClients.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            labelTotalClients.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             labelTotalClients.ForeColor = Color.Lime;
             labelTotalClients.Location = new Point(69, 30);
             labelTotalClients.Name = "labelTotalClients";
-            labelTotalClients.Size = new Size(28, 14);
+            labelTotalClients.Size = new Size(40, 22);
             labelTotalClients.TabIndex = 1;
             labelTotalClients.Text = "...";
             labelTotalClients.TextAlign = ContentAlignment.TopCenter;
