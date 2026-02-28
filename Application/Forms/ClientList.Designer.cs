@@ -182,7 +182,6 @@
             searchBoxClientList.Name = "searchBoxClientList";
             searchBoxClientList.Size = new Size(236, 17);
             searchBoxClientList.TabIndex = 2;
-            searchBoxClientList.Text = "Search Clients";
             searchBoxClientList.TextChanged += searchBoxClientList_TextChanged;
             // 
             // iconAddClient

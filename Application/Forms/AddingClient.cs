@@ -51,6 +51,7 @@ namespace Application.Forms
                 ClientName = txtBoxName.Text.Trim(),
                 OperatingSystem = cmbBoxOS.Text,
                 DamageSummary = txtBoxSummary.Text.Trim(),
+                AdditionalInfo = txtBoxAddInfo.Text.Trim(),
                 Status = "New"
             };
 

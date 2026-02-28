@@ -129,7 +129,7 @@
             iconButtonCancel.Name = "iconButtonCancel";
             iconButtonCancel.Size = new Size(85, 33);
             iconButtonCancel.TabIndex = 6;
-            iconButtonCancel.Text = "Cancel";
+            iconButtonCancel.Text = "Close";
             iconButtonCancel.TextImageRelation = TextImageRelation.ImageBeforeText;
             iconButtonCancel.UseVisualStyleBackColor = false;
             iconButtonCancel.Click += iconButtonCancel_Click;

@@ -33,7 +33,7 @@ namespace Application.Forms
             txtOperatingSystem.Text = report.OperatingSystem;
             txtDeviceModel.Text = "N/A";
             txtIssueSummary.Text = report.DamageSummary;
-            txtAdditionalInfo.Text = "N/A";
+            txtAdditionalInfo.Text = string.IsNullOrWhiteSpace(report.AdditionalInfo) ? "N/A" : report.AdditionalInfo;
             HookChangeTracking();
         }
 
@@ -79,6 +79,7 @@ namespace Application.Forms
             _report.ClientName = txtClientName.Text.Trim();
             _report.OperatingSystem = txtOperatingSystem.Text.Trim();
             _report.DamageSummary = txtIssueSummary.Text.Trim();
+            _report.AdditionalInfo = txtAdditionalInfo.Text.Trim();
 
             _bindingSource?.ResetBindings(false);
             _hasChanges = false;
