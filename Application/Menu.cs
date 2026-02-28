@@ -72,7 +72,7 @@ namespace Final_Project
         }
         private void panelLogo_Paint(object? sender, PaintEventArgs e)
         {
- 
+
         }
         private void ActivateButton(object senderBtn, Color color)
         {
@@ -118,7 +118,7 @@ namespace Final_Project
 
         private void OpenChildForm(Form childForm)
         {
-            if(currentChildForm != null)
+            if (currentChildForm != null)
             {
                 //open only form 
                 currentChildForm.Close();
@@ -322,7 +322,10 @@ namespace Final_Project
             btnSettings.TextImageRelation = textImageRelation;
         }
 
+        private void lblStatic_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

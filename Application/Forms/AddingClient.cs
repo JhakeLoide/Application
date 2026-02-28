@@ -6,15 +6,62 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using App.Domain.Entities;
 using System.Windows.Forms;
 
 namespace Application.Forms
 {
     public partial class formAddingClient : Form
     {
+        public DamageReports? CreatedReport { get; private set; }
+
         public formAddingClient()
         {
             InitializeComponent();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBoxName.Text))
+            {
+                MessageBox.Show("Client name is required.", "Add Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbBoxOS.Text))
+            {
+                MessageBox.Show("Operating system is required.", "Add Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxDeviceModel.Text))
+            {
+                MessageBox.Show("Device model is required.", "Add Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(txtBoxSummary.Text))
+            {
+                MessageBox.Show("Issue summary is required.", "Add Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            CreatedReport = new DamageReports
+            {
+                ClientName = txtBoxName.Text.Trim(),
+                OperatingSystem = cmbBoxOS.Text,
+                DamageSummary = txtBoxSummary.Text.Trim(),
+                Status = "New"
+            };
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

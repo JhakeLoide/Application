@@ -67,7 +67,7 @@
             btnSettings.Dock = DockStyle.Top;
             btnSettings.FlatAppearance.BorderSize = 0;
             btnSettings.FlatStyle = FlatStyle.Flat;
-            btnSettings.Font = new Font("Consolas", 12F);
+            btnSettings.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSettings.ForeColor = Color.White;
             btnSettings.IconChar = FontAwesome.Sharp.IconChar.Tools;
             btnSettings.IconColor = Color.White;
@@ -89,7 +89,7 @@
             btnClientList.Dock = DockStyle.Top;
             btnClientList.FlatAppearance.BorderSize = 0;
             btnClientList.FlatStyle = FlatStyle.Flat;
-            btnClientList.Font = new Font("Consolas", 12F);
+            btnClientList.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnClientList.ForeColor = Color.White;
             btnClientList.IconChar = FontAwesome.Sharp.IconChar.ContactBook;
             btnClientList.IconColor = Color.White;
@@ -111,7 +111,7 @@
             btnDashboard.Dock = DockStyle.Top;
             btnDashboard.FlatAppearance.BorderSize = 0;
             btnDashboard.FlatStyle = FlatStyle.Flat;
-            btnDashboard.Font = new Font("Consolas", 12F);
+            btnDashboard.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = Color.White;
             btnDashboard.IconChar = FontAwesome.Sharp.IconChar.BarChart;
             btnDashboard.IconColor = Color.White;
@@ -230,13 +230,14 @@
             // lblStatic
             // 
             lblStatic.AutoSize = true;
-            lblStatic.Font = new Font("Consolas", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblStatic.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblStatic.ForeColor = Color.Crimson;
             lblStatic.Location = new Point(44, 20);
             lblStatic.Name = "lblStatic";
-            lblStatic.Size = new Size(50, 22);
+            lblStatic.Size = new Size(64, 25);
             lblStatic.TabIndex = 2;
             lblStatic.Text = "Home";
+            lblStatic.Click += lblStatic_Click;
             // 
             // iconStatic
             // 

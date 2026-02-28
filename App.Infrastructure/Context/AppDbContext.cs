@@ -7,6 +7,7 @@ namespace App.Infrastructure.Context
     public class AppDbContext : DbContext
     {
 
+        public DbSet<DamageReports> DamageReports { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
     : base(options)

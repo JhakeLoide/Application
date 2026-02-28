@@ -28,37 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panel3 = new Panel();
             labelCriticalIssues = new Label();
             iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
             label2 = new Label();
-            panel2 = new Panel();
+            panelTotalClient = new Panel();
             labelTotalClients = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             label1 = new Label();
-            searchBox = new TextBox();
+            searchBoxClientList = new TextBox();
             iconAddClient = new FontAwesome.Sharp.IconButton();
             dataGridViewClientList = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
+            ColumnMoreInfo = new DataGridViewButtonColumn();
+            damageReportsBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
-            panel2.SuspendLayout();
+            panelTotalClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientList).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)damageReportsBindingSource).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(34, 33, 74);
             panel1.Controls.Add(panel3);
-            panel1.Controls.Add(panel2);
-            panel1.Controls.Add(searchBox);
+            panel1.Controls.Add(panelTotalClient);
+            panel1.Controls.Add(searchBoxClientList);
             panel1.Controls.Add(iconAddClient);
             panel1.Controls.Add(dataGridViewClientList);
             panel1.Dock = DockStyle.Fill;
@@ -69,6 +75,7 @@
             // 
             // panel3
             // 
+            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panel3.BackColor = Color.FromArgb(110, 110, 149);
             panel3.Controls.Add(labelCriticalIssues);
             panel3.Controls.Add(iconPictureBox2);
@@ -116,17 +123,18 @@
             label2.Text = "Critical Issues";
             label2.TextAlign = ContentAlignment.TopCenter;
             // 
-            // panel2
+            // panelTotalClient
             // 
-            panel2.BackColor = Color.FromArgb(110, 110, 149);
-            panel2.Controls.Add(labelTotalClients);
-            panel2.Controls.Add(iconPictureBox1);
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(354, 28);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(214, 59);
-            panel2.TabIndex = 3;
-            panel2.Paint += panel2_Paint;
+            panelTotalClient.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            panelTotalClient.BackColor = Color.FromArgb(110, 110, 149);
+            panelTotalClient.Controls.Add(labelTotalClients);
+            panelTotalClient.Controls.Add(iconPictureBox1);
+            panelTotalClient.Controls.Add(label1);
+            panelTotalClient.Location = new Point(354, 28);
+            panelTotalClient.Name = "panelTotalClient";
+            panelTotalClient.Size = new Size(214, 59);
+            panelTotalClient.TabIndex = 3;
+            panelTotalClient.Paint += panel2_Paint;
             // 
             // labelTotalClients
             // 
@@ -165,14 +173,17 @@
             label1.Text = "Total Clients";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
-            // searchBox
+            // searchBoxClientList
             // 
-            searchBox.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            searchBox.Location = new Point(12, 398);
-            searchBox.Multiline = true;
-            searchBox.Name = "searchBox";
-            searchBox.Size = new Size(236, 36);
-            searchBox.TabIndex = 2;
+            searchBoxClientList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            searchBoxClientList.ForeColor = SystemColors.InactiveCaption;
+            searchBoxClientList.Location = new Point(12, 412);
+            searchBoxClientList.Multiline = true;
+            searchBoxClientList.Name = "searchBoxClientList";
+            searchBoxClientList.Size = new Size(236, 17);
+            searchBoxClientList.TabIndex = 2;
+            searchBoxClientList.Text = "Search Clients";
+            searchBoxClientList.TextChanged += searchBoxClientList_TextChanged;
             // 
             // iconAddClient
             // 
@@ -180,16 +191,16 @@
             iconAddClient.BackColor = Color.DeepSkyBlue;
             iconAddClient.FlatAppearance.BorderSize = 0;
             iconAddClient.FlatStyle = FlatStyle.Flat;
-            iconAddClient.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconAddClient.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             iconAddClient.ForeColor = Color.White;
             iconAddClient.IconChar = FontAwesome.Sharp.IconChar.Add;
             iconAddClient.IconColor = Color.White;
             iconAddClient.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconAddClient.IconSize = 32;
             iconAddClient.ImageAlign = ContentAlignment.MiddleLeft;
-            iconAddClient.Location = new Point(254, 398);
+            iconAddClient.Location = new Point(254, 402);
             iconAddClient.Name = "iconAddClient";
-            iconAddClient.Size = new Size(78, 36);
+            iconAddClient.Size = new Size(81, 36);
             iconAddClient.TabIndex = 1;
             iconAddClient.Text = "Add";
             iconAddClient.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -203,16 +214,24 @@
             dataGridViewClientList.BorderStyle = BorderStyle.None;
             dataGridViewClientList.CellBorderStyle = DataGridViewCellBorderStyle.None;
             dataGridViewClientList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(69, 68, 119);
-            dataGridViewCellStyle2.Font = new Font("Consolas", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.Snow;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(41, 40, 71);
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(69, 68, 119);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Snow;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(41, 40, 71);
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewClientList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewClientList.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
+            dataGridViewClientList.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, ColumnMoreInfo });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.Transparent;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.CornflowerBlue;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridViewClientList.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewClientList.EnableHeadersVisualStyles = false;
             dataGridViewClientList.GridColor = Color.FromArgb(69, 68, 119);
             dataGridViewClientList.Location = new Point(12, 130);
@@ -220,12 +239,16 @@
             dataGridViewClientList.Name = "dataGridViewClientList";
             dataGridViewClientList.RowHeadersVisible = false;
             dataGridViewClientList.RowHeadersWidth = 25;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(69, 68, 119);
+            dataGridViewClientList.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewClientList.Size = new Size(776, 253);
             dataGridViewClientList.TabIndex = 0;
+            dataGridViewClientList.CellContentClick += dataGridViewClientList_CellContentClick;
             // 
             // Column1
             // 
             Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column1.DataPropertyName = "ClientName";
             Column1.FillWeight = 150F;
             Column1.HeaderText = "Client Name/ID";
             Column1.Name = "Column1";
@@ -233,6 +256,7 @@
             // Column2
             // 
             Column2.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column2.DataPropertyName = "Status";
             Column2.FillWeight = 125F;
             Column2.HeaderText = "Status";
             Column2.Name = "Column2";
@@ -240,6 +264,7 @@
             // Column3
             // 
             Column3.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column3.DataPropertyName = "OperatingSystem";
             Column3.FillWeight = 200F;
             Column3.HeaderText = "Operating System";
             Column3.Name = "Column3";
@@ -247,9 +272,23 @@
             // Column4
             // 
             Column4.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Column4.DataPropertyName = "DamageSummary";
             Column4.FillWeight = 150F;
             Column4.HeaderText = "Damage Summary";
             Column4.Name = "Column4";
+            // 
+            // ColumnMoreInfo
+            // 
+            ColumnMoreInfo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            ColumnMoreInfo.HeaderText = "";
+            ColumnMoreInfo.Name = "ColumnMoreInfo";
+            ColumnMoreInfo.Text = "More Info";
+            ColumnMoreInfo.UseColumnTextForButtonValue = true;
+            ColumnMoreInfo.Width = 20;
+            // 
+            // damageReportsBindingSource
+            // 
+            damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
             // 
             // formClientList
             // 
@@ -258,17 +297,18 @@
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
             Name = "formClientList";
-            Text = "ClientList";
+            Text = "Client List";
             Load += formClientList_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
+            panelTotalClient.ResumeLayout(false);
+            panelTotalClient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientList).EndInit();
+            ((System.ComponentModel.ISupportInitialize)damageReportsBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -276,13 +316,9 @@
 
         private Panel panel1;
         private DataGridView dataGridViewClientList;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
         private FontAwesome.Sharp.IconButton iconAddClient;
-        private TextBox searchBox;
-        private Panel panel2;
+        private TextBox searchBoxClientList;
+        private Panel panelTotalClient;
         private Label label1;
         private Panel panel3;
         private Label label2;
@@ -290,5 +326,11 @@
         private Label labelTotalClients;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private BindingSource damageReportsBindingSource;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewButtonColumn ColumnMoreInfo;
     }
 }
