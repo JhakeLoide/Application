@@ -40,7 +40,10 @@ namespace Application.Forms
             labelDateReceived.Text = report.DateReceived == default
                 ? string.Empty
                 : report.DateReceived.ToString("MMMM dd, yyyy");
+            LoadDeviceImage();
             HookChangeTracking();
+            var toolTip = new ToolTip();
+            toolTip.SetToolTip(picDeviceImage, "Click for a full view.");
         }
 
         private void HookChangeTracking()
@@ -60,6 +63,11 @@ namespace Application.Forms
         private void iconButtonUpdate_Click(object sender, EventArgs e)
         {
             if (_report is null)
+            {
+                return;
+            }
+
+            if (!_hasChanges)
             {
                 return;
             }
@@ -102,6 +110,8 @@ namespace Application.Forms
 
                 _bindingSource?.ResetBindings(false);
                 _hasChanges = false;
+                labelUpdatedOn.Text = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
+                MessageBox.Show("Info Updated", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
@@ -166,7 +176,28 @@ namespace Application.Forms
 
         private void picDeviceImage_Click(object sender, EventArgs e)
         {
+            if (picDeviceImage.Image is null)
+            {
+                return;
+            }
 
+            using var preview = new Form
+            {
+                Text = "Device Image",
+                StartPosition = FormStartPosition.CenterParent,
+                BackColor = Color.Black,
+                ClientSize = new Size(800, 600)
+            };
+
+            var pictureBox = new PictureBox
+            {
+                Dock = DockStyle.Fill,
+                Image = picDeviceImage.Image,
+                SizeMode = PictureBoxSizeMode.Zoom
+            };
+
+            preview.Controls.Add(pictureBox);
+            preview.ShowDialog(this);
         }
 
         private void btnUploadImage_Click(object sender, EventArgs e)
@@ -180,11 +211,28 @@ namespace Application.Forms
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    picDeviceImage.Image = Image.FromFile(openFileDialog.FileName);
+                    var imageBytes = File.ReadAllBytes(openFileDialog.FileName);
+                    using var stream = new MemoryStream(imageBytes);
+                    picDeviceImage.Image = Image.FromStream(stream);
+                    if (_report is not null)
+                    {
+                        _report.DeviceImage = imageBytes;
+                    }
                     _hasChanges = true;
                 }
             }
 
+        }
+
+        private void LoadDeviceImage()
+        {
+            if (_report?.DeviceImage is null || _report.DeviceImage.Length == 0)
+            {
+                return;
+            }
+
+            using var stream = new MemoryStream(_report.DeviceImage);
+            picDeviceImage.Image = Image.FromStream(stream);
         }
 
         private static AppDbContext CreateDbContext()

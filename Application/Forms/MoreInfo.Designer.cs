@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMoreInfo = new Panel();
+            labelUpdatedOn = new Label();
             labelDateReceived = new Label();
             label6 = new Label();
             btnUploadImage = new Button();
@@ -46,6 +47,7 @@
             txtDeviceModel = new TextBox();
             txtOperatingSystem = new TextBox();
             txtClientName = new TextBox();
+            label7 = new Label();
             panelMoreInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDeviceImage).BeginInit();
             SuspendLayout();
@@ -53,6 +55,8 @@
             // panelMoreInfo
             // 
             panelMoreInfo.BackColor = Color.FromArgb(34, 33, 72);
+            panelMoreInfo.Controls.Add(label7);
+            panelMoreInfo.Controls.Add(labelUpdatedOn);
             panelMoreInfo.Controls.Add(labelDateReceived);
             panelMoreInfo.Controls.Add(label6);
             panelMoreInfo.Controls.Add(btnUploadImage);
@@ -76,12 +80,22 @@
             panelMoreInfo.Size = new Size(800, 450);
             panelMoreInfo.TabIndex = 0;
             // 
+            // labelUpdatedOn
+            // 
+            labelUpdatedOn.AutoSize = true;
+            labelUpdatedOn.Font = new Font("Segoe UI", 10F);
+            labelUpdatedOn.ForeColor = Color.Gainsboro;
+            labelUpdatedOn.Location = new Point(352, 353);
+            labelUpdatedOn.Name = "labelUpdatedOn";
+            labelUpdatedOn.Size = new Size(0, 19);
+            labelUpdatedOn.TabIndex = 17;
+            // 
             // labelDateReceived
             // 
             labelDateReceived.AutoSize = true;
             labelDateReceived.Font = new Font("Segoe UI", 10F);
             labelDateReceived.ForeColor = Color.Gainsboro;
-            labelDateReceived.Location = new Point(349, 386);
+            labelDateReceived.Location = new Point(352, 317);
             labelDateReceived.Name = "labelDateReceived";
             labelDateReceived.Size = new Size(0, 19);
             labelDateReceived.TabIndex = 16;
@@ -91,7 +105,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F);
             label6.ForeColor = Color.Gainsboro;
-            label6.Location = new Point(245, 386);
+            label6.Location = new Point(248, 317);
             label6.Name = "label6";
             label6.Size = new Size(98, 19);
             label6.TabIndex = 15;
@@ -104,7 +118,7 @@
             btnUploadImage.FlatStyle = FlatStyle.Flat;
             btnUploadImage.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnUploadImage.ForeColor = Color.White;
-            btnUploadImage.Location = new Point(92, 295);
+            btnUploadImage.Location = new Point(68, 295);
             btnUploadImage.Name = "btnUploadImage";
             btnUploadImage.Size = new Size(62, 30);
             btnUploadImage.TabIndex = 9;
@@ -116,9 +130,9 @@
             // 
             picDeviceImage.BackColor = Color.FromArgb(54, 53, 97);
             picDeviceImage.BorderStyle = BorderStyle.FixedSingle;
-            picDeviceImage.Location = new Point(58, 111);
+            picDeviceImage.Location = new Point(12, 66);
             picDeviceImage.Name = "picDeviceImage";
-            picDeviceImage.Size = new Size(133, 178);
+            picDeviceImage.Size = new Size(182, 223);
             picDeviceImage.SizeMode = PictureBoxSizeMode.Zoom;
             picDeviceImage.TabIndex = 8;
             picDeviceImage.TabStop = false;
@@ -190,7 +204,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F);
             label5.ForeColor = Color.Gainsboro;
-            label5.Location = new Point(197, 318);
+            label5.Location = new Point(200, 249);
             label5.Name = "label5";
             label5.Size = new Size(150, 19);
             label5.TabIndex = 4;
@@ -201,7 +215,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F);
             label4.ForeColor = Color.Gainsboro;
-            label4.Location = new Point(235, 251);
+            label4.Location = new Point(238, 182);
             label4.Name = "label4";
             label4.Size = new Size(105, 19);
             label4.TabIndex = 3;
@@ -212,7 +226,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F);
             label3.ForeColor = Color.Gainsboro;
-            label3.Location = new Point(243, 205);
+            label3.Location = new Point(246, 136);
             label3.Name = "label3";
             label3.Size = new Size(95, 19);
             label3.TabIndex = 2;
@@ -223,7 +237,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F);
             label2.ForeColor = Color.Gainsboro;
-            label2.Location = new Point(221, 164);
+            label2.Location = new Point(224, 95);
             label2.Name = "label2";
             label2.Size = new Size(122, 19);
             label2.TabIndex = 1;
@@ -234,7 +248,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10F);
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(226, 124);
+            label1.Location = new Point(229, 55);
             label1.Name = "label1";
             label1.Size = new Size(113, 19);
             label1.TabIndex = 0;
@@ -245,7 +259,7 @@
             txtAdditionalInfo.BackColor = Color.FromArgb(54, 53, 97);
             txtAdditionalInfo.BorderStyle = BorderStyle.FixedSingle;
             txtAdditionalInfo.ForeColor = Color.WhiteSmoke;
-            txtAdditionalInfo.Location = new Point(347, 300);
+            txtAdditionalInfo.Location = new Point(350, 231);
             txtAdditionalInfo.Multiline = true;
             txtAdditionalInfo.Name = "txtAdditionalInfo";
             txtAdditionalInfo.Size = new Size(300, 69);
@@ -256,7 +270,7 @@
             txtIssueSummary.BackColor = Color.FromArgb(54, 53, 97);
             txtIssueSummary.BorderStyle = BorderStyle.FixedSingle;
             txtIssueSummary.ForeColor = Color.WhiteSmoke;
-            txtIssueSummary.Location = new Point(347, 247);
+            txtIssueSummary.Location = new Point(350, 178);
             txtIssueSummary.Multiline = true;
             txtIssueSummary.Name = "txtIssueSummary";
             txtIssueSummary.Size = new Size(300, 40);
@@ -267,7 +281,7 @@
             txtDeviceModel.BackColor = Color.FromArgb(54, 53, 97);
             txtDeviceModel.BorderStyle = BorderStyle.FixedSingle;
             txtDeviceModel.ForeColor = Color.WhiteSmoke;
-            txtDeviceModel.Location = new Point(347, 201);
+            txtDeviceModel.Location = new Point(350, 132);
             txtDeviceModel.Name = "txtDeviceModel";
             txtDeviceModel.Size = new Size(300, 25);
             txtDeviceModel.TabIndex = 12;
@@ -277,7 +291,7 @@
             txtOperatingSystem.BackColor = Color.FromArgb(54, 53, 97);
             txtOperatingSystem.BorderStyle = BorderStyle.FixedSingle;
             txtOperatingSystem.ForeColor = Color.WhiteSmoke;
-            txtOperatingSystem.Location = new Point(347, 160);
+            txtOperatingSystem.Location = new Point(350, 91);
             txtOperatingSystem.Name = "txtOperatingSystem";
             txtOperatingSystem.Size = new Size(300, 25);
             txtOperatingSystem.TabIndex = 11;
@@ -287,10 +301,21 @@
             txtClientName.BackColor = Color.FromArgb(54, 53, 97);
             txtClientName.BorderStyle = BorderStyle.FixedSingle;
             txtClientName.ForeColor = Color.WhiteSmoke;
-            txtClientName.Location = new Point(347, 121);
+            txtClientName.Location = new Point(350, 52);
             txtClientName.Name = "txtClientName";
             txtClientName.Size = new Size(300, 25);
             txtClientName.TabIndex = 10;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10F);
+            label7.ForeColor = Color.Gainsboro;
+            label7.Location = new Point(258, 353);
+            label7.Name = "label7";
+            label7.Size = new Size(88, 19);
+            label7.TabIndex = 18;
+            label7.Text = "Updated On:";
             // 
             // MoreInfo
             // 
@@ -328,5 +353,7 @@
         private TextBox txtAdditionalInfo;
         private Label labelDateReceived;
         private Label label6;
+        private Label labelUpdatedOn;
+        private Label label7;
     }
 }

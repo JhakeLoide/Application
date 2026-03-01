@@ -16,5 +16,6 @@ namespace App.Domain.Entities
         public string DamageSummary { get; set; }
         public string AdditionalInfo { get; set; }
         public DateTime DateReceived { get; set; }
+        public byte[]? DeviceImage { get; set; }
     }
 }
