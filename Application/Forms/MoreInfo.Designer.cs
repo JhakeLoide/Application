@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelMoreInfo = new Panel();
+            labelDateReceived = new Label();
+            label6 = new Label();
             btnUploadImage = new Button();
             picDeviceImage = new PictureBox();
             iconButtonDelete = new FontAwesome.Sharp.IconButton();
@@ -51,6 +53,8 @@
             // panelMoreInfo
             // 
             panelMoreInfo.BackColor = Color.FromArgb(34, 33, 74);
+            panelMoreInfo.Controls.Add(labelDateReceived);
+            panelMoreInfo.Controls.Add(label6);
             panelMoreInfo.Controls.Add(btnUploadImage);
             panelMoreInfo.Controls.Add(picDeviceImage);
             panelMoreInfo.Controls.Add(iconButtonDelete);
@@ -72,11 +76,30 @@
             panelMoreInfo.Size = new Size(800, 450);
             panelMoreInfo.TabIndex = 0;
             // 
+            // labelDateReceived
+            // 
+            labelDateReceived.AutoSize = true;
+            labelDateReceived.ForeColor = Color.White;
+            labelDateReceived.Location = new Point(347, 366);
+            labelDateReceived.Name = "labelDateReceived";
+            labelDateReceived.Size = new Size(0, 15);
+            labelDateReceived.TabIndex = 16;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.ForeColor = Color.White;
+            label6.Location = new Point(241, 366);
+            label6.Name = "label6";
+            label6.Size = new Size(84, 15);
+            label6.TabIndex = 15;
+            label6.Text = "Date Received:";
+            // 
             // btnUploadImage
             // 
             btnUploadImage.FlatAppearance.BorderSize = 0;
             btnUploadImage.FlatStyle = FlatStyle.Flat;
-            btnUploadImage.ForeColor = Color.Turquoise;
+            btnUploadImage.ForeColor = Color.White;
             btnUploadImage.Location = new Point(86, 295);
             btnUploadImage.Name = "btnUploadImage";
             btnUploadImage.Size = new Size(75, 23);
@@ -209,7 +232,7 @@
             txtAdditionalInfo.Location = new Point(347, 294);
             txtAdditionalInfo.Multiline = true;
             txtAdditionalInfo.Name = "txtAdditionalInfo";
-            txtAdditionalInfo.Size = new Size(300, 40);
+            txtAdditionalInfo.Size = new Size(300, 69);
             txtAdditionalInfo.TabIndex = 14;
             // 
             // txtIssueSummary
@@ -273,5 +296,7 @@
         private TextBox txtDeviceModel;
         private TextBox txtIssueSummary;
         private TextBox txtAdditionalInfo;
+        private Label labelDateReceived;
+        private Label label6;
     }
 }

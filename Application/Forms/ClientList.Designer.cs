@@ -33,10 +33,6 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            panel3 = new Panel();
-            labelCriticalIssues = new Label();
-            iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            label2 = new Label();
             panelTotalClient = new Panel();
             labelTotalClients = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -51,8 +47,6 @@
             ColumnMoreInfo = new DataGridViewButtonColumn();
             damageReportsBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox2).BeginInit();
             panelTotalClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridViewClientList).BeginInit();
@@ -62,7 +56,6 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(34, 33, 74);
-            panel1.Controls.Add(panel3);
             panel1.Controls.Add(panelTotalClient);
             panel1.Controls.Add(searchBoxClientList);
             panel1.Controls.Add(iconAddClient);
@@ -73,56 +66,6 @@
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
             // 
-            // panel3
-            // 
-            panel3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            panel3.BackColor = Color.FromArgb(110, 110, 149);
-            panel3.Controls.Add(labelCriticalIssues);
-            panel3.Controls.Add(iconPictureBox2);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(574, 28);
-            panel3.Name = "panel3";
-            panel3.RightToLeft = RightToLeft.No;
-            panel3.Size = new Size(214, 59);
-            panel3.TabIndex = 4;
-            // 
-            // labelCriticalIssues
-            // 
-            labelCriticalIssues.AutoSize = true;
-            labelCriticalIssues.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelCriticalIssues.ForeColor = Color.Red;
-            labelCriticalIssues.Location = new Point(67, 30);
-            labelCriticalIssues.Name = "labelCriticalIssues";
-            labelCriticalIssues.Size = new Size(28, 14);
-            labelCriticalIssues.TabIndex = 1;
-            labelCriticalIssues.Text = "...";
-            labelCriticalIssues.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // iconPictureBox2
-            // 
-            iconPictureBox2.BackColor = Color.FromArgb(110, 110, 149);
-            iconPictureBox2.ForeColor = Color.Red;
-            iconPictureBox2.IconChar = FontAwesome.Sharp.IconChar.Exclamation;
-            iconPictureBox2.IconColor = Color.Red;
-            iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox2.Location = new Point(20, 12);
-            iconPictureBox2.Name = "iconPictureBox2";
-            iconPictureBox2.Size = new Size(32, 32);
-            iconPictureBox2.TabIndex = 6;
-            iconPictureBox2.TabStop = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(67, 11);
-            label2.Name = "label2";
-            label2.Size = new Size(144, 19);
-            label2.TabIndex = 0;
-            label2.Text = "Critical Issues";
-            label2.TextAlign = ContentAlignment.TopCenter;
-            // 
             // panelTotalClient
             // 
             panelTotalClient.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -130,7 +73,7 @@
             panelTotalClient.Controls.Add(labelTotalClients);
             panelTotalClient.Controls.Add(iconPictureBox1);
             panelTotalClient.Controls.Add(label1);
-            panelTotalClient.Location = new Point(354, 28);
+            panelTotalClient.Location = new Point(574, 29);
             panelTotalClient.Name = "panelTotalClient";
             panelTotalClient.Size = new Size(214, 59);
             panelTotalClient.TabIndex = 3;
@@ -176,7 +119,7 @@
             // searchBoxClientList
             // 
             searchBoxClientList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            searchBoxClientList.ForeColor = SystemColors.InactiveCaption;
+            searchBoxClientList.ForeColor = Color.Black;
             searchBoxClientList.Location = new Point(12, 412);
             searchBoxClientList.Multiline = true;
             searchBoxClientList.Name = "searchBoxClientList";
@@ -236,6 +179,7 @@
             dataGridViewClientList.Location = new Point(12, 130);
             dataGridViewClientList.MultiSelect = false;
             dataGridViewClientList.Name = "dataGridViewClientList";
+            dataGridViewClientList.ReadOnly = true;
             dataGridViewClientList.RowHeadersVisible = false;
             dataGridViewClientList.RowHeadersWidth = 25;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(69, 68, 119);
@@ -300,9 +244,6 @@
             Load += formClientList_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)iconPictureBox2).EndInit();
             panelTotalClient.ResumeLayout(false);
             panelTotalClient.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
@@ -319,11 +260,7 @@
         private TextBox searchBoxClientList;
         private Panel panelTotalClient;
         private Label label1;
-        private Panel panel3;
-        private Label label2;
-        private Label labelCriticalIssues;
         private Label labelTotalClients;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private BindingSource damageReportsBindingSource;
         private DataGridViewTextBoxColumn Column1;

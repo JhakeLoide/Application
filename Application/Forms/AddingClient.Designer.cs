@@ -74,7 +74,7 @@
             txtBoxAddInfo.Location = new Point(188, 207);
             txtBoxAddInfo.Multiline = true;
             txtBoxAddInfo.Name = "txtBoxAddInfo";
-            txtBoxAddInfo.Size = new Size(191, 50);
+            txtBoxAddInfo.Size = new Size(191, 113);
             txtBoxAddInfo.TabIndex = 13;
             // 
             // label6

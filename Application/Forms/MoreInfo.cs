@@ -34,6 +34,9 @@ namespace Application.Forms
             txtDeviceModel.Text = "N/A";
             txtIssueSummary.Text = report.DamageSummary;
             txtAdditionalInfo.Text = string.IsNullOrWhiteSpace(report.AdditionalInfo) ? "N/A" : report.AdditionalInfo;
+            labelDateReceived.Text = report.DateReceived == default
+                ? string.Empty
+                : report.DateReceived.ToString("MMMM dd, yyyy");
             HookChangeTracking();
         }
 

@@ -18,6 +18,9 @@ namespace Application.Forms
         public formAddingClient()
         {
             InitializeComponent();
+            dateTimePicker1.Format = DateTimePickerFormat.Custom;
+            dateTimePicker1.CustomFormat = "MMMM dd, yyyy";
+            dateTimePicker1.Value = DateTime.Today;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -52,6 +55,7 @@ namespace Application.Forms
                 OperatingSystem = cmbBoxOS.Text,
                 DamageSummary = txtBoxSummary.Text.Trim(),
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
+                DateReceived = dateTimePicker1.Value.Date,
                 Status = "New"
             };
 
