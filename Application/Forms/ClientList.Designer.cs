@@ -32,6 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
             panelTotalClient = new Panel();
             labelTotalClients = new Label();
@@ -68,12 +69,13 @@
             // 
             // panelTotalClient
             // 
-            panelTotalClient.BackColor = Color.FromArgb(110, 110, 149);
+            panelTotalClient.BackColor = Color.FromArgb(48, 47, 86);
             panelTotalClient.Controls.Add(labelTotalClients);
             panelTotalClient.Controls.Add(iconPictureBox1);
             panelTotalClient.Controls.Add(label1);
             panelTotalClient.Location = new Point(12, 27);
             panelTotalClient.Name = "panelTotalClient";
+            panelTotalClient.Padding = new Padding(10, 6, 10, 6);
             panelTotalClient.Size = new Size(214, 59);
             panelTotalClient.TabIndex = 3;
             panelTotalClient.Paint += panel2_Paint;
@@ -82,7 +84,7 @@
             // 
             labelTotalClients.AutoSize = true;
             labelTotalClients.Font = new Font("Consolas", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelTotalClients.ForeColor = Color.Lime;
+            labelTotalClients.ForeColor = Color.WhiteSmoke;
             labelTotalClients.Location = new Point(69, 30);
             labelTotalClients.Name = "labelTotalClients";
             labelTotalClients.Size = new Size(40, 22);
@@ -92,7 +94,7 @@
             // 
             // iconPictureBox1
             // 
-            iconPictureBox1.BackColor = Color.FromArgb(110, 110, 149);
+            iconPictureBox1.BackColor = Color.FromArgb(48, 47, 86);
             iconPictureBox1.ForeColor = Color.DeepSkyBlue;
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Computer;
             iconPictureBox1.IconColor = Color.DeepSkyBlue;
@@ -107,7 +109,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Consolas", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.Gainsboro;
             label1.Location = new Point(69, 11);
             label1.Name = "label1";
             label1.Size = new Size(126, 19);
@@ -150,39 +152,48 @@
             // 
             // dataGridViewClientList
             // 
+            dataGridViewClientList.AllowUserToAddRows = false;
+            dataGridViewClientList.AllowUserToResizeColumns = false;
+            dataGridViewClientList.AllowUserToResizeRows = false;
             dataGridViewClientList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            dataGridViewClientList.BackgroundColor = Color.FromArgb(69, 68, 119);
+            dataGridViewClientList.BackgroundColor = Color.FromArgb(54, 53, 97);
             dataGridViewClientList.BorderStyle = BorderStyle.None;
-            dataGridViewClientList.CellBorderStyle = DataGridViewCellBorderStyle.None;
+            dataGridViewClientList.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewClientList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(69, 68, 119);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(48, 47, 86);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.Snow;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(41, 40, 71);
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(48, 47, 86);
+            dataGridViewCellStyle1.SelectionForeColor = Color.Snow;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewClientList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewClientList.ColumnHeadersHeight = 40;
+            dataGridViewClientList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewClientList.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, ColumnMoreInfo });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.Transparent;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = Color.CornflowerBlue;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(60, 59, 100);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(88, 86, 147);
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dataGridViewClientList.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewClientList.EnableHeadersVisualStyles = false;
-            dataGridViewClientList.GridColor = Color.FromArgb(69, 68, 119);
+            dataGridViewClientList.GridColor = Color.FromArgb(48, 47, 86);
             dataGridViewClientList.Location = new Point(12, 130);
             dataGridViewClientList.MultiSelect = false;
             dataGridViewClientList.Name = "dataGridViewClientList";
             dataGridViewClientList.ReadOnly = true;
+            dataGridViewClientList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewClientList.RowHeadersVisible = false;
             dataGridViewClientList.RowHeadersWidth = 25;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(69, 68, 119);
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(54, 53, 97);
             dataGridViewClientList.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(50, 49, 90);
+            dataGridViewClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewClientList.RowTemplate.Height = 36;
+            dataGridViewClientList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewClientList.Size = new Size(776, 253);
             dataGridViewClientList.TabIndex = 0;
             dataGridViewClientList.CellContentClick += dataGridViewClientList_CellContentClick;

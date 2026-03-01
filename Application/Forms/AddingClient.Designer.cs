@@ -48,7 +48,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(34, 33, 74);
+            panel1.BackColor = Color.FromArgb(34, 33, 72);
             panel1.Controls.Add(txtBoxAddInfo);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(txtBoxDeviceModel);
@@ -71,7 +71,10 @@
             // 
             // txtBoxAddInfo
             // 
-            txtBoxAddInfo.Location = new Point(188, 207);
+            txtBoxAddInfo.BackColor = Color.FromArgb(54, 53, 97);
+            txtBoxAddInfo.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxAddInfo.ForeColor = Color.WhiteSmoke;
+            txtBoxAddInfo.Location = new Point(204, 197);
             txtBoxAddInfo.Multiline = true;
             txtBoxAddInfo.Name = "txtBoxAddInfo";
             txtBoxAddInfo.Size = new Size(191, 113);
@@ -80,33 +83,41 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(126, 225);
+            label6.Font = new Font("Segoe UI", 10F);
+            label6.ForeColor = Color.Gainsboro;
+            label6.Location = new Point(133, 244);
             label6.Name = "label6";
-            label6.Size = new Size(56, 15);
+            label6.Size = new Size(65, 19);
             label6.TabIndex = 12;
             label6.Text = "Add Info:";
             // 
             // txtBoxDeviceModel
             // 
-            txtBoxDeviceModel.Location = new Point(188, 93);
+            txtBoxDeviceModel.BackColor = Color.FromArgb(54, 53, 97);
+            txtBoxDeviceModel.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxDeviceModel.ForeColor = Color.WhiteSmoke;
+            txtBoxDeviceModel.Location = new Point(204, 83);
             txtBoxDeviceModel.Name = "txtBoxDeviceModel";
-            txtBoxDeviceModel.Size = new Size(191, 23);
+            txtBoxDeviceModel.Size = new Size(191, 25);
             txtBoxDeviceModel.TabIndex = 11;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(100, 101);
+            label5.Font = new Font("Segoe UI", 10F);
+            label5.ForeColor = Color.Gainsboro;
+            label5.Location = new Point(103, 89);
             label5.Name = "label5";
-            label5.Size = new Size(82, 15);
+            label5.Size = new Size(95, 19);
             label5.TabIndex = 10;
             label5.Text = "Device Model:";
             // 
             // txtBoxSummary
             // 
-            txtBoxSummary.Location = new Point(188, 151);
+            txtBoxSummary.BackColor = Color.FromArgb(54, 53, 97);
+            txtBoxSummary.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxSummary.ForeColor = Color.WhiteSmoke;
+            txtBoxSummary.Location = new Point(204, 143);
             txtBoxSummary.Multiline = true;
             txtBoxSummary.Name = "txtBoxSummary";
             txtBoxSummary.Size = new Size(191, 50);
@@ -115,92 +126,119 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(92, 166);
+            label4.Font = new Font("Segoe UI", 10F);
+            label4.ForeColor = Color.Gainsboro;
+            label4.Location = new Point(93, 158);
             label4.Name = "label4";
-            label4.Size = new Size(90, 15);
+            label4.Size = new Size(105, 19);
             label4.TabIndex = 8;
             label4.Text = "Issue Summary:";
             // 
             // dateTimePicker1
             // 
-            dateTimePicker1.Location = new Point(188, 122);
+            dateTimePicker1.CalendarForeColor = Color.WhiteSmoke;
+            dateTimePicker1.CalendarMonthBackground = Color.FromArgb(54, 53, 97);
+            dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(48, 47, 86);
+            dateTimePicker1.CalendarTitleForeColor = Color.WhiteSmoke;
+            dateTimePicker1.Font = new Font("Segoe UI", 10F);
+            dateTimePicker1.Location = new Point(204, 112);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(191, 23);
+            dateTimePicker1.Size = new Size(191, 25);
             dateTimePicker1.TabIndex = 7;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(98, 130);
+            label3.Font = new Font("Segoe UI", 10F);
+            label3.ForeColor = Color.Gainsboro;
+            label3.Location = new Point(100, 118);
             label3.Name = "label3";
-            label3.Size = new Size(84, 15);
+            label3.Size = new Size(98, 19);
             label3.TabIndex = 6;
             label3.Text = "Date Recieved:";
             // 
             // cmbBoxOS
             // 
+            cmbBoxOS.BackColor = Color.FromArgb(54, 53, 97);
+            cmbBoxOS.FlatStyle = FlatStyle.Flat;
+            cmbBoxOS.Font = new Font("Segoe UI", 10F);
+            cmbBoxOS.ForeColor = Color.WhiteSmoke;
             cmbBoxOS.FormattingEnabled = true;
             cmbBoxOS.Items.AddRange(new object[] { "Windows 10", "Windows 11", "MacOS", "Linux", "ChromeOS", "Others" });
-            cmbBoxOS.Location = new Point(188, 64);
+            cmbBoxOS.Location = new Point(204, 54);
             cmbBoxOS.Name = "cmbBoxOS";
-            cmbBoxOS.Size = new Size(191, 23);
+            cmbBoxOS.Size = new Size(192, 25);
             cmbBoxOS.TabIndex = 5;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(151, 72);
+            label2.Font = new Font("Segoe UI", 10F);
+            label2.ForeColor = Color.Gainsboro;
+            label2.Location = new Point(169, 60);
             label2.Name = "label2";
-            label2.Size = new Size(25, 15);
+            label2.Size = new Size(30, 19);
             label2.TabIndex = 4;
             label2.Text = "OS:";
             // 
             // txtBoxName
             // 
-            txtBoxName.Location = new Point(188, 35);
+            txtBoxName.BackColor = Color.FromArgb(54, 53, 97);
+            txtBoxName.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxName.ForeColor = Color.WhiteSmoke;
+            txtBoxName.Location = new Point(205, 23);
             txtBoxName.Name = "txtBoxName";
-            txtBoxName.Size = new Size(191, 23);
+            txtBoxName.Size = new Size(191, 25);
             txtBoxName.TabIndex = 3;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(134, 43);
+            label1.Font = new Font("Segoe UI", 10F);
+            label1.ForeColor = Color.Gainsboro;
+            label1.Location = new Point(151, 29);
             label1.Name = "label1";
-            label1.Size = new Size(42, 15);
+            label1.Size = new Size(48, 19);
             label1.TabIndex = 2;
             label1.Text = "Name:";
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(202, 326);
+            btnAdd.BackColor = Color.FromArgb(88, 86, 147);
+            btnAdd.FlatAppearance.BorderSize = 0;
+            btnAdd.FlatStyle = FlatStyle.Flat;
+            btnAdd.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(205, 316);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(86, 30);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(283, 326);
+            btnCancel.BackColor = Color.FromArgb(60, 59, 100);
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnCancel.ForeColor = Color.White;
+            btnCancel.Location = new Point(310, 316);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(75, 23);
+            btnCancel.Size = new Size(86, 30);
             btnCancel.TabIndex = 0;
             btnCancel.Text = "Cancel";
-            btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // formAddingClient
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(543, 361);
             Controls.Add(panel1);
+            Font = new Font("Segoe UI", 10F);
             Name = "formAddingClient";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddingClient";

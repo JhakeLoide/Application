@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Drawing.Drawing2D;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Entities;
@@ -40,7 +41,32 @@ namespace Application.Forms
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
+            if (sender is not Panel panel)
+            {
+                return;
+            }
 
+            var bounds = panel.ClientRectangle;
+            bounds.Inflate(-1, -1);
+
+            using var path = CreateRoundedRectanglePath(bounds, 12);
+            panel.Region = new Region(path);
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            using var borderPen = new Pen(Color.FromArgb(64, 63, 110));
+            e.Graphics.DrawPath(borderPen, path);
+        }
+
+        private static GraphicsPath CreateRoundedRectanglePath(Rectangle bounds, int radius)
+        {
+            var path = new GraphicsPath();
+            var diameter = radius * 2;
+
+            path.AddArc(bounds.X, bounds.Y, diameter, diameter, 180, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Y, diameter, diameter, 270, 90);
+            path.AddArc(bounds.Right - diameter, bounds.Bottom - diameter, diameter, diameter, 0, 90);
+            path.AddArc(bounds.X, bounds.Bottom - diameter, diameter, diameter, 90, 90);
+            path.CloseFigure();
+            return path;
         }
 
         private void searchBoxClientList_TextChanged(object sender, EventArgs e)

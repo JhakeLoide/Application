@@ -52,7 +52,7 @@
             // 
             // panelMoreInfo
             // 
-            panelMoreInfo.BackColor = Color.FromArgb(34, 33, 74);
+            panelMoreInfo.BackColor = Color.FromArgb(34, 33, 72);
             panelMoreInfo.Controls.Add(labelDateReceived);
             panelMoreInfo.Controls.Add(label6);
             panelMoreInfo.Controls.Add(btnUploadImage);
@@ -79,38 +79,43 @@
             // labelDateReceived
             // 
             labelDateReceived.AutoSize = true;
-            labelDateReceived.ForeColor = Color.White;
-            labelDateReceived.Location = new Point(347, 366);
+            labelDateReceived.Font = new Font("Segoe UI", 10F);
+            labelDateReceived.ForeColor = Color.Gainsboro;
+            labelDateReceived.Location = new Point(349, 386);
             labelDateReceived.Name = "labelDateReceived";
-            labelDateReceived.Size = new Size(0, 15);
+            labelDateReceived.Size = new Size(0, 19);
             labelDateReceived.TabIndex = 16;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.ForeColor = Color.White;
-            label6.Location = new Point(241, 366);
+            label6.Font = new Font("Segoe UI", 10F);
+            label6.ForeColor = Color.Gainsboro;
+            label6.Location = new Point(245, 386);
             label6.Name = "label6";
-            label6.Size = new Size(84, 15);
+            label6.Size = new Size(98, 19);
             label6.TabIndex = 15;
             label6.Text = "Date Received:";
             // 
             // btnUploadImage
             // 
+            btnUploadImage.BackColor = Color.FromArgb(88, 86, 147);
             btnUploadImage.FlatAppearance.BorderSize = 0;
             btnUploadImage.FlatStyle = FlatStyle.Flat;
+            btnUploadImage.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnUploadImage.ForeColor = Color.White;
-            btnUploadImage.Location = new Point(86, 295);
+            btnUploadImage.Location = new Point(92, 295);
             btnUploadImage.Name = "btnUploadImage";
-            btnUploadImage.Size = new Size(75, 23);
+            btnUploadImage.Size = new Size(62, 30);
             btnUploadImage.TabIndex = 9;
             btnUploadImage.Text = "Upload";
-            btnUploadImage.UseVisualStyleBackColor = true;
+            btnUploadImage.UseVisualStyleBackColor = false;
             btnUploadImage.Click += btnUploadImage_Click;
             // 
             // picDeviceImage
             // 
-            picDeviceImage.BackColor = Color.WhiteSmoke;
+            picDeviceImage.BackColor = Color.FromArgb(54, 53, 97);
+            picDeviceImage.BorderStyle = BorderStyle.FixedSingle;
             picDeviceImage.Location = new Point(58, 111);
             picDeviceImage.Name = "picDeviceImage";
             picDeviceImage.Size = new Size(133, 178);
@@ -121,17 +126,18 @@
             // 
             // iconButtonDelete
             // 
-            iconButtonDelete.BackColor = Color.Red;
+            iconButtonDelete.BackColor = Color.FromArgb(188, 69, 74);
             iconButtonDelete.FlatAppearance.BorderSize = 0;
             iconButtonDelete.FlatStyle = FlatStyle.Flat;
+            iconButtonDelete.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             iconButtonDelete.ForeColor = Color.White;
             iconButtonDelete.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
             iconButtonDelete.IconColor = Color.White;
             iconButtonDelete.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonDelete.IconSize = 24;
-            iconButtonDelete.Location = new Point(703, 115);
+            iconButtonDelete.Location = new Point(702, 115);
             iconButtonDelete.Name = "iconButtonDelete";
-            iconButtonDelete.Size = new Size(85, 33);
+            iconButtonDelete.Size = new Size(86, 33);
             iconButtonDelete.TabIndex = 7;
             iconButtonDelete.Text = "Delete";
             iconButtonDelete.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -140,17 +146,18 @@
             // 
             // iconButtonCancel
             // 
-            iconButtonCancel.BackColor = Color.Orange;
+            iconButtonCancel.BackColor = Color.FromArgb(60, 59, 100);
             iconButtonCancel.FlatAppearance.BorderSize = 0;
             iconButtonCancel.FlatStyle = FlatStyle.Flat;
+            iconButtonCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             iconButtonCancel.ForeColor = Color.White;
             iconButtonCancel.IconChar = FontAwesome.Sharp.IconChar.Cancel;
             iconButtonCancel.IconColor = Color.White;
             iconButtonCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonCancel.IconSize = 24;
-            iconButtonCancel.Location = new Point(703, 154);
+            iconButtonCancel.Location = new Point(702, 154);
             iconButtonCancel.Name = "iconButtonCancel";
-            iconButtonCancel.Size = new Size(85, 33);
+            iconButtonCancel.Size = new Size(86, 33);
             iconButtonCancel.TabIndex = 6;
             iconButtonCancel.Text = "Close";
             iconButtonCancel.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -159,18 +166,19 @@
             // 
             // iconButtonUpdate
             // 
-            iconButtonUpdate.BackColor = Color.DeepSkyBlue;
+            iconButtonUpdate.BackColor = Color.FromArgb(88, 86, 147);
             iconButtonUpdate.FlatAppearance.BorderSize = 0;
             iconButtonUpdate.FlatStyle = FlatStyle.Flat;
+            iconButtonUpdate.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             iconButtonUpdate.ForeColor = Color.White;
             iconButtonUpdate.IconChar = FontAwesome.Sharp.IconChar.ArrowRotateLeft;
             iconButtonUpdate.IconColor = Color.White;
             iconButtonUpdate.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonUpdate.IconSize = 24;
             iconButtonUpdate.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButtonUpdate.Location = new Point(703, 76);
+            iconButtonUpdate.Location = new Point(702, 76);
             iconButtonUpdate.Name = "iconButtonUpdate";
-            iconButtonUpdate.Size = new Size(85, 33);
+            iconButtonUpdate.Size = new Size(86, 33);
             iconButtonUpdate.TabIndex = 5;
             iconButtonUpdate.Text = "Update";
             iconButtonUpdate.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -180,56 +188,64 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.ForeColor = Color.White;
-            label5.Location = new Point(194, 299);
+            label5.Font = new Font("Segoe UI", 10F);
+            label5.ForeColor = Color.Gainsboro;
+            label5.Location = new Point(197, 318);
             label5.Name = "label5";
-            label5.Size = new Size(131, 15);
+            label5.Size = new Size(150, 19);
             label5.TabIndex = 4;
             label5.Text = "Additional Information:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.ForeColor = Color.White;
+            label4.Font = new Font("Segoe UI", 10F);
+            label4.ForeColor = Color.Gainsboro;
             label4.Location = new Point(235, 251);
             label4.Name = "label4";
-            label4.Size = new Size(90, 15);
+            label4.Size = new Size(105, 19);
             label4.TabIndex = 3;
             label4.Text = "Issue Summary:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.ForeColor = Color.White;
+            label3.Font = new Font("Segoe UI", 10F);
+            label3.ForeColor = Color.Gainsboro;
             label3.Location = new Point(243, 205);
             label3.Name = "label3";
-            label3.Size = new Size(82, 15);
+            label3.Size = new Size(95, 19);
             label3.TabIndex = 2;
             label3.Text = "Device Model:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.ForeColor = Color.White;
+            label2.Font = new Font("Segoe UI", 10F);
+            label2.ForeColor = Color.Gainsboro;
             label2.Location = new Point(221, 164);
             label2.Name = "label2";
-            label2.Size = new Size(104, 15);
+            label2.Size = new Size(122, 19);
             label2.TabIndex = 1;
             label2.Text = "Operating System:";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.ForeColor = Color.White;
+            label1.Font = new Font("Segoe UI", 10F);
+            label1.ForeColor = Color.Gainsboro;
             label1.Location = new Point(226, 124);
             label1.Name = "label1";
-            label1.Size = new Size(99, 15);
+            label1.Size = new Size(113, 19);
             label1.TabIndex = 0;
             label1.Text = "Client Name/PC: ";
             // 
             // txtAdditionalInfo
             // 
-            txtAdditionalInfo.Location = new Point(347, 294);
+            txtAdditionalInfo.BackColor = Color.FromArgb(54, 53, 97);
+            txtAdditionalInfo.BorderStyle = BorderStyle.FixedSingle;
+            txtAdditionalInfo.ForeColor = Color.WhiteSmoke;
+            txtAdditionalInfo.Location = new Point(347, 300);
             txtAdditionalInfo.Multiline = true;
             txtAdditionalInfo.Name = "txtAdditionalInfo";
             txtAdditionalInfo.Size = new Size(300, 69);
@@ -237,6 +253,9 @@
             // 
             // txtIssueSummary
             // 
+            txtIssueSummary.BackColor = Color.FromArgb(54, 53, 97);
+            txtIssueSummary.BorderStyle = BorderStyle.FixedSingle;
+            txtIssueSummary.ForeColor = Color.WhiteSmoke;
             txtIssueSummary.Location = new Point(347, 247);
             txtIssueSummary.Multiline = true;
             txtIssueSummary.Name = "txtIssueSummary";
@@ -245,31 +264,41 @@
             // 
             // txtDeviceModel
             // 
+            txtDeviceModel.BackColor = Color.FromArgb(54, 53, 97);
+            txtDeviceModel.BorderStyle = BorderStyle.FixedSingle;
+            txtDeviceModel.ForeColor = Color.WhiteSmoke;
             txtDeviceModel.Location = new Point(347, 201);
             txtDeviceModel.Name = "txtDeviceModel";
-            txtDeviceModel.Size = new Size(300, 23);
+            txtDeviceModel.Size = new Size(300, 25);
             txtDeviceModel.TabIndex = 12;
             // 
             // txtOperatingSystem
             // 
+            txtOperatingSystem.BackColor = Color.FromArgb(54, 53, 97);
+            txtOperatingSystem.BorderStyle = BorderStyle.FixedSingle;
+            txtOperatingSystem.ForeColor = Color.WhiteSmoke;
             txtOperatingSystem.Location = new Point(347, 160);
             txtOperatingSystem.Name = "txtOperatingSystem";
-            txtOperatingSystem.Size = new Size(300, 23);
+            txtOperatingSystem.Size = new Size(300, 25);
             txtOperatingSystem.TabIndex = 11;
             // 
             // txtClientName
             // 
+            txtClientName.BackColor = Color.FromArgb(54, 53, 97);
+            txtClientName.BorderStyle = BorderStyle.FixedSingle;
+            txtClientName.ForeColor = Color.WhiteSmoke;
             txtClientName.Location = new Point(347, 121);
             txtClientName.Name = "txtClientName";
-            txtClientName.Size = new Size(300, 23);
+            txtClientName.Size = new Size(300, 25);
             txtClientName.TabIndex = 10;
             // 
             // MoreInfo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(panelMoreInfo);
+            Font = new Font("Segoe UI", 10F);
             Name = "MoreInfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MoreInfo";
