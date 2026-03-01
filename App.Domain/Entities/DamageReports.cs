@@ -12,6 +12,7 @@ namespace App.Domain.Entities
         public string ClientName { get; set; }
         public string Status { get; set; }
         public string OperatingSystem { get; set; }
+        public string DeviceModel { get; set; }
         public string DamageSummary { get; set; }
         public string AdditionalInfo { get; set; }
         public DateTime DateReceived { get; set; }

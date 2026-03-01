@@ -53,6 +53,7 @@ namespace Application.Forms
             {
                 ClientName = txtBoxName.Text.Trim(),
                 OperatingSystem = cmbBoxOS.Text,
+                DeviceModel = txtBoxDeviceModel.Text.Trim(),
                 DamageSummary = txtBoxSummary.Text.Trim(),
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
                 DateReceived = dateTimePicker1.Value.Date,

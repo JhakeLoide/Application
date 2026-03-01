@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(34, 33, 74);
+            panel1.BackColor = Color.FromArgb(34, 33, 72);
             panel1.Controls.Add(panelTotalClient);
             panel1.Controls.Add(searchBoxClientList);
             panel1.Controls.Add(iconAddClient);
@@ -68,12 +68,11 @@
             // 
             // panelTotalClient
             // 
-            panelTotalClient.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             panelTotalClient.BackColor = Color.FromArgb(110, 110, 149);
             panelTotalClient.Controls.Add(labelTotalClients);
             panelTotalClient.Controls.Add(iconPictureBox1);
             panelTotalClient.Controls.Add(label1);
-            panelTotalClient.Location = new Point(574, 29);
+            panelTotalClient.Location = new Point(12, 27);
             panelTotalClient.Name = "panelTotalClient";
             panelTotalClient.Size = new Size(214, 59);
             panelTotalClient.TabIndex = 3;
@@ -120,17 +119,17 @@
             // 
             searchBoxClientList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             searchBoxClientList.ForeColor = Color.Black;
-            searchBoxClientList.Location = new Point(12, 412);
+            searchBoxClientList.Location = new Point(12, 402);
             searchBoxClientList.Multiline = true;
             searchBoxClientList.Name = "searchBoxClientList";
-            searchBoxClientList.Size = new Size(236, 17);
+            searchBoxClientList.Size = new Size(236, 26);
             searchBoxClientList.TabIndex = 2;
             searchBoxClientList.TextChanged += searchBoxClientList_TextChanged;
             // 
             // iconAddClient
             // 
-            iconAddClient.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            iconAddClient.BackColor = Color.DeepSkyBlue;
+            iconAddClient.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            iconAddClient.BackColor = Color.FromArgb(60, 59, 100);
             iconAddClient.FlatAppearance.BorderSize = 0;
             iconAddClient.FlatStyle = FlatStyle.Flat;
             iconAddClient.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -140,9 +139,9 @@
             iconAddClient.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconAddClient.IconSize = 32;
             iconAddClient.ImageAlign = ContentAlignment.MiddleLeft;
-            iconAddClient.Location = new Point(254, 402);
+            iconAddClient.Location = new Point(702, 57);
             iconAddClient.Name = "iconAddClient";
-            iconAddClient.Size = new Size(81, 36);
+            iconAddClient.Size = new Size(86, 36);
             iconAddClient.TabIndex = 1;
             iconAddClient.Text = "Add";
             iconAddClient.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -195,6 +194,7 @@
             Column1.FillWeight = 150F;
             Column1.HeaderText = "Client Name/ID";
             Column1.Name = "Column1";
+            Column1.ReadOnly = true;
             // 
             // Column2
             // 
@@ -203,6 +203,7 @@
             Column2.FillWeight = 125F;
             Column2.HeaderText = "Status";
             Column2.Name = "Column2";
+            Column2.ReadOnly = true;
             // 
             // Column3
             // 
@@ -211,6 +212,7 @@
             Column3.FillWeight = 200F;
             Column3.HeaderText = "Operating System";
             Column3.Name = "Column3";
+            Column3.ReadOnly = true;
             // 
             // Column4
             // 
@@ -219,12 +221,15 @@
             Column4.FillWeight = 150F;
             Column4.HeaderText = "Damage Summary";
             Column4.Name = "Column4";
+            Column4.ReadOnly = true;
             // 
             // ColumnMoreInfo
             // 
             ColumnMoreInfo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            ColumnMoreInfo.FlatStyle = FlatStyle.Flat;
             ColumnMoreInfo.HeaderText = "";
             ColumnMoreInfo.Name = "ColumnMoreInfo";
+            ColumnMoreInfo.ReadOnly = true;
             ColumnMoreInfo.Text = "More Info";
             ColumnMoreInfo.UseColumnTextForButtonValue = true;
             ColumnMoreInfo.Width = 20;

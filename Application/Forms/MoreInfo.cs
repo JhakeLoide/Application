@@ -31,7 +31,7 @@ namespace Application.Forms
             _masterList = masterList;
             txtClientName.Text = report.ClientName;
             txtOperatingSystem.Text = report.OperatingSystem;
-            txtDeviceModel.Text = "N/A";
+            txtDeviceModel.Text = string.IsNullOrWhiteSpace(report.DeviceModel) ? "N/A" : report.DeviceModel;
             txtIssueSummary.Text = report.DamageSummary;
             txtAdditionalInfo.Text = string.IsNullOrWhiteSpace(report.AdditionalInfo) ? "N/A" : report.AdditionalInfo;
             labelDateReceived.Text = report.DateReceived == default
@@ -73,6 +73,12 @@ namespace Application.Forms
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(txtDeviceModel.Text))
+            {
+                MessageBox.Show("Device model is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (string.IsNullOrWhiteSpace(txtIssueSummary.Text))
             {
                 MessageBox.Show("Issue summary is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -81,6 +87,7 @@ namespace Application.Forms
 
             _report.ClientName = txtClientName.Text.Trim();
             _report.OperatingSystem = txtOperatingSystem.Text.Trim();
+            _report.DeviceModel = txtDeviceModel.Text.Trim();
             _report.DamageSummary = txtIssueSummary.Text.Trim();
             _report.AdditionalInfo = txtAdditionalInfo.Text.Trim();
 
