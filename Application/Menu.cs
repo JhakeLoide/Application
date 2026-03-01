@@ -45,10 +45,14 @@ namespace Final_Project
             leftBorderBtn.Enabled = false;
             panelMenu.Controls.Add(leftBorderBtn);
 
+            iconButtonHome.Dock = DockStyle.Top;
+            iconButtonHome.Height = btnDashboard.Height;
+
             btnDashboard.Click += iconButton1_Click;
             btnClientList.Click += iconButton2_Click;
             btnSettings.Click += iconButton3_Click;
             iconButton10.Click += iconButton10_Click;
+            iconButtonHome.Click += iconButtonHome_Click;
             panelTitle.MouseDown += Menu_MouseDown;
             panelTitle.MouseUp += Menu_MouseUp;
             MouseUp += Menu_MouseUp;
@@ -134,21 +138,35 @@ namespace Final_Project
             lblStatic.Text = childForm.Text;
         }
 
-        private void iconButton1_Click(object? sender, EventArgs e)
+        private void iconButton1_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
             OpenChildForm(new formDashboard());
         }
 
-        private void iconButton2_Click(object? sender, EventArgs e)
+        private void iconButton2_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
             OpenChildForm(new formClientList());
         }
-        private void iconButton3_Click(object? sender, EventArgs e)
+        private void iconButton3_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
             OpenChildForm(new formSettings());
+        }
+
+        private void iconButtonHome_Click(object sender, EventArgs e)
+        {
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+                currentChildForm = null;
+            }
+
+            panelDesktop.Controls.Clear();
+            Reset();
+            iconStatic.IconColor = iconButtonHome.IconColor;
+            lblStatic.ForeColor = iconButtonHome.IconColor;
         }
         private void Reset()
         {
@@ -290,7 +308,7 @@ namespace Final_Project
             btnDashboard.Text = "";
             btnClientList.Text = "";
             btnSettings.Text = "";
-            label1.Visible = false;
+            iconButtonHome.Text = "";
             SetMenuButtonLayout(isCollapsed: true);
         }
 
@@ -299,7 +317,7 @@ namespace Final_Project
             btnDashboard.Text = "Dashboard";
             btnClientList.Text = "Client List";
             btnSettings.Text = "Settings";
-            label1.Visible = true;
+            iconButtonHome.Text = "PC Monitor";
             SetMenuButtonLayout(isCollapsed: false);
         }
 
@@ -312,14 +330,18 @@ namespace Final_Project
             btnDashboard.ImageAlign = imageAlign;
             btnClientList.ImageAlign = imageAlign;
             btnSettings.ImageAlign = imageAlign;
+            iconButtonHome.ImageAlign = imageAlign;
+            iconButton10.ImageAlign = imageAlign;
 
             btnDashboard.TextAlign = textAlign;
             btnClientList.TextAlign = textAlign;
             btnSettings.TextAlign = textAlign;
+            iconButtonHome.TextAlign = textAlign;
 
             btnDashboard.TextImageRelation = textImageRelation;
             btnClientList.TextImageRelation = textImageRelation;
             btnSettings.TextImageRelation = textImageRelation;
+            iconButtonHome.TextImageRelation = textImageRelation;
         }
 
         private void lblStatic_Click(object sender, EventArgs e)

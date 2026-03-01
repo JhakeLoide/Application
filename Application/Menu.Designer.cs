@@ -33,8 +33,8 @@
             btnClientList = new FontAwesome.Sharp.IconButton();
             btnDashboard = new FontAwesome.Sharp.IconButton();
             panelLogo = new Panel();
+            iconButtonHome = new FontAwesome.Sharp.IconButton();
             iconButton10 = new FontAwesome.Sharp.IconButton();
-            label1 = new Label();
             panelTitle = new Panel();
             iconButton9 = new FontAwesome.Sharp.IconButton();
             iconButton8 = new FontAwesome.Sharp.IconButton();
@@ -130,14 +130,32 @@
             // 
             // panelLogo
             // 
+            panelLogo.Controls.Add(iconButtonHome);
             panelLogo.Controls.Add(iconButton10);
-            panelLogo.Controls.Add(label1);
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
             panelLogo.Size = new Size(220, 140);
             panelLogo.TabIndex = 1;
             panelLogo.Paint += panelLogo_Paint;
+            // 
+            // iconButtonHome
+            // 
+            iconButtonHome.FlatAppearance.BorderSize = 0;
+            iconButtonHome.FlatStyle = FlatStyle.Flat;
+            iconButtonHome.Font = new Font("Noto Sans JP", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            iconButtonHome.ForeColor = Color.Crimson;
+            iconButtonHome.IconChar = FontAwesome.Sharp.IconChar.Computer;
+            iconButtonHome.IconColor = Color.Crimson;
+            iconButtonHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButtonHome.IconSize = 52;
+            iconButtonHome.Location = new Point(22, 20);
+            iconButtonHome.Name = "iconButtonHome";
+            iconButtonHome.Size = new Size(176, 51);
+            iconButtonHome.TabIndex = 0;
+            iconButtonHome.Text = "PC Monitor";
+            iconButtonHome.TextImageRelation = TextImageRelation.ImageBeforeText;
+            iconButtonHome.UseVisualStyleBackColor = true;
             // 
             // iconButton10
             // 
@@ -154,16 +172,6 @@
             iconButton10.Size = new Size(220, 41);
             iconButton10.TabIndex = 0;
             iconButton10.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(75, 65);
-            label1.Name = "label1";
-            label1.Size = new Size(70, 15);
-            label1.TabIndex = 2;
-            label1.Text = "suggestion?";
             // 
             // panelTitle
             // 
@@ -276,7 +284,6 @@
             MouseDown += Menu_MouseDown;
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
-            panelLogo.PerformLayout();
             panelTitle.ResumeLayout(false);
             panelTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)iconStatic).EndInit();
@@ -290,7 +297,6 @@
         private FontAwesome.Sharp.IconButton btnDashboard;
         private FontAwesome.Sharp.IconButton btnSettings;
         private FontAwesome.Sharp.IconButton btnClientList;
-        private Label label1;
         private Panel panelTitle;
         private FontAwesome.Sharp.IconPictureBox iconStatic;
         private Label lblStatic;
@@ -299,5 +305,6 @@
         private FontAwesome.Sharp.IconButton iconButton9;
         private FontAwesome.Sharp.IconButton iconButton8;
         private FontAwesome.Sharp.IconButton iconButton10;
+        private FontAwesome.Sharp.IconButton iconButtonHome;
     }
 }
