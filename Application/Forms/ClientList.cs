@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using App.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Drawing.Drawing2D;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +18,7 @@ namespace Application.Forms
     {
         private readonly BindingList<DamageReports> _reports = new();
         private readonly BindingList<DamageReports> _filteredReports = new();
+        private static bool _databaseInitialized;
 
         public formClientList()
         {
@@ -30,8 +33,7 @@ namespace Application.Forms
             dataGridViewClientList.Columns.AddRange(Column1, Column2, Column3, Column4, ColumnMoreInfo);
             damageReportsBindingSource.DataSource = _filteredReports;
             dataGridViewClientList.DataSource = damageReportsBindingSource;
-            ApplyFilter(string.Empty);
-            UpdateClientCount();
+            LoadReports();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -100,14 +102,63 @@ namespace Application.Forms
             labelTotalClients.Text = _reports.Count.ToString();
         }
 
+        private void LoadReports()
+        {
+            try
+            {
+                using var dbContext = CreateDbContext();
+                var reports = dbContext.DamageReports
+                    .AsNoTracking()
+                    .OrderBy(report => report.Id)
+                    .ToList();
+
+                _reports.Clear();
+                foreach (var report in reports)
+                {
+                    _reports.Add(report);
+                }
+
+                ApplyFilter(searchBoxClientList.Text);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load clients: {ex.Message}", "Load Clients", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void iconAddClient_Click(object sender, EventArgs e)
         {
             using var addClientForm = new formAddingClient();
             if (addClientForm.ShowDialog(this) == DialogResult.OK && addClientForm.CreatedReport is not null)
             {
-                _reports.Add(addClientForm.CreatedReport);
-                ApplyFilter(searchBoxClientList.Text);
+                try
+                {
+                    using var dbContext = CreateDbContext();
+                    dbContext.DamageReports.Add(addClientForm.CreatedReport);
+                    dbContext.SaveChanges();
+
+                    _reports.Add(addClientForm.CreatedReport);
+                    ApplyFilter(searchBoxClientList.Text);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to save client: {ex.Message}", "Add Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+        }
+
+        private static AppDbContext CreateDbContext()
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>().Options;
+            var dbContext = new AppDbContext(options);
+
+            if (!_databaseInitialized)
+            {
+                dbContext.Database.Migrate();
+                _databaseInitialized = true;
+            }
+
+            return dbContext;
         }
 
         private void dataGridViewClientList_CellContentClick(object sender, DataGridViewCellEventArgs e)

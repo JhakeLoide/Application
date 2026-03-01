@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using App.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -17,6 +19,7 @@ namespace Application.Forms
         private readonly BindingSource? _bindingSource;
         private readonly BindingList<DamageReports>? _masterList;
         private bool _hasChanges;
+        private static bool _databaseInitialized;
 
         public MoreInfo()
         {
@@ -91,8 +94,19 @@ namespace Application.Forms
             _report.DamageSummary = txtIssueSummary.Text.Trim();
             _report.AdditionalInfo = txtAdditionalInfo.Text.Trim();
 
-            _bindingSource?.ResetBindings(false);
-            _hasChanges = false;
+            try
+            {
+                using var dbContext = CreateDbContext();
+                dbContext.DamageReports.Update(_report);
+                dbContext.SaveChanges();
+
+                _bindingSource?.ResetBindings(false);
+                _hasChanges = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to update client: {ex.Message}", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void iconButtonDelete_Click(object sender, EventArgs e)
@@ -110,8 +124,20 @@ namespace Application.Forms
 
             if (_report is not null)
             {
-                _masterList?.Remove(_report);
-                _bindingSource?.Remove(_report);
+                try
+                {
+                    using var dbContext = CreateDbContext();
+                    dbContext.DamageReports.Remove(_report);
+                    dbContext.SaveChanges();
+
+                    _masterList?.Remove(_report);
+                    _bindingSource?.Remove(_report);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to delete client: {ex.Message}", "Delete Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             DialogResult = DialogResult.OK;
@@ -159,6 +185,20 @@ namespace Application.Forms
                 }
             }
 
+        }
+
+        private static AppDbContext CreateDbContext()
+        {
+            var options = new DbContextOptionsBuilder<AppDbContext>().Options;
+            var dbContext = new AppDbContext(options);
+
+            if (!_databaseInitialized)
+            {
+                dbContext.Database.Migrate();
+                _databaseInitialized = true;
+            }
+
+            return dbContext;
         }
     }
 }
