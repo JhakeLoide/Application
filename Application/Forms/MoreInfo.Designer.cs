@@ -271,6 +271,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(panelMoreInfo);
             Name = "MoreInfo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "MoreInfo";
             panelMoreInfo.ResumeLayout(false);
             panelMoreInfo.PerformLayout();
