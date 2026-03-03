@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelMoreInfo = new Panel();
+            label7 = new Label();
             labelUpdatedOn = new Label();
             labelDateReceived = new Label();
             label6 = new Label();
@@ -47,7 +48,6 @@
             txtDeviceModel = new TextBox();
             txtOperatingSystem = new TextBox();
             txtClientName = new TextBox();
-            label7 = new Label();
             panelMoreInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDeviceImage).BeginInit();
             SuspendLayout();
@@ -79,6 +79,17 @@
             panelMoreInfo.Name = "panelMoreInfo";
             panelMoreInfo.Size = new Size(800, 450);
             panelMoreInfo.TabIndex = 0;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10F);
+            label7.ForeColor = Color.Gainsboro;
+            label7.Location = new Point(258, 353);
+            label7.Name = "label7";
+            label7.Size = new Size(88, 19);
+            label7.TabIndex = 18;
+            label7.Text = "Updated On:";
             // 
             // labelUpdatedOn
             // 
@@ -118,7 +129,7 @@
             btnUploadImage.FlatStyle = FlatStyle.Flat;
             btnUploadImage.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnUploadImage.ForeColor = Color.White;
-            btnUploadImage.Location = new Point(68, 295);
+            btnUploadImage.Location = new Point(84, 295);
             btnUploadImage.Name = "btnUploadImage";
             btnUploadImage.Size = new Size(62, 30);
             btnUploadImage.TabIndex = 9;
@@ -130,9 +141,9 @@
             // 
             picDeviceImage.BackColor = Color.FromArgb(54, 53, 97);
             picDeviceImage.BorderStyle = BorderStyle.FixedSingle;
-            picDeviceImage.Location = new Point(12, 66);
+            picDeviceImage.Location = new Point(40, 66);
             picDeviceImage.Name = "picDeviceImage";
-            picDeviceImage.Size = new Size(182, 223);
+            picDeviceImage.Size = new Size(154, 223);
             picDeviceImage.SizeMode = PictureBoxSizeMode.Zoom;
             picDeviceImage.TabIndex = 8;
             picDeviceImage.TabStop = false;
@@ -305,17 +316,6 @@
             txtClientName.Name = "txtClientName";
             txtClientName.Size = new Size(300, 25);
             txtClientName.TabIndex = 10;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10F);
-            label7.ForeColor = Color.Gainsboro;
-            label7.Location = new Point(258, 353);
-            label7.Name = "label7";
-            label7.Size = new Size(88, 19);
-            label7.TabIndex = 18;
-            label7.Text = "Updated On:";
             // 
             // MoreInfo
             // 

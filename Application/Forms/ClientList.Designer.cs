@@ -47,6 +47,7 @@
             Column4 = new DataGridViewTextBoxColumn();
             ColumnMoreInfo = new DataGridViewButtonColumn();
             damageReportsBindingSource = new BindingSource(components);
+            label2 = new Label();
             panel1.SuspendLayout();
             panelTotalClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
@@ -57,6 +58,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(34, 33, 72);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(panelTotalClient);
             panel1.Controls.Add(searchBoxClientList);
             panel1.Controls.Add(iconAddClient);
@@ -73,7 +75,7 @@
             panelTotalClient.Controls.Add(labelTotalClients);
             panelTotalClient.Controls.Add(iconPictureBox1);
             panelTotalClient.Controls.Add(label1);
-            panelTotalClient.Location = new Point(12, 27);
+            panelTotalClient.Location = new Point(12, 57);
             panelTotalClient.Name = "panelTotalClient";
             panelTotalClient.Padding = new Padding(10, 6, 10, 6);
             panelTotalClient.Size = new Size(214, 59);
@@ -155,30 +157,32 @@
             dataGridViewClientList.AllowUserToAddRows = false;
             dataGridViewClientList.AllowUserToResizeColumns = false;
             dataGridViewClientList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(50, 49, 90);
+            dataGridViewClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewClientList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewClientList.BackgroundColor = Color.FromArgb(54, 53, 97);
             dataGridViewClientList.BorderStyle = BorderStyle.None;
             dataGridViewClientList.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewClientList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(48, 47, 86);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Snow;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(48, 47, 86);
-            dataGridViewCellStyle1.SelectionForeColor = Color.Snow;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(48, 47, 86);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(48, 47, 86);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Snow;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewClientList.ColumnHeadersHeight = 40;
             dataGridViewClientList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewClientList.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, ColumnMoreInfo });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(60, 59, 100);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(88, 86, 147);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewClientList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(60, 59, 100);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(88, 86, 147);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewClientList.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewClientList.EnableHeadersVisualStyles = false;
             dataGridViewClientList.GridColor = Color.FromArgb(48, 47, 86);
             dataGridViewClientList.Location = new Point(12, 130);
@@ -188,10 +192,8 @@
             dataGridViewClientList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewClientList.RowHeadersVisible = false;
             dataGridViewClientList.RowHeadersWidth = 25;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(54, 53, 97);
-            dataGridViewClientList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(50, 49, 90);
-            dataGridViewClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(54, 53, 97);
+            dataGridViewClientList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewClientList.RowTemplate.Height = 36;
             dataGridViewClientList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewClientList.Size = new Size(776, 253);
@@ -243,11 +245,22 @@
             ColumnMoreInfo.ReadOnly = true;
             ColumnMoreInfo.Text = "More Info";
             ColumnMoreInfo.UseColumnTextForButtonValue = true;
-            ColumnMoreInfo.Width = 20;
+            ColumnMoreInfo.Width = 5;
             // 
             // damageReportsBindingSource
             // 
             damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Consolas", 14F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 22);
+            label2.TabIndex = 4;
+            label2.Text = "Overview:";
             // 
             // formClientList
             // 
@@ -284,5 +297,6 @@
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewButtonColumn ColumnMoreInfo;
+        private Label label2;
     }
 }
