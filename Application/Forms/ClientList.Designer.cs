@@ -198,9 +198,9 @@
             label1.ForeColor = Color.Gainsboro;
             label1.Location = new Point(69, 11);
             label1.Name = "label1";
-            label1.Size = new Size(126, 19);
+            label1.Size = new Size(63, 19);
             label1.TabIndex = 0;
-            label1.Text = "Total Clients";
+            label1.Text = "Total:";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // searchBoxClientList

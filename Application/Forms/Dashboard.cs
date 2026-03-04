@@ -14,11 +14,47 @@ namespace Application.Forms
         {
             InitializeComponent();
             Load += formDashboard_Load;
+            Resize += (_, __) => UpdateSummaryLabelWidths();
+            tableLayoutPanel1.Layout += (_, __) => UpdateSummaryLabelWidths();
+            ConfigureSummaryLabel(label11);
+            ConfigureSummaryLabel(label12);
+            ConfigureSummaryLabel(label13);
+            ConfigureSummaryLabel(label14);
+            ConfigureSummaryLabel(label15);
         }
 
         private void formDashboard_Load(object sender, EventArgs e)
         {
             LoadSummary();
+            UpdateSummaryLabelWidths();
+        }
+
+        private void UpdateSummaryLabelWidths()
+        {
+            UpdateSummaryLabelBounds(label11, panelTotalClients);
+            UpdateSummaryLabelBounds(label12, panelNewToday);
+            UpdateSummaryLabelBounds(label13, panelInProgress);
+            UpdateSummaryLabelBounds(label14, panelCompleted);
+            UpdateSummaryLabelBounds(label15, panel2);
+        }
+
+        private static void ConfigureSummaryLabel(Label label)
+        {
+            label.AutoSize = false;
+            label.TextAlign = ContentAlignment.TopLeft;
+        }
+
+        private static void UpdateSummaryLabelBounds(Label label, Control panel)
+        {
+            if (panel.ClientSize.Width <= 0 || panel.ClientSize.Height <= 0)
+            {
+                return;
+            }
+
+            var width = Math.Max(0, panel.ClientSize.Width - label.Left - 22);
+            var height = Math.Max(0, panel.ClientSize.Height - label.Top - 12);
+
+            label.Size = new Size(width, height);
         }
 
         private void LoadSummary()
@@ -53,6 +89,11 @@ namespace Application.Forms
             }
 
             return dbContext;
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

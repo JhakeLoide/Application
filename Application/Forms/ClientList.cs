@@ -163,11 +163,8 @@ namespace Application.Forms
             var options = new DbContextOptionsBuilder<AppDbContext>().Options;
             var dbContext = new AppDbContext(options);
 
-            if (!_databaseInitialized)
-            {
-                dbContext.Database.Migrate();
-                _databaseInitialized = true;
-            }
+            dbContext.Database.Migrate();
+            _databaseInitialized = true;
 
             return dbContext;
         }

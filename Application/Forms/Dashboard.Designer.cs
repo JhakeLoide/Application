@@ -119,9 +119,10 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label11.AutoSize = true;
             label11.ForeColor = Color.White;
-            label11.Location = new Point(22, 93);
+            label11.Location = new Point(22, 84);
             label11.Name = "label11";
             label11.Size = new Size(182, 15);
             label11.TabIndex = 4;
@@ -182,9 +183,10 @@
             // 
             // label12
             // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label12.AutoSize = true;
             label12.ForeColor = Color.White;
-            label12.Location = new Point(22, 93);
+            label12.Location = new Point(22, 84);
             label12.Name = "label12";
             label12.Size = new Size(256, 15);
             label12.TabIndex = 5;
@@ -245,9 +247,10 @@
             // 
             // label13
             // 
+            label13.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label13.AutoSize = true;
             label13.ForeColor = Color.White;
-            label13.Location = new Point(22, 94);
+            label13.Location = new Point(22, 85);
             label13.Name = "label13";
             label13.Size = new Size(262, 15);
             label13.TabIndex = 6;
@@ -308,13 +311,15 @@
             // 
             // label14
             // 
+            label14.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label14.AutoSize = true;
             label14.ForeColor = Color.White;
-            label14.Location = new Point(22, 94);
+            label14.Location = new Point(22, 85);
             label14.Name = "label14";
             label14.Size = new Size(247, 15);
             label14.TabIndex = 7;
             label14.Text = "Show how many requests have been finished.";
+            label14.Click += label14_Click;
             // 
             // labelCompleted
             // 
@@ -372,9 +377,10 @@
             // 
             // label15
             // 
+            label15.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label15.AutoSize = true;
             label15.ForeColor = Color.White;
-            label15.Location = new Point(22, 93);
+            label15.Location = new Point(22, 86);
             label15.Name = "label15";
             label15.Size = new Size(276, 15);
             label15.TabIndex = 7;
