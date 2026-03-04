@@ -206,7 +206,9 @@
             // searchBoxClientList
             // 
             searchBoxClientList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            searchBoxClientList.ForeColor = Color.Black;
+            searchBoxClientList.BackColor = Color.FromArgb(88, 86, 147);
+            searchBoxClientList.BorderStyle = BorderStyle.FixedSingle;
+            searchBoxClientList.ForeColor = Color.White;
             searchBoxClientList.Location = new Point(12, 402);
             searchBoxClientList.Multiline = true;
             searchBoxClientList.Name = "searchBoxClientList";

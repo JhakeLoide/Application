@@ -128,7 +128,13 @@ namespace Application.Forms
             }
 
             using var editInfoForm = new EditInfo(_report, _bindingSource, _masterList);
-            editInfoForm.ShowDialog(this);
+            var result = editInfoForm.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                Close();
+                return;
+            }
+
             LoadReportDetails();
         }
 
