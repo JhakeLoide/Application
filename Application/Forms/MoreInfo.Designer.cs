@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panelMoreInfo = new Panel();
+            comboBoxStatus = new ComboBox();
+            label8 = new Label();
             label7 = new Label();
             labelUpdatedOn = new Label();
             labelDateReceived = new Label();
@@ -54,7 +56,9 @@
             // 
             // panelMoreInfo
             // 
-            panelMoreInfo.BackColor = Color.FromArgb(34, 33, 72);
+            panelMoreInfo.BackColor = Color.FromArgb(24, 24, 38);
+            panelMoreInfo.Controls.Add(comboBoxStatus);
+            panelMoreInfo.Controls.Add(label8);
             panelMoreInfo.Controls.Add(label7);
             panelMoreInfo.Controls.Add(labelUpdatedOn);
             panelMoreInfo.Controls.Add(labelDateReceived);
@@ -80,12 +84,35 @@
             panelMoreInfo.Size = new Size(800, 450);
             panelMoreInfo.TabIndex = 0;
             // 
+            // comboBoxStatus
+            // 
+            comboBoxStatus.BackColor = Color.FromArgb(54, 53, 97);
+            comboBoxStatus.FlatStyle = FlatStyle.Flat;
+            comboBoxStatus.Font = new Font("Segoe UI", 10F);
+            comboBoxStatus.ForeColor = Color.WhiteSmoke;
+            comboBoxStatus.FormattingEnabled = true;
+            comboBoxStatus.Location = new Point(349, 317);
+            comboBoxStatus.Name = "comboBoxStatus";
+            comboBoxStatus.Size = new Size(112, 25);
+            comboBoxStatus.TabIndex = 20;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 10F);
+            label8.ForeColor = Color.Gainsboro;
+            label8.Location = new Point(293, 317);
+            label8.Name = "label8";
+            label8.Size = new Size(50, 19);
+            label8.TabIndex = 19;
+            label8.Text = "Status:";
+            // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10F);
             label7.ForeColor = Color.Gainsboro;
-            label7.Location = new Point(258, 353);
+            label7.Location = new Point(258, 389);
             label7.Name = "label7";
             label7.Size = new Size(88, 19);
             label7.TabIndex = 18;
@@ -96,7 +123,7 @@
             labelUpdatedOn.AutoSize = true;
             labelUpdatedOn.Font = new Font("Segoe UI", 10F);
             labelUpdatedOn.ForeColor = Color.Gainsboro;
-            labelUpdatedOn.Location = new Point(352, 353);
+            labelUpdatedOn.Location = new Point(352, 389);
             labelUpdatedOn.Name = "labelUpdatedOn";
             labelUpdatedOn.Size = new Size(0, 19);
             labelUpdatedOn.TabIndex = 17;
@@ -106,7 +133,7 @@
             labelDateReceived.AutoSize = true;
             labelDateReceived.Font = new Font("Segoe UI", 10F);
             labelDateReceived.ForeColor = Color.Gainsboro;
-            labelDateReceived.Location = new Point(352, 317);
+            labelDateReceived.Location = new Point(352, 353);
             labelDateReceived.Name = "labelDateReceived";
             labelDateReceived.Size = new Size(0, 19);
             labelDateReceived.TabIndex = 16;
@@ -116,7 +143,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F);
             label6.ForeColor = Color.Gainsboro;
-            label6.Location = new Point(248, 317);
+            label6.Location = new Point(248, 353);
             label6.Name = "label6";
             label6.Size = new Size(98, 19);
             label6.TabIndex = 15;
@@ -357,5 +384,7 @@
         private Label label6;
         private Label labelUpdatedOn;
         private Label label7;
+        private ComboBox comboBoxStatus;
+        private Label label8;
     }
 }

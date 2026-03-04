@@ -59,7 +59,7 @@ namespace Application.Forms
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
                 DateReceived = dateTimePicker1.Value.Date,
                 DeviceImage = _deviceImage,
-                Status = "New"
+                Status = "In-progress"
             };
 
             DialogResult = DialogResult.OK;

@@ -19,6 +19,7 @@ namespace Application.Forms
         private readonly BindingList<DamageReports> _reports = new();
         private readonly BindingList<DamageReports> _filteredReports = new();
         private static bool _databaseInitialized;
+        private string? _statusFilter;
 
         public formClientList()
         {
@@ -86,8 +87,12 @@ namespace Application.Forms
 
             foreach (var report in _reports)
             {
-                if (string.IsNullOrWhiteSpace(normalizedFilter) ||
-                    report.ClientName?.Contains(normalizedFilter, StringComparison.OrdinalIgnoreCase) == true)
+                var matchesName = string.IsNullOrWhiteSpace(normalizedFilter) ||
+                    report.ClientName?.Contains(normalizedFilter, StringComparison.OrdinalIgnoreCase) == true;
+                var matchesStatus = string.IsNullOrWhiteSpace(_statusFilter) ||
+                    string.Equals(report.Status, _statusFilter, StringComparison.OrdinalIgnoreCase);
+
+                if (matchesName && matchesStatus)
                 {
                     _filteredReports.Add(report);
                 }
@@ -95,6 +100,12 @@ namespace Application.Forms
 
             damageReportsBindingSource.RaiseListChangedEvents = true;
             damageReportsBindingSource.ResetBindings(false);
+        }
+
+        private void SetStatusFilter(string? status)
+        {
+            _statusFilter = status;
+            ApplyFilter(searchBoxClientList.Text);
         }
 
         private void UpdateClientCount()
@@ -175,6 +186,26 @@ namespace Application.Forms
 
             using var moreInfoForm = new MoreInfo(report, damageReportsBindingSource, _reports);
             moreInfoForm.ShowDialog(this);
+        }
+
+        private void labelSortByOnHold_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter("On-hold");
+        }
+
+        private void labelSortByInProgress_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter("In-progress");
+        }
+
+        private void labelSortByCompleted_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter("Completed");
+        }
+
+        private void labelSortByAll_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter(null);
         }
     }
 }

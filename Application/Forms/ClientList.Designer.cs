@@ -34,6 +34,12 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            labelSortByAll = new Label();
+            labelSortByCompleted = new Label();
+            labelSortByInProgress = new Label();
+            labelSortByOnHold = new Label();
+            label3 = new Label();
+            label2 = new Label();
             panelTotalClient = new Panel();
             labelTotalClients = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -47,7 +53,6 @@
             Column4 = new DataGridViewTextBoxColumn();
             ColumnMoreInfo = new DataGridViewButtonColumn();
             damageReportsBindingSource = new BindingSource(components);
-            label2 = new Label();
             panel1.SuspendLayout();
             panelTotalClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
@@ -57,7 +62,12 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(34, 33, 72);
+            panel1.BackColor = Color.FromArgb(24, 24, 38);
+            panel1.Controls.Add(labelSortByAll);
+            panel1.Controls.Add(labelSortByCompleted);
+            panel1.Controls.Add(labelSortByInProgress);
+            panel1.Controls.Add(labelSortByOnHold);
+            panel1.Controls.Add(label3);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(panelTotalClient);
             panel1.Controls.Add(searchBoxClientList);
@@ -68,6 +78,80 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
+            // 
+            // labelSortByAll
+            // 
+            labelSortByAll.AutoSize = true;
+            labelSortByAll.Cursor = Cursors.Hand;
+            labelSortByAll.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByAll.ForeColor = Color.White;
+            labelSortByAll.Location = new Point(510, 100);
+            labelSortByAll.Name = "labelSortByAll";
+            labelSortByAll.Size = new Size(21, 15);
+            labelSortByAll.TabIndex = 9;
+            labelSortByAll.Text = "All";
+            labelSortByAll.Click += labelSortByAll_Click;
+            // 
+            // labelSortByCompleted
+            // 
+            labelSortByCompleted.AutoSize = true;
+            labelSortByCompleted.Cursor = Cursors.Hand;
+            labelSortByCompleted.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByCompleted.ForeColor = Color.White;
+            labelSortByCompleted.Location = new Point(439, 101);
+            labelSortByCompleted.Name = "labelSortByCompleted";
+            labelSortByCompleted.Size = new Size(65, 15);
+            labelSortByCompleted.TabIndex = 8;
+            labelSortByCompleted.Text = "Completed";
+            labelSortByCompleted.Click += labelSortByCompleted_Click;
+            // 
+            // labelSortByInProgress
+            // 
+            labelSortByInProgress.AutoSize = true;
+            labelSortByInProgress.Cursor = Cursors.Hand;
+            labelSortByInProgress.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByInProgress.ForeColor = Color.White;
+            labelSortByInProgress.Location = new Point(365, 100);
+            labelSortByInProgress.Name = "labelSortByInProgress";
+            labelSortByInProgress.Size = new Size(68, 15);
+            labelSortByInProgress.TabIndex = 7;
+            labelSortByInProgress.Text = "In-Progress";
+            labelSortByInProgress.Click += labelSortByInProgress_Click;
+            // 
+            // labelSortByOnHold
+            // 
+            labelSortByOnHold.AutoSize = true;
+            labelSortByOnHold.Cursor = Cursors.Hand;
+            labelSortByOnHold.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByOnHold.ForeColor = Color.White;
+            labelSortByOnHold.Location = new Point(305, 100);
+            labelSortByOnHold.Name = "labelSortByOnHold";
+            labelSortByOnHold.Size = new Size(54, 15);
+            labelSortByOnHold.TabIndex = 6;
+            labelSortByOnHold.Text = "On-Hold";
+            labelSortByOnHold.Click += labelSortByOnHold_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(232, 95);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 21);
+            label3.TabIndex = 5;
+            label3.Text = "Sort By:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Consolas", 14F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 22);
+            label2.TabIndex = 4;
+            label2.Text = "Overview:";
             // 
             // panelTotalClient
             // 
@@ -251,17 +335,6 @@
             // 
             damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Consolas", 14F, FontStyle.Bold);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(12, 9);
-            label2.Name = "label2";
-            label2.Size = new Size(100, 22);
-            label2.TabIndex = 4;
-            label2.Text = "Overview:";
-            // 
             // formClientList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -298,5 +371,10 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewButtonColumn ColumnMoreInfo;
         private Label label2;
+        private Label label3;
+        private Label labelSortByAll;
+        private Label labelSortByCompleted;
+        private Label labelSortByInProgress;
+        private Label labelSortByOnHold;
     }
 }

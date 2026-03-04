@@ -41,6 +41,7 @@ namespace Application.Forms
                 ? string.Empty
                 : report.DateReceived.ToString("MMMM dd, yyyy");
             LoadDeviceImage();
+            LoadStatuses();
             HookChangeTracking();
             var toolTip = new ToolTip();
             toolTip.SetToolTip(picDeviceImage, "Click for a full view.");
@@ -53,6 +54,7 @@ namespace Application.Forms
             txtDeviceModel.TextChanged += MarkAsChanged;
             txtIssueSummary.TextChanged += MarkAsChanged;
             txtAdditionalInfo.TextChanged += MarkAsChanged;
+            comboBoxStatus.SelectedIndexChanged += MarkAsChanged;
         }
 
         private void MarkAsChanged(object? sender, EventArgs e)
@@ -96,11 +98,18 @@ namespace Application.Forms
                 return;
             }
 
+            if (string.IsNullOrWhiteSpace(comboBoxStatus.Text))
+            {
+                MessageBox.Show("Status is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             _report.ClientName = txtClientName.Text.Trim();
             _report.OperatingSystem = txtOperatingSystem.Text.Trim();
             _report.DeviceModel = txtDeviceModel.Text.Trim();
             _report.DamageSummary = txtIssueSummary.Text.Trim();
             _report.AdditionalInfo = txtAdditionalInfo.Text.Trim();
+            _report.Status = comboBoxStatus.Text.Trim();
 
             try
             {
@@ -233,6 +242,35 @@ namespace Application.Forms
 
             using var stream = new MemoryStream(_report.DeviceImage);
             picDeviceImage.Image = Image.FromStream(stream);
+        }
+
+        private void LoadStatuses()
+        {
+            try
+            {
+                using var dbContext = CreateDbContext();
+                var statuses = dbContext.Statuses
+                    .AsNoTracking()
+                    .OrderBy(status => status.Id)
+                    .Select(status => status.Name)
+                    .ToList();
+
+                if (_report is not null && !string.IsNullOrWhiteSpace(_report.Status) && !statuses.Contains(_report.Status))
+                {
+                    statuses.Add(_report.Status);
+                }
+
+                comboBoxStatus.DataSource = statuses;
+
+                if (_report is not null)
+                {
+                    comboBoxStatus.SelectedItem = _report.Status;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to load statuses: {ex.Message}", "Load Statuses", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static AppDbContext CreateDbContext()
