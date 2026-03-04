@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            labelUploadPhoto = new Label();
             txtBoxAddInfo = new TextBox();
             label6 = new Label();
             txtBoxDeviceModel = new TextBox();
@@ -49,6 +50,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(34, 33, 72);
+            panel1.Controls.Add(labelUploadPhoto);
             panel1.Controls.Add(txtBoxAddInfo);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(txtBoxDeviceModel);
@@ -68,6 +70,19 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(543, 361);
             panel1.TabIndex = 0;
+            // 
+            // labelUploadPhoto
+            // 
+            labelUploadPhoto.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            labelUploadPhoto.AutoSize = true;
+            labelUploadPhoto.Cursor = Cursors.Hand;
+            labelUploadPhoto.ForeColor = Color.White;
+            labelUploadPhoto.Location = new Point(3, 333);
+            labelUploadPhoto.Name = "labelUploadPhoto";
+            labelUploadPhoto.Size = new Size(105, 19);
+            labelUploadPhoto.TabIndex = 14;
+            labelUploadPhoto.Text = "Upload a photo";
+            labelUploadPhoto.Click += labelUploadPhoto_Click;
             // 
             // txtBoxAddInfo
             // 
@@ -141,6 +156,7 @@
             dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(48, 47, 86);
             dateTimePicker1.CalendarTitleForeColor = Color.WhiteSmoke;
             dateTimePicker1.Font = new Font("Segoe UI", 10F);
+            dateTimePicker1.Enabled = false;
             dateTimePicker1.Location = new Point(204, 112);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(191, 25);
@@ -237,8 +253,10 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(543, 361);
+            ControlBox = false;
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 10F);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "formAddingClient";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddingClient";
@@ -264,5 +282,6 @@
         private Label label5;
         private TextBox txtBoxAddInfo;
         private Label label6;
+        private Label labelUploadPhoto;
     }
 }

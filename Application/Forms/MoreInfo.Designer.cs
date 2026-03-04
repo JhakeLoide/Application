@@ -322,8 +322,10 @@
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            ControlBox = false;
             Controls.Add(panelMoreInfo);
             Font = new Font("Segoe UI", 10F);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "MoreInfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MoreInfo";
