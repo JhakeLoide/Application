@@ -23,9 +23,9 @@ namespace Application.Forms
             ConfigureSummaryLabel(label15);
         }
 
-        private void formDashboard_Load(object sender, EventArgs e)
+        private async void formDashboard_Load(object sender, EventArgs e)
         {
-            LoadSummary();
+            await LoadSummaryAsync();
             UpdateSummaryLabelWidths();
         }
 
@@ -57,19 +57,31 @@ namespace Application.Forms
             label.Size = new Size(width, height);
         }
 
-        private void LoadSummary()
+        private async Task LoadSummaryAsync()
         {
             try
             {
-                using var dbContext = CreateDbContext();
-                var reports = dbContext.DamageReports.AsNoTracking();
-                var today = DateTime.Today;
+                var summary = await Task.Run(() =>
+                {
+                    using var dbContext = CreateDbContext();
+                    var reports = dbContext.DamageReports.AsNoTracking();
+                    var today = DateTime.Today;
 
-                labelTotalClient.Text = reports.Count().ToString();
-                labelNewToday.Text = reports.Count(report => report.DateReceived >= today && report.DateReceived < today.AddDays(1)).ToString();
-                labelInProgress.Text = reports.Count(report => report.Status == "In-progress").ToString();
-                labelCompleted.Text = reports.Count(report => report.Status == "Completed").ToString();
-                labelOnHold.Text = reports.Count(report => report.Status == "On-hold").ToString();
+                    return new
+                    {
+                        Total = reports.Count(),
+                        NewToday = reports.Count(report => report.DateReceived >= today && report.DateReceived < today.AddDays(1)),
+                        InProgress = reports.Count(report => report.Status == "In-progress"),
+                        Completed = reports.Count(report => report.Status == "Completed"),
+                        OnHold = reports.Count(report => report.Status == "On-hold")
+                    };
+                });
+
+                labelTotalClient.Text = summary.Total.ToString();
+                labelNewToday.Text = summary.NewToday.ToString();
+                labelInProgress.Text = summary.InProgress.ToString();
+                labelCompleted.Text = summary.Completed.ToString();
+                labelOnHold.Text = summary.OnHold.ToString();
             }
             catch (Exception ex)
             {

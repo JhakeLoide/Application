@@ -27,14 +27,14 @@ namespace Application.Forms
             _reports.ListChanged += (_, __) => UpdateClientCount();
         }
 
-        private void formClientList_Load(object sender, EventArgs e)
+        private async void formClientList_Load(object sender, EventArgs e)
         {
             dataGridViewClientList.AutoGenerateColumns = false;
             dataGridViewClientList.Columns.Clear();
             dataGridViewClientList.Columns.AddRange(Column1, Column2, Column3, Column4, ColumnMoreInfo);
             damageReportsBindingSource.DataSource = _filteredReports;
             dataGridViewClientList.DataSource = damageReportsBindingSource;
-            LoadReports();
+            await LoadReportsAsync();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -113,15 +113,18 @@ namespace Application.Forms
             labelTotalClients.Text = _reports.Count.ToString();
         }
 
-        private void LoadReports()
+        private async Task LoadReportsAsync()
         {
             try
             {
-                using var dbContext = CreateDbContext();
-                var reports = dbContext.DamageReports
-                    .AsNoTracking()
-                    .OrderBy(report => report.Id)
-                    .ToList();
+                var reports = await Task.Run(() =>
+                {
+                    using var dbContext = CreateDbContext();
+                    return dbContext.DamageReports
+                        .AsNoTracking()
+                        .OrderBy(report => report.Id)
+                        .ToList();
+                });
 
                 _reports.Clear();
                 foreach (var report in reports)
@@ -163,8 +166,11 @@ namespace Application.Forms
             var options = new DbContextOptionsBuilder<AppDbContext>().Options;
             var dbContext = new AppDbContext(options);
 
-            dbContext.Database.Migrate();
-            _databaseInitialized = true;
+            if (!_databaseInitialized)
+            {
+                dbContext.Database.Migrate();
+                _databaseInitialized = true;
+            }
 
             return dbContext;
         }

@@ -35,7 +35,14 @@ namespace Application.Forms
             _bindingSource = bindingSource;
             _masterList = masterList;
             txtClientName.Text = report.ClientName;
-            txtOperatingSystem.Text = report.OperatingSystem;
+            if (cmbBoxEditInfoOS.Items.Contains(report.OperatingSystem))
+            {
+                cmbBoxEditInfoOS.SelectedItem = report.OperatingSystem;
+            }
+            else
+            {
+                cmbBoxEditInfoOS.SelectedIndex = -1;
+            }
             txtDeviceModel.Text = string.IsNullOrWhiteSpace(report.DeviceModel) ? "N/A" : report.DeviceModel;
             txtIssueSummary.Text = report.DamageSummary;
             txtAdditionalInfo.Text = string.IsNullOrWhiteSpace(report.AdditionalInfo) ? "N/A" : report.AdditionalInfo;
@@ -55,7 +62,7 @@ namespace Application.Forms
         private void HookChangeTracking()
         {
             txtClientName.TextChanged += MarkAsChanged;
-            txtOperatingSystem.TextChanged += MarkAsChanged;
+            cmbBoxEditInfoOS.SelectedIndexChanged += MarkAsChanged;
             txtDeviceModel.TextChanged += MarkAsChanged;
             txtIssueSummary.TextChanged += MarkAsChanged;
             txtAdditionalInfo.TextChanged += MarkAsChanged;
@@ -85,7 +92,7 @@ namespace Application.Forms
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txtOperatingSystem.Text))
+            if (cmbBoxEditInfoOS.SelectedIndex < 0)
             {
                 MessageBox.Show("Operating system is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -110,7 +117,7 @@ namespace Application.Forms
             }
 
             _report.ClientName = txtClientName.Text.Trim();
-            _report.OperatingSystem = txtOperatingSystem.Text.Trim();
+            _report.OperatingSystem = cmbBoxEditInfoOS.Text.Trim();
             _report.DeviceModel = txtDeviceModel.Text.Trim();
             _report.DamageSummary = txtIssueSummary.Text.Trim();
             _report.AdditionalInfo = txtAdditionalInfo.Text.Trim();

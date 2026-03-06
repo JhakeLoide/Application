@@ -155,8 +155,8 @@
             dateTimePicker1.CalendarMonthBackground = Color.FromArgb(54, 53, 97);
             dateTimePicker1.CalendarTitleBackColor = Color.FromArgb(48, 47, 86);
             dateTimePicker1.CalendarTitleForeColor = Color.WhiteSmoke;
-            dateTimePicker1.Font = new Font("Segoe UI", 10F);
             dateTimePicker1.Enabled = false;
+            dateTimePicker1.Font = new Font("Segoe UI", 10F);
             dateTimePicker1.Location = new Point(204, 112);
             dateTimePicker1.Name = "dateTimePicker1";
             dateTimePicker1.Size = new Size(191, 25);
@@ -176,6 +176,7 @@
             // cmbBoxOS
             // 
             cmbBoxOS.BackColor = Color.FromArgb(54, 53, 97);
+            cmbBoxOS.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbBoxOS.FlatStyle = FlatStyle.Flat;
             cmbBoxOS.Font = new Font("Segoe UI", 10F);
             cmbBoxOS.ForeColor = Color.WhiteSmoke;

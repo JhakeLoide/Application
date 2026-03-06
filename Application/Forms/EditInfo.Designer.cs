@@ -51,8 +51,8 @@
             txtAdditionalInfo = new TextBox();
             txtIssueSummary = new TextBox();
             txtDeviceModel = new TextBox();
-            txtOperatingSystem = new TextBox();
             txtClientName = new TextBox();
+            cmbBoxEditInfoOS = new ComboBox();
             panelEditInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picDeviceImage).BeginInit();
             SuspendLayout();
@@ -60,6 +60,7 @@
             // panelEditInfo
             // 
             panelEditInfo.BackColor = Color.FromArgb(24, 24, 38);
+            panelEditInfo.Controls.Add(cmbBoxEditInfoOS);
             panelEditInfo.Controls.Add(labelPictureNumber);
             panelEditInfo.Controls.Add(labelPrevious);
             panelEditInfo.Controls.Add(labelNext);
@@ -82,7 +83,6 @@
             panelEditInfo.Controls.Add(txtAdditionalInfo);
             panelEditInfo.Controls.Add(txtIssueSummary);
             panelEditInfo.Controls.Add(txtDeviceModel);
-            panelEditInfo.Controls.Add(txtOperatingSystem);
             panelEditInfo.Controls.Add(txtClientName);
             panelEditInfo.Dock = DockStyle.Fill;
             panelEditInfo.Location = new Point(0, 0);
@@ -295,7 +295,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F);
             label4.ForeColor = Color.Gainsboro;
-            label4.Location = new Point(238, 182);
+            label4.Location = new Point(238, 192);
             label4.Name = "label4";
             label4.Size = new Size(105, 19);
             label4.TabIndex = 3;
@@ -350,7 +350,7 @@
             txtIssueSummary.BackColor = Color.FromArgb(54, 53, 97);
             txtIssueSummary.BorderStyle = BorderStyle.FixedSingle;
             txtIssueSummary.ForeColor = Color.WhiteSmoke;
-            txtIssueSummary.Location = new Point(350, 178);
+            txtIssueSummary.Location = new Point(349, 180);
             txtIssueSummary.Multiline = true;
             txtIssueSummary.Name = "txtIssueSummary";
             txtIssueSummary.Size = new Size(300, 40);
@@ -366,16 +366,6 @@
             txtDeviceModel.Size = new Size(300, 25);
             txtDeviceModel.TabIndex = 12;
             // 
-            // txtOperatingSystem
-            // 
-            txtOperatingSystem.BackColor = Color.FromArgb(54, 53, 97);
-            txtOperatingSystem.BorderStyle = BorderStyle.FixedSingle;
-            txtOperatingSystem.ForeColor = Color.WhiteSmoke;
-            txtOperatingSystem.Location = new Point(350, 91);
-            txtOperatingSystem.Name = "txtOperatingSystem";
-            txtOperatingSystem.Size = new Size(300, 25);
-            txtOperatingSystem.TabIndex = 11;
-            // 
             // txtClientName
             // 
             txtClientName.BackColor = Color.FromArgb(54, 53, 97);
@@ -385,6 +375,20 @@
             txtClientName.Name = "txtClientName";
             txtClientName.Size = new Size(300, 25);
             txtClientName.TabIndex = 10;
+            // 
+            // cmbBoxEditInfoOS
+            // 
+            cmbBoxEditInfoOS.BackColor = Color.FromArgb(54, 53, 97);
+            cmbBoxEditInfoOS.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBoxEditInfoOS.FlatStyle = FlatStyle.Flat;
+            cmbBoxEditInfoOS.Font = new Font("Segoe UI", 10F);
+            cmbBoxEditInfoOS.ForeColor = Color.WhiteSmoke;
+            cmbBoxEditInfoOS.FormattingEnabled = true;
+            cmbBoxEditInfoOS.Items.AddRange(new object[] { "Windows 10", "Windows 11", "MacOS", "Linux", "ChromeOS", "Others" });
+            cmbBoxEditInfoOS.Location = new Point(350, 89);
+            cmbBoxEditInfoOS.Name = "cmbBoxEditInfoOS";
+            cmbBoxEditInfoOS.Size = new Size(300, 25);
+            cmbBoxEditInfoOS.TabIndex = 24;
             // 
             // EditInfo
             // 
@@ -418,7 +422,6 @@
         private PictureBox picDeviceImage;
         private Button btnUploadImage;
         private TextBox txtClientName;
-        private TextBox txtOperatingSystem;
         private TextBox txtDeviceModel;
         private TextBox txtIssueSummary;
         private TextBox txtAdditionalInfo;
@@ -431,5 +434,6 @@
         private Label labelPrevious;
         private Label labelNext;
         private Label labelPictureNumber;
+        private ComboBox cmbBoxEditInfoOS;
     }
 }

@@ -47,12 +47,12 @@
             searchBoxClientList = new TextBox();
             iconAddClient = new FontAwesome.Sharp.IconButton();
             dataGridViewClientList = new DataGridView();
+            damageReportsBindingSource = new BindingSource(components);
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             ColumnMoreInfo = new DataGridViewButtonColumn();
-            damageReportsBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panelTotalClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
@@ -208,6 +208,7 @@
             searchBoxClientList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             searchBoxClientList.BackColor = Color.FromArgb(88, 86, 147);
             searchBoxClientList.BorderStyle = BorderStyle.FixedSingle;
+            searchBoxClientList.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchBoxClientList.ForeColor = Color.White;
             searchBoxClientList.Location = new Point(12, 402);
             searchBoxClientList.Multiline = true;
@@ -286,12 +287,16 @@
             dataGridViewClientList.TabIndex = 0;
             dataGridViewClientList.CellContentClick += dataGridViewClientList_CellContentClick;
             // 
+            // damageReportsBindingSource
+            // 
+            damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
+            // 
             // Column1
             // 
             Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Column1.DataPropertyName = "ClientName";
             Column1.FillWeight = 150F;
-            Column1.HeaderText = "Client Name/ID";
+            Column1.HeaderText = "Client Name";
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
             // 
@@ -333,10 +338,6 @@
             ColumnMoreInfo.UseColumnTextForButtonValue = true;
             ColumnMoreInfo.Width = 5;
             // 
-            // damageReportsBindingSource
-            // 
-            damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
-            // 
             // formClientList
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -367,16 +368,16 @@
         private Label labelTotalClients;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private BindingSource damageReportsBindingSource;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewButtonColumn ColumnMoreInfo;
         private Label label2;
         private Label label3;
         private Label labelSortByAll;
         private Label labelSortByCompleted;
         private Label labelSortByInProgress;
         private Label labelSortByOnHold;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewButtonColumn ColumnMoreInfo;
     }
 }
