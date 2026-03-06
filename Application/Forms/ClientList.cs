@@ -89,8 +89,16 @@ namespace Application.Forms
             {
                 var matchesName = string.IsNullOrWhiteSpace(normalizedFilter) ||
                     report.ClientName?.Contains(normalizedFilter, StringComparison.OrdinalIgnoreCase) == true;
+                var isCompleted = string.Equals(report.Status, "Completed", StringComparison.OrdinalIgnoreCase);
+                if (!string.Equals(_statusFilter, "Completed", StringComparison.OrdinalIgnoreCase) && isCompleted)
+                {
+                    continue;
+                }
+
                 var matchesStatus = string.IsNullOrWhiteSpace(_statusFilter) ||
-                    string.Equals(report.Status, _statusFilter, StringComparison.OrdinalIgnoreCase);
+                    string.Equals(report.Status, _statusFilter, StringComparison.OrdinalIgnoreCase) ||
+                    (string.Equals(_statusFilter, "On-hold", StringComparison.OrdinalIgnoreCase) &&
+                        string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase));
 
                 if (matchesName && matchesStatus)
                 {
@@ -120,10 +128,27 @@ namespace Application.Forms
                 var reports = await Task.Run(() =>
                 {
                     using var dbContext = CreateDbContext();
-                    return dbContext.DamageReports
-                        .AsNoTracking()
+                    var now = DateTime.Today;
+                    var items = dbContext.DamageReports
                         .OrderBy(report => report.Id)
                         .ToList();
+
+                    var hasUpdates = false;
+                    foreach (var report in items)
+                    {
+                        if (ShouldExpireNewStatus(report, now))
+                        {
+                            report.Status = "On-hold";
+                            hasUpdates = true;
+                        }
+                    }
+
+                    if (hasUpdates)
+                    {
+                        dbContext.SaveChanges();
+                    }
+
+                    return items;
                 });
 
                 _reports.Clear();
@@ -173,6 +198,12 @@ namespace Application.Forms
             }
 
             return dbContext;
+        }
+
+        private static bool ShouldExpireNewStatus(DamageReports report, DateTime today)
+        {
+            return string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase) &&
+                report.DateReceived.Date <= today.AddDays(-1);
         }
 
         private void dataGridViewClientList_CellContentClick(object sender, DataGridViewCellEventArgs e)

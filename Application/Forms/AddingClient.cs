@@ -59,7 +59,7 @@ namespace Application.Forms
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
                 DateReceived = dateTimePicker1.Value.Date,
                 DeviceImage = _deviceImage,
-                Status = "On-hold"
+                Status = "[New] On-Hold"
             };
 
             DialogResult = DialogResult.OK;

@@ -51,6 +51,8 @@
             label2 = new Label();
             label1 = new Label();
             pictureBoxMoreInfo = new PictureBox();
+            labelClientID = new Label();
+            label10 = new Label();
             panelMoreInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoreInfo).BeginInit();
             SuspendLayout();
@@ -58,6 +60,8 @@
             // panelMoreInfo
             // 
             panelMoreInfo.BackColor = Color.FromArgb(24, 24, 38);
+            panelMoreInfo.Controls.Add(labelClientID);
+            panelMoreInfo.Controls.Add(label10);
             panelMoreInfo.Controls.Add(labelPictureNumber);
             panelMoreInfo.Controls.Add(labelPrevious);
             panelMoreInfo.Controls.Add(labelNext);
@@ -168,7 +172,7 @@
             labelStatus.AutoSize = true;
             labelStatus.Font = new Font("Segoe UI", 10F);
             labelStatus.ForeColor = Color.Gainsboro;
-            labelStatus.Location = new Point(476, 327);
+            labelStatus.Location = new Point(480, 312);
             labelStatus.Name = "labelStatus";
             labelStatus.Size = new Size(0, 19);
             labelStatus.TabIndex = 35;
@@ -178,7 +182,7 @@
             labelAdditionalInfo.AutoSize = true;
             labelAdditionalInfo.Font = new Font("Segoe UI", 10F);
             labelAdditionalInfo.ForeColor = Color.Gainsboro;
-            labelAdditionalInfo.Location = new Point(476, 207);
+            labelAdditionalInfo.Location = new Point(480, 192);
             labelAdditionalInfo.MaximumSize = new Size(300, 0);
             labelAdditionalInfo.Name = "labelAdditionalInfo";
             labelAdditionalInfo.Size = new Size(0, 19);
@@ -189,7 +193,7 @@
             labelIssueSummary.AutoSize = true;
             labelIssueSummary.Font = new Font("Segoe UI", 10F);
             labelIssueSummary.ForeColor = Color.Gainsboro;
-            labelIssueSummary.Location = new Point(476, 158);
+            labelIssueSummary.Location = new Point(480, 143);
             labelIssueSummary.Name = "labelIssueSummary";
             labelIssueSummary.Size = new Size(0, 19);
             labelIssueSummary.TabIndex = 33;
@@ -199,7 +203,7 @@
             labelDeviceModel.AutoSize = true;
             labelDeviceModel.Font = new Font("Segoe UI", 10F);
             labelDeviceModel.ForeColor = Color.Gainsboro;
-            labelDeviceModel.Location = new Point(476, 120);
+            labelDeviceModel.Location = new Point(480, 105);
             labelDeviceModel.Name = "labelDeviceModel";
             labelDeviceModel.Size = new Size(0, 19);
             labelDeviceModel.TabIndex = 32;
@@ -209,7 +213,7 @@
             labelOperatingSystem.AutoSize = true;
             labelOperatingSystem.Font = new Font("Segoe UI", 10F);
             labelOperatingSystem.ForeColor = Color.Gainsboro;
-            labelOperatingSystem.Location = new Point(476, 81);
+            labelOperatingSystem.Location = new Point(480, 66);
             labelOperatingSystem.Name = "labelOperatingSystem";
             labelOperatingSystem.Size = new Size(0, 19);
             labelOperatingSystem.TabIndex = 31;
@@ -219,7 +223,7 @@
             labelClientName.AutoSize = true;
             labelClientName.Font = new Font("Segoe UI", 10F);
             labelClientName.ForeColor = Color.Gainsboro;
-            labelClientName.Location = new Point(476, 46);
+            labelClientName.Location = new Point(480, 31);
             labelClientName.Name = "labelClientName";
             labelClientName.Size = new Size(0, 19);
             labelClientName.TabIndex = 30;
@@ -229,7 +233,7 @@
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 10F);
             label8.ForeColor = Color.Gainsboro;
-            label8.Location = new Point(420, 327);
+            label8.Location = new Point(424, 312);
             label8.Name = "label8";
             label8.Size = new Size(50, 19);
             label8.TabIndex = 29;
@@ -240,7 +244,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10F);
             label7.ForeColor = Color.Gainsboro;
-            label7.Location = new Point(382, 388);
+            label7.Location = new Point(386, 373);
             label7.Name = "label7";
             label7.Size = new Size(88, 19);
             label7.TabIndex = 28;
@@ -251,7 +255,7 @@
             labelUpdatedOn.AutoSize = true;
             labelUpdatedOn.Font = new Font("Segoe UI", 10F);
             labelUpdatedOn.ForeColor = Color.Gainsboro;
-            labelUpdatedOn.Location = new Point(476, 388);
+            labelUpdatedOn.Location = new Point(480, 373);
             labelUpdatedOn.Name = "labelUpdatedOn";
             labelUpdatedOn.Size = new Size(0, 19);
             labelUpdatedOn.TabIndex = 27;
@@ -261,7 +265,7 @@
             labelDateReceived.AutoSize = true;
             labelDateReceived.Font = new Font("Segoe UI", 10F);
             labelDateReceived.ForeColor = Color.Gainsboro;
-            labelDateReceived.Location = new Point(476, 357);
+            labelDateReceived.Location = new Point(480, 342);
             labelDateReceived.Name = "labelDateReceived";
             labelDateReceived.Size = new Size(0, 19);
             labelDateReceived.TabIndex = 26;
@@ -271,7 +275,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F);
             label6.ForeColor = Color.Gainsboro;
-            label6.Location = new Point(372, 357);
+            label6.Location = new Point(376, 342);
             label6.Name = "label6";
             label6.Size = new Size(98, 19);
             label6.TabIndex = 25;
@@ -282,7 +286,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F);
             label5.ForeColor = Color.Gainsboro;
-            label5.Location = new Point(320, 207);
+            label5.Location = new Point(324, 192);
             label5.Name = "label5";
             label5.Size = new Size(150, 19);
             label5.TabIndex = 24;
@@ -293,7 +297,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F);
             label4.ForeColor = Color.Gainsboro;
-            label4.Location = new Point(365, 158);
+            label4.Location = new Point(369, 143);
             label4.Name = "label4";
             label4.Size = new Size(105, 19);
             label4.TabIndex = 23;
@@ -304,7 +308,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F);
             label3.ForeColor = Color.Gainsboro;
-            label3.Location = new Point(375, 120);
+            label3.Location = new Point(379, 105);
             label3.Name = "label3";
             label3.Size = new Size(95, 19);
             label3.TabIndex = 22;
@@ -315,7 +319,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F);
             label2.ForeColor = Color.Gainsboro;
-            label2.Location = new Point(348, 81);
+            label2.Location = new Point(352, 66);
             label2.Name = "label2";
             label2.Size = new Size(122, 19);
             label2.TabIndex = 21;
@@ -326,7 +330,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10F);
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(363, 46);
+            label1.Location = new Point(367, 31);
             label1.Name = "label1";
             label1.Size = new Size(113, 19);
             label1.TabIndex = 20;
@@ -340,6 +344,27 @@
             pictureBoxMoreInfo.TabIndex = 0;
             pictureBoxMoreInfo.TabStop = false;
             pictureBoxMoreInfo.Click += pictureBoxMoreInfo_Click;
+            // 
+            // labelClientID
+            // 
+            labelClientID.AutoSize = true;
+            labelClientID.Font = new Font("Segoe UI", 10F);
+            labelClientID.ForeColor = Color.Gainsboro;
+            labelClientID.Location = new Point(480, 407);
+            labelClientID.Name = "labelClientID";
+            labelClientID.Size = new Size(0, 19);
+            labelClientID.TabIndex = 42;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 10F);
+            label10.ForeColor = Color.Gainsboro;
+            label10.Location = new Point(405, 407);
+            label10.Name = "label10";
+            label10.Size = new Size(69, 19);
+            label10.TabIndex = 41;
+            label10.Text = "Client ID: ";
             // 
             // MoreInfo
             // 
@@ -383,5 +408,7 @@
         private Label labelPictureNumber;
         private Label labelPrevious;
         private Label labelNext;
+        private Label labelClientID;
+        private Label label10;
     }
 }

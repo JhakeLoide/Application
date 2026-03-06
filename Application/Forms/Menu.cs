@@ -51,6 +51,7 @@ namespace Final_Project
             btnDashboard.Click += iconButton1_Click;
             btnClientList.Click += iconButton2_Click;
             btnSettings.Click += iconButton3_Click;
+            btnReports.Click += btnReports_Click;
             iconButton10.Click += iconButton10_Click;
             iconButtonHome.Click += iconButtonHome_Click;
             panelTitle.MouseDown += Menu_MouseDown;
@@ -68,6 +69,7 @@ namespace Final_Project
             public static Color color1 = Color.FromArgb(172, 126, 241);
             public static Color color2 = Color.FromArgb(249, 118, 176);
             public static Color color3 = Color.FromArgb(253, 138, 114);
+            public static Color color4 = Color.SpringGreen;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -153,6 +155,12 @@ namespace Final_Project
         {
             ActivateButton(sender, RGBColors.color3);
             OpenChildForm(new formSettings());
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, RGBColors.color4);
+            OpenChildForm(new Reports());
         }
 
         private void iconButtonHome_Click(object sender, EventArgs e)
@@ -308,6 +316,7 @@ namespace Final_Project
             btnDashboard.Text = "";
             btnClientList.Text = "";
             btnSettings.Text = "";
+            btnReports.Text = "";
             iconButtonHome.Text = "";
             SetMenuButtonLayout(isCollapsed: true);
         }
@@ -317,6 +326,7 @@ namespace Final_Project
             btnDashboard.Text = "Dashboard";
             btnClientList.Text = "Client List";
             btnSettings.Text = "Settings";
+            btnReports.Text = "Reports";
             iconButtonHome.Text = "PC Monitor";
             SetMenuButtonLayout(isCollapsed: false);
         }
@@ -330,17 +340,20 @@ namespace Final_Project
             btnDashboard.ImageAlign = imageAlign;
             btnClientList.ImageAlign = imageAlign;
             btnSettings.ImageAlign = imageAlign;
+            btnReports.ImageAlign = imageAlign;
             iconButtonHome.ImageAlign = imageAlign;
             iconButton10.ImageAlign = imageAlign;
 
             btnDashboard.TextAlign = textAlign;
             btnClientList.TextAlign = textAlign;
             btnSettings.TextAlign = textAlign;
+            btnReports.TextAlign = textAlign;
             iconButtonHome.TextAlign = textAlign;
 
             btnDashboard.TextImageRelation = textImageRelation;
             btnClientList.TextImageRelation = textImageRelation;
             btnSettings.TextImageRelation = textImageRelation;
+            btnReports.TextImageRelation = textImageRelation;
             iconButtonHome.TextImageRelation = textImageRelation;
         }
 

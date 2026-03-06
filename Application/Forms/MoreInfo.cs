@@ -42,6 +42,7 @@ namespace Application.Forms
             }
 
             labelClientName.Text = _report.ClientName;
+            labelClientID.Text = _report.Id.ToString();
             labelOperatingSystem.Text = _report.OperatingSystem;
             labelDeviceModel.Text = string.IsNullOrWhiteSpace(_report.DeviceModel) ? "N/A" : _report.DeviceModel;
             labelIssueSummary.Text = _report.DamageSummary;
