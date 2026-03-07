@@ -4,12 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using App.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using App.Domain.Entities;
+using System.IO;
 
 namespace Application.Forms
 {
@@ -18,8 +17,8 @@ namespace Application.Forms
         private readonly DamageReports? _report;
         private readonly BindingSource? _bindingSource;
         private readonly BindingList<DamageReports>? _masterList;
-        private bool _hasChanges;
-        private static bool _databaseInitialized;
+        private readonly List<byte[]> _deviceImages = new();
+        private int _currentImageIndex;
 
         public MoreInfo()
         {
@@ -32,151 +31,127 @@ namespace Application.Forms
             _report = report;
             _bindingSource = bindingSource;
             _masterList = masterList;
-            txtClientName.Text = report.ClientName;
-            txtOperatingSystem.Text = report.OperatingSystem;
-            txtDeviceModel.Text = string.IsNullOrWhiteSpace(report.DeviceModel) ? "N/A" : report.DeviceModel;
-            txtIssueSummary.Text = report.DamageSummary;
-            txtAdditionalInfo.Text = string.IsNullOrWhiteSpace(report.AdditionalInfo) ? "N/A" : report.AdditionalInfo;
-            labelDateReceived.Text = report.DateReceived == default
-                ? string.Empty
-                : report.DateReceived.ToString("MMMM dd, yyyy");
-            LoadDeviceImage();
-            HookChangeTracking();
-            var toolTip = new ToolTip();
-            toolTip.SetToolTip(picDeviceImage, "Click for a full view.");
+            LoadReportDetails();
         }
 
-        private void HookChangeTracking()
-        {
-            txtClientName.TextChanged += MarkAsChanged;
-            txtOperatingSystem.TextChanged += MarkAsChanged;
-            txtDeviceModel.TextChanged += MarkAsChanged;
-            txtIssueSummary.TextChanged += MarkAsChanged;
-            txtAdditionalInfo.TextChanged += MarkAsChanged;
-        }
-
-        private void MarkAsChanged(object? sender, EventArgs e)
-        {
-            _hasChanges = true;
-        }
-
-        private void iconButtonUpdate_Click(object sender, EventArgs e)
+        private void LoadReportDetails()
         {
             if (_report is null)
             {
                 return;
             }
 
-            if (!_hasChanges)
-            {
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtClientName.Text))
-            {
-                MessageBox.Show("Client name is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtOperatingSystem.Text))
-            {
-                MessageBox.Show("Operating system is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtDeviceModel.Text))
-            {
-                MessageBox.Show("Device model is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (string.IsNullOrWhiteSpace(txtIssueSummary.Text))
-            {
-                MessageBox.Show("Issue summary is required.", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            _report.ClientName = txtClientName.Text.Trim();
-            _report.OperatingSystem = txtOperatingSystem.Text.Trim();
-            _report.DeviceModel = txtDeviceModel.Text.Trim();
-            _report.DamageSummary = txtIssueSummary.Text.Trim();
-            _report.AdditionalInfo = txtAdditionalInfo.Text.Trim();
-
-            try
-            {
-                using var dbContext = CreateDbContext();
-                dbContext.DamageReports.Update(_report);
-                dbContext.SaveChanges();
-
-                _bindingSource?.ResetBindings(false);
-                _hasChanges = false;
-                labelUpdatedOn.Text = DateTime.Now.ToString("MMMM dd, yyyy hh:mm tt");
-                MessageBox.Show("Info Updated", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to update client: {ex.Message}", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            labelClientName.Text = _report.ClientName;
+            labelClientID.Text = _report.Id.ToString();
+            labelOperatingSystem.Text = _report.OperatingSystem;
+            labelDeviceModel.Text = string.IsNullOrWhiteSpace(_report.DeviceModel) ? "N/A" : _report.DeviceModel;
+            labelIssueSummary.Text = _report.DamageSummary;
+            labelAdditionalInfo.Text = string.IsNullOrWhiteSpace(_report.AdditionalInfo) ? "N/A" : _report.AdditionalInfo;
+            labelStatus.Text = string.IsNullOrWhiteSpace(_report.Status) ? "N/A" : _report.Status;
+            labelDateReceived.Text = _report.DateReceived == default
+                ? string.Empty
+                : _report.DateReceived.ToString("MMMM dd, yyyy");
+            labelUpdatedOn.Text = _report.UpdatedOn is null
+                ? string.Empty
+                : _report.UpdatedOn.Value.ToString("MMMM dd, yyyy hh:mm tt");
+            LoadDeviceImage();
         }
 
-        private void iconButtonDelete_Click(object sender, EventArgs e)
+        private void LoadDeviceImage()
         {
-            var confirmDelete = MessageBox.Show(
-                "Are you sure you want to delete this information?",
-                "Delete Information",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
+            var images = GetDeviceImages();
 
-            if (confirmDelete != DialogResult.Yes)
+            if (_currentImageIndex >= images.Count)
+            {
+                _currentImageIndex = Math.Max(0, images.Count - 1);
+            }
+
+            UpdateImageDisplay();
+        }
+
+        private List<byte[]> GetDeviceImages()
+        {
+            if (_report is null)
+            {
+                return _deviceImages;
+            }
+
+            if (_report.DeviceImages.Count == 0 && _report.DeviceImage is { Length: > 0 })
+            {
+                _report.DeviceImages.Add(_report.DeviceImage);
+            }
+
+            return _report.DeviceImages;
+        }
+
+        private void UpdateImageDisplay()
+        {
+            var images = GetDeviceImages();
+
+            if (images.Count == 0)
+            {
+                pictureBoxMoreInfo.Image = null;
+                labelPictureNumber.Text = string.Empty;
+                return;
+            }
+
+            _currentImageIndex = Math.Clamp(_currentImageIndex, 0, images.Count - 1);
+            using var stream = new MemoryStream(images[_currentImageIndex]);
+            pictureBoxMoreInfo.Image = Image.FromStream(stream);
+            pictureBoxMoreInfo.SizeMode = PictureBoxSizeMode.Zoom;
+            labelPictureNumber.Text = $"{_currentImageIndex + 1}/{images.Count}";
+        }
+
+        private bool TryMoveImage(int delta)
+        {
+            var images = GetDeviceImages();
+            if (images.Count == 0)
+            {
+                return false;
+            }
+
+            var newIndex = _currentImageIndex + delta;
+            if (newIndex < 0 || newIndex >= images.Count)
+            {
+                return false;
+            }
+
+            _currentImageIndex = newIndex;
+            UpdateImageDisplay();
+            return true;
+        }
+
+        private void iconEditInfo_Click(object sender, EventArgs e)
+        {
+            if (_report is null)
             {
                 return;
             }
 
-            if (_report is not null)
+            using var editInfoForm = new EditInfo(_report, _bindingSource, _masterList);
+            var result = editInfoForm.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                try
-                {
-                    using var dbContext = CreateDbContext();
-                    dbContext.DamageReports.Remove(_report);
-                    dbContext.SaveChanges();
-
-                    _masterList?.Remove(_report);
-                    _bindingSource?.Remove(_report);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Failed to delete client: {ex.Message}", "Delete Client", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                Close();
+                return;
             }
 
-            DialogResult = DialogResult.OK;
+            LoadReportDetails();
+        }
+
+        private void iconButtonClose_Click(object sender, EventArgs e)
+        {
             Close();
         }
 
-        private void iconButtonCancel_Click(object sender, EventArgs e)
+        private void pictureBoxMoreInfo_Click(object sender, EventArgs e)
         {
-            if (_hasChanges)
-            {
-                var result = MessageBox.Show(
-                    "Are you sure you want to cancel some changes?",
-                    "Cancel Changes",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
-
-                if (result != DialogResult.Yes)
-                {
-                    return;
-                }
-            }
-
-            DialogResult = DialogResult.Cancel;
-            Close();
+            ShowImagePreview();
         }
 
-        private void picDeviceImage_Click(object sender, EventArgs e)
+        private void ShowImagePreview()
         {
-            if (picDeviceImage.Image is null)
+            if (pictureBoxMoreInfo.Image is null)
             {
                 return;
             }
@@ -186,68 +161,47 @@ namespace Application.Forms
                 Text = "Device Image",
                 StartPosition = FormStartPosition.CenterParent,
                 BackColor = Color.Black,
-                ClientSize = new Size(800, 600)
+                ClientSize = new Size(800, 600),
+                KeyPreview = true
             };
 
             var pictureBox = new PictureBox
             {
                 Dock = DockStyle.Fill,
-                Image = picDeviceImage.Image,
+                Image = pictureBoxMoreInfo.Image,
                 SizeMode = PictureBoxSizeMode.Zoom
+            };
+
+            preview.KeyDown += (_, e) =>
+            {
+                if (e.KeyCode == Keys.Left || e.KeyCode == Keys.Oemcomma)
+                {
+                    if (TryMoveImage(-1))
+                    {
+                        pictureBox.Image = pictureBoxMoreInfo.Image;
+                    }
+                }
+                else if (e.KeyCode == Keys.Right || e.KeyCode == Keys.OemPeriod)
+                {
+                    if (TryMoveImage(1))
+                    {
+                        pictureBox.Image = pictureBoxMoreInfo.Image;
+                    }
+                }
             };
 
             preview.Controls.Add(pictureBox);
             preview.ShowDialog(this);
         }
 
-        private void btnUploadImage_Click(object sender, EventArgs e)
+        private void labelPrevious_Click(object sender, EventArgs e)
         {
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Title = "Select Device Image";
-                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
-
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    var imageBytes = File.ReadAllBytes(openFileDialog.FileName);
-                    using var stream = new MemoryStream(imageBytes);
-                    picDeviceImage.Image = Image.FromStream(stream);
-                    if (_report is not null)
-                    {
-                        _report.DeviceImage = imageBytes;
-                    }
-                    _hasChanges = true;
-                }
-            }
-
+            TryMoveImage(-1);
         }
 
-        private void LoadDeviceImage()
+        private void labelNext_Click(object sender, EventArgs e)
         {
-            if (_report?.DeviceImage is null || _report.DeviceImage.Length == 0)
-            {
-                return;
-            }
-
-            using var stream = new MemoryStream(_report.DeviceImage);
-            picDeviceImage.Image = Image.FromStream(stream);
-        }
-
-        private static AppDbContext CreateDbContext()
-        {
-            var options = new DbContextOptionsBuilder<AppDbContext>().Options;
-            var dbContext = new AppDbContext(options);
-
-            if (!_databaseInitialized)
-            {
-                dbContext.Database.Migrate();
-                _databaseInitialized = true;
-            }
-
-            return dbContext;
+            TryMoveImage(1);
         }
     }
 }
-

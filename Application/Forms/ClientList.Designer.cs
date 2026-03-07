@@ -34,6 +34,12 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            labelSortByAll = new Label();
+            labelSortByCompleted = new Label();
+            labelSortByInProgress = new Label();
+            labelSortByOnHold = new Label();
+            label3 = new Label();
+            label2 = new Label();
             panelTotalClient = new Panel();
             labelTotalClients = new Label();
             iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
@@ -41,12 +47,12 @@
             searchBoxClientList = new TextBox();
             iconAddClient = new FontAwesome.Sharp.IconButton();
             dataGridViewClientList = new DataGridView();
+            damageReportsBindingSource = new BindingSource(components);
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
             Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
             ColumnMoreInfo = new DataGridViewButtonColumn();
-            damageReportsBindingSource = new BindingSource(components);
             panel1.SuspendLayout();
             panelTotalClient.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
@@ -56,7 +62,13 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(34, 33, 72);
+            panel1.BackColor = Color.FromArgb(24, 24, 38);
+            panel1.Controls.Add(labelSortByAll);
+            panel1.Controls.Add(labelSortByCompleted);
+            panel1.Controls.Add(labelSortByInProgress);
+            panel1.Controls.Add(labelSortByOnHold);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(panelTotalClient);
             panel1.Controls.Add(searchBoxClientList);
             panel1.Controls.Add(iconAddClient);
@@ -67,13 +79,87 @@
             panel1.Size = new Size(800, 450);
             panel1.TabIndex = 0;
             // 
+            // labelSortByAll
+            // 
+            labelSortByAll.AutoSize = true;
+            labelSortByAll.Cursor = Cursors.Hand;
+            labelSortByAll.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByAll.ForeColor = Color.White;
+            labelSortByAll.Location = new Point(510, 100);
+            labelSortByAll.Name = "labelSortByAll";
+            labelSortByAll.Size = new Size(21, 15);
+            labelSortByAll.TabIndex = 9;
+            labelSortByAll.Text = "All";
+            labelSortByAll.Click += labelSortByAll_Click;
+            // 
+            // labelSortByCompleted
+            // 
+            labelSortByCompleted.AutoSize = true;
+            labelSortByCompleted.Cursor = Cursors.Hand;
+            labelSortByCompleted.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByCompleted.ForeColor = Color.White;
+            labelSortByCompleted.Location = new Point(439, 101);
+            labelSortByCompleted.Name = "labelSortByCompleted";
+            labelSortByCompleted.Size = new Size(65, 15);
+            labelSortByCompleted.TabIndex = 8;
+            labelSortByCompleted.Text = "Completed";
+            labelSortByCompleted.Click += labelSortByCompleted_Click;
+            // 
+            // labelSortByInProgress
+            // 
+            labelSortByInProgress.AutoSize = true;
+            labelSortByInProgress.Cursor = Cursors.Hand;
+            labelSortByInProgress.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByInProgress.ForeColor = Color.White;
+            labelSortByInProgress.Location = new Point(365, 100);
+            labelSortByInProgress.Name = "labelSortByInProgress";
+            labelSortByInProgress.Size = new Size(68, 15);
+            labelSortByInProgress.TabIndex = 7;
+            labelSortByInProgress.Text = "In-Progress";
+            labelSortByInProgress.Click += labelSortByInProgress_Click;
+            // 
+            // labelSortByOnHold
+            // 
+            labelSortByOnHold.AutoSize = true;
+            labelSortByOnHold.Cursor = Cursors.Hand;
+            labelSortByOnHold.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelSortByOnHold.ForeColor = Color.White;
+            labelSortByOnHold.Location = new Point(305, 100);
+            labelSortByOnHold.Name = "labelSortByOnHold";
+            labelSortByOnHold.Size = new Size(54, 15);
+            labelSortByOnHold.TabIndex = 6;
+            labelSortByOnHold.Text = "On-Hold";
+            labelSortByOnHold.Click += labelSortByOnHold_Click;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.ForeColor = Color.White;
+            label3.Location = new Point(232, 95);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 21);
+            label3.TabIndex = 5;
+            label3.Text = "Sort By:";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Consolas", 14F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(12, 9);
+            label2.Name = "label2";
+            label2.Size = new Size(100, 22);
+            label2.TabIndex = 4;
+            label2.Text = "Overview:";
+            // 
             // panelTotalClient
             // 
             panelTotalClient.BackColor = Color.FromArgb(48, 47, 86);
             panelTotalClient.Controls.Add(labelTotalClients);
             panelTotalClient.Controls.Add(iconPictureBox1);
             panelTotalClient.Controls.Add(label1);
-            panelTotalClient.Location = new Point(12, 27);
+            panelTotalClient.Location = new Point(12, 57);
             panelTotalClient.Name = "panelTotalClient";
             panelTotalClient.Padding = new Padding(10, 6, 10, 6);
             panelTotalClient.Size = new Size(214, 59);
@@ -112,15 +198,18 @@
             label1.ForeColor = Color.Gainsboro;
             label1.Location = new Point(69, 11);
             label1.Name = "label1";
-            label1.Size = new Size(126, 19);
+            label1.Size = new Size(63, 19);
             label1.TabIndex = 0;
-            label1.Text = "Total Clients";
+            label1.Text = "Total:";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // searchBoxClientList
             // 
             searchBoxClientList.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            searchBoxClientList.ForeColor = Color.Black;
+            searchBoxClientList.BackColor = Color.FromArgb(88, 86, 147);
+            searchBoxClientList.BorderStyle = BorderStyle.FixedSingle;
+            searchBoxClientList.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchBoxClientList.ForeColor = Color.White;
             searchBoxClientList.Location = new Point(12, 402);
             searchBoxClientList.Multiline = true;
             searchBoxClientList.Name = "searchBoxClientList";
@@ -155,30 +244,32 @@
             dataGridViewClientList.AllowUserToAddRows = false;
             dataGridViewClientList.AllowUserToResizeColumns = false;
             dataGridViewClientList.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(50, 49, 90);
+            dataGridViewClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewClientList.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dataGridViewClientList.BackgroundColor = Color.FromArgb(54, 53, 97);
             dataGridViewClientList.BorderStyle = BorderStyle.None;
             dataGridViewClientList.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewClientList.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(48, 47, 86);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.Snow;
-            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(48, 47, 86);
-            dataGridViewCellStyle1.SelectionForeColor = Color.Snow;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(48, 47, 86);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.Snow;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(48, 47, 86);
+            dataGridViewCellStyle2.SelectionForeColor = Color.Snow;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dataGridViewClientList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dataGridViewClientList.ColumnHeadersHeight = 40;
             dataGridViewClientList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewClientList.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, ColumnMoreInfo });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(60, 59, 100);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F);
-            dataGridViewCellStyle2.ForeColor = Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(88, 86, 147);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridViewClientList.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(60, 59, 100);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(88, 86, 147);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridViewClientList.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridViewClientList.EnableHeadersVisualStyles = false;
             dataGridViewClientList.GridColor = Color.FromArgb(48, 47, 86);
             dataGridViewClientList.Location = new Point(12, 130);
@@ -188,22 +279,24 @@
             dataGridViewClientList.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridViewClientList.RowHeadersVisible = false;
             dataGridViewClientList.RowHeadersWidth = 25;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(54, 53, 97);
-            dataGridViewClientList.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.BackColor = Color.FromArgb(50, 49, 90);
-            dataGridViewClientList.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(54, 53, 97);
+            dataGridViewClientList.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridViewClientList.RowTemplate.Height = 36;
             dataGridViewClientList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewClientList.Size = new Size(776, 253);
             dataGridViewClientList.TabIndex = 0;
             dataGridViewClientList.CellContentClick += dataGridViewClientList_CellContentClick;
             // 
+            // damageReportsBindingSource
+            // 
+            damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
+            // 
             // Column1
             // 
             Column1.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             Column1.DataPropertyName = "ClientName";
             Column1.FillWeight = 150F;
-            Column1.HeaderText = "Client Name/ID";
+            Column1.HeaderText = "Client Name";
             Column1.Name = "Column1";
             Column1.ReadOnly = true;
             // 
@@ -243,11 +336,7 @@
             ColumnMoreInfo.ReadOnly = true;
             ColumnMoreInfo.Text = "More Info";
             ColumnMoreInfo.UseColumnTextForButtonValue = true;
-            ColumnMoreInfo.Width = 20;
-            // 
-            // damageReportsBindingSource
-            // 
-            damageReportsBindingSource.DataSource = typeof(App.Domain.Entities.DamageReports);
+            ColumnMoreInfo.Width = 5;
             // 
             // formClientList
             // 
@@ -279,6 +368,12 @@
         private Label labelTotalClients;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private BindingSource damageReportsBindingSource;
+        private Label label2;
+        private Label label3;
+        private Label labelSortByAll;
+        private Label labelSortByCompleted;
+        private Label labelSortByInProgress;
+        private Label labelSortByOnHold;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;

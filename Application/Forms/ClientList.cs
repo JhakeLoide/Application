@@ -19,6 +19,7 @@ namespace Application.Forms
         private readonly BindingList<DamageReports> _reports = new();
         private readonly BindingList<DamageReports> _filteredReports = new();
         private static bool _databaseInitialized;
+        private string? _statusFilter;
 
         public formClientList()
         {
@@ -26,14 +27,14 @@ namespace Application.Forms
             _reports.ListChanged += (_, __) => UpdateClientCount();
         }
 
-        private void formClientList_Load(object sender, EventArgs e)
+        private async void formClientList_Load(object sender, EventArgs e)
         {
             dataGridViewClientList.AutoGenerateColumns = false;
             dataGridViewClientList.Columns.Clear();
             dataGridViewClientList.Columns.AddRange(Column1, Column2, Column3, Column4, ColumnMoreInfo);
             damageReportsBindingSource.DataSource = _filteredReports;
             dataGridViewClientList.DataSource = damageReportsBindingSource;
-            LoadReports();
+            await LoadReportsAsync();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -86,8 +87,20 @@ namespace Application.Forms
 
             foreach (var report in _reports)
             {
-                if (string.IsNullOrWhiteSpace(normalizedFilter) ||
-                    report.ClientName?.Contains(normalizedFilter, StringComparison.OrdinalIgnoreCase) == true)
+                var matchesName = string.IsNullOrWhiteSpace(normalizedFilter) ||
+                    report.ClientName?.Contains(normalizedFilter, StringComparison.OrdinalIgnoreCase) == true;
+                var isCompleted = string.Equals(report.Status, "Completed", StringComparison.OrdinalIgnoreCase);
+                if (!string.Equals(_statusFilter, "Completed", StringComparison.OrdinalIgnoreCase) && isCompleted)
+                {
+                    continue;
+                }
+
+                var matchesStatus = string.IsNullOrWhiteSpace(_statusFilter) ||
+                    string.Equals(report.Status, _statusFilter, StringComparison.OrdinalIgnoreCase) ||
+                    (string.Equals(_statusFilter, "On-hold", StringComparison.OrdinalIgnoreCase) &&
+                        string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase));
+
+                if (matchesName && matchesStatus)
                 {
                     _filteredReports.Add(report);
                 }
@@ -97,20 +110,46 @@ namespace Application.Forms
             damageReportsBindingSource.ResetBindings(false);
         }
 
+        private void SetStatusFilter(string? status)
+        {
+            _statusFilter = status;
+            ApplyFilter(searchBoxClientList.Text);
+        }
+
         private void UpdateClientCount()
         {
             labelTotalClients.Text = _reports.Count.ToString();
         }
 
-        private void LoadReports()
+        private async Task LoadReportsAsync()
         {
             try
             {
-                using var dbContext = CreateDbContext();
-                var reports = dbContext.DamageReports
-                    .AsNoTracking()
-                    .OrderBy(report => report.Id)
-                    .ToList();
+                var reports = await Task.Run(() =>
+                {
+                    using var dbContext = CreateDbContext();
+                    var now = DateTime.Today;
+                    var items = dbContext.DamageReports
+                        .OrderBy(report => report.Id)
+                        .ToList();
+
+                    var hasUpdates = false;
+                    foreach (var report in items)
+                    {
+                        if (ShouldExpireNewStatus(report, now))
+                        {
+                            report.Status = "On-hold";
+                            hasUpdates = true;
+                        }
+                    }
+
+                    if (hasUpdates)
+                    {
+                        dbContext.SaveChanges();
+                    }
+
+                    return items;
+                });
 
                 _reports.Clear();
                 foreach (var report in reports)
@@ -161,6 +200,12 @@ namespace Application.Forms
             return dbContext;
         }
 
+        private static bool ShouldExpireNewStatus(DamageReports report, DateTime today)
+        {
+            return string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase) &&
+                report.DateReceived.Date <= today.AddDays(-1);
+        }
+
         private void dataGridViewClientList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != dataGridViewClientList.Columns["ColumnMoreInfo"].Index)
@@ -175,6 +220,26 @@ namespace Application.Forms
 
             using var moreInfoForm = new MoreInfo(report, damageReportsBindingSource, _reports);
             moreInfoForm.ShowDialog(this);
+        }
+
+        private void labelSortByOnHold_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter("On-hold");
+        }
+
+        private void labelSortByInProgress_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter("In-progress");
+        }
+
+        private void labelSortByCompleted_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter("Completed");
+        }
+
+        private void labelSortByAll_Click(object sender, EventArgs e)
+        {
+            SetStatusFilter(null);
         }
     }
 }

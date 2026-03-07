@@ -42,6 +42,7 @@
             lblStatic = new Label();
             iconStatic = new FontAwesome.Sharp.IconPictureBox();
             panelDesktop = new Panel();
+            btnReports = new FontAwesome.Sharp.IconButton();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             panelTitle.SuspendLayout();
@@ -51,6 +52,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(31, 30, 68);
+            panelMenu.Controls.Add(btnReports);
             panelMenu.Controls.Add(btnSettings);
             panelMenu.Controls.Add(btnClientList);
             panelMenu.Controls.Add(btnDashboard);
@@ -64,7 +66,7 @@
             // btnSettings
             // 
             btnSettings.Cursor = Cursors.Hand;
-            btnSettings.Dock = DockStyle.Top;
+            btnSettings.Dock = DockStyle.Bottom;
             btnSettings.FlatAppearance.BorderSize = 0;
             btnSettings.FlatStyle = FlatStyle.Flat;
             btnSettings.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -74,7 +76,7 @@
             btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSettings.IconSize = 32;
             btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSettings.Location = new Point(0, 260);
+            btnSettings.Location = new Point(0, 541);
             btnSettings.Name = "btnSettings";
             btnSettings.Size = new Size(220, 60);
             btnSettings.TabIndex = 3;
@@ -269,6 +271,29 @@
             panelDesktop.Size = new Size(802, 536);
             panelDesktop.TabIndex = 2;
             // 
+            // btnReports
+            // 
+            btnReports.Cursor = Cursors.Hand;
+            btnReports.Dock = DockStyle.Top;
+            btnReports.FlatAppearance.BorderSize = 0;
+            btnReports.FlatStyle = FlatStyle.Flat;
+            btnReports.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReports.ForeColor = Color.White;
+            btnReports.IconChar = FontAwesome.Sharp.IconChar.BookBookmark;
+            btnReports.IconColor = Color.White;
+            btnReports.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnReports.IconSize = 32;
+            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReports.Location = new Point(0, 260);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(220, 60);
+            btnReports.TabIndex = 4;
+            btnReports.Text = "Reports";
+            btnReports.TextAlign = ContentAlignment.MiddleLeft;
+            btnReports.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnReports.UseVisualStyleBackColor = true;
+            btnReports.Click += btnReports_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -306,5 +331,6 @@
         private FontAwesome.Sharp.IconButton iconButton8;
         private FontAwesome.Sharp.IconButton iconButton10;
         private FontAwesome.Sharp.IconButton iconButtonHome;
+        private FontAwesome.Sharp.IconButton btnReports;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace App.Domain.Entities
 {
@@ -17,5 +18,8 @@ namespace App.Domain.Entities
         public string AdditionalInfo { get; set; }
         public DateTime DateReceived { get; set; }
         public byte[]? DeviceImage { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        [NotMapped]
+        public List<byte[]> DeviceImages { get; set; } = new();
     }
 }

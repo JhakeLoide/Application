@@ -14,6 +14,7 @@ namespace Application.Forms
     public partial class formAddingClient : Form
     {
         public DamageReports? CreatedReport { get; private set; }
+        private byte[]? _deviceImage;
 
         public formAddingClient()
         {
@@ -57,7 +58,8 @@ namespace Application.Forms
                 DamageSummary = txtBoxSummary.Text.Trim(),
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
                 DateReceived = dateTimePicker1.Value.Date,
-                Status = "New"
+                DeviceImage = _deviceImage,
+                Status = "[New] On-Hold"
             };
 
             DialogResult = DialogResult.OK;
@@ -68,6 +70,18 @@ namespace Application.Forms
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void labelUploadPhoto_Click(object sender, EventArgs e)
+        {
+            using var openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select Device Image";
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _deviceImage = File.ReadAllBytes(openFileDialog.FileName);
+            }
         }
     }
 }

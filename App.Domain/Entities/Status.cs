@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domain.Enums
+namespace App.Domain.Entities
 {
-    public enum EquipmentStatus
+    public class Status
     {
-        Available = 0,     
-        UnderRepair = 2
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
