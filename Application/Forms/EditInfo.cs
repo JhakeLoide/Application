@@ -116,6 +116,21 @@ namespace Application.Forms
                 return;
             }
 
+            var isCompletedStatus = string.Equals(comboBoxStatus.Text.Trim(), "Completed", StringComparison.OrdinalIgnoreCase);
+            if (isCompletedStatus)
+            {
+                var confirmStatusUpdate = MessageBox.Show(
+                    "Are you sure you want to update this status to \"Completed\"?",
+                    "Update Status",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirmStatusUpdate != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+
             _report.ClientName = txtClientName.Text.Trim();
             _report.OperatingSystem = cmbBoxEditInfoOS.Text.Trim();
             _report.DeviceModel = txtDeviceModel.Text.Trim();
@@ -133,6 +148,11 @@ namespace Application.Forms
                 _hasChanges = false;
                 labelUpdatedOn.Text = _report.UpdatedOn.Value.ToString("MMMM dd, yyyy hh:mm tt");
                 MessageBox.Show("Info Updated", "Update Client", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (isCompletedStatus)
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
             }
             catch (Exception ex)
             {

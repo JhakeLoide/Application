@@ -1,4 +1,5 @@
 using Application.Forms;
+using Final_Project.Configuration;
 using FontAwesome.Sharp;
 using System;
 using System.Drawing;
@@ -57,11 +58,33 @@ namespace Final_Project
             panelTitle.MouseDown += Menu_MouseDown;
             panelTitle.MouseUp += Menu_MouseUp;
             MouseUp += Menu_MouseUp;
+            Load += Menu_Load;
 
             // Initialize animation timer
             menuAnimationTimer = new System.Windows.Forms.Timer();
             menuAnimationTimer.Interval = 10;
             menuAnimationTimer.Tick += MenuAnimationTimer_Tick;
+        }
+
+        private void Menu_Load(object? sender, EventArgs e)
+        {
+            ApplyStartupPage();
+        }
+
+        internal void ApplyStartupPage()
+        {
+            switch (AppSettings.StartupPage?.Trim())
+            {
+                case "Dashboard":
+                    iconButton1_Click(btnDashboard, EventArgs.Empty);
+                    break;
+                case "Client List":
+                    iconButton2_Click(btnClientList, EventArgs.Empty);
+                    break;
+                case "Reports":
+                    btnReports_Click(btnReports, EventArgs.Empty);
+                    break;
+            }
         }
 
         private struct RGBColors

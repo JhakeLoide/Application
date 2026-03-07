@@ -11,6 +11,7 @@ namespace Final_Project
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            Final_Project.Configuration.AppSettings.Load();
 
             var context = new ApplicationContext();
             var loadingScreen = new LoadingScreen();
