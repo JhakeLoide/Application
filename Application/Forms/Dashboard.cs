@@ -73,7 +73,7 @@ namespace Application.Forms
                         NewToday = reports.Count(report => report.DateReceived >= today && report.DateReceived < today.AddDays(1)),
                         InProgress = reports.Count(report => report.Status == "In-progress"),
                         Completed = reports.Count(report => report.Status == "Completed"),
-                        OnHold = reports.Count(report => report.Status == "On-hold")
+                        OnHold = reports.Count(report => report.Status == "On-Hold" || report.Status == "On-hold")
                     };
                 });
 

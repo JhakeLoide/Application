@@ -44,12 +44,18 @@
             label1 = new Label();
             btnAdd = new Button();
             btnCancel = new Button();
+            label7 = new Label();
+            labelUploadedPhoto = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(34, 33, 72);
+            panel1.Controls.Add(labelUploadedPhoto);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(labelUploadedPhoto);
+            panel1.Controls.Add(label7);
             panel1.Controls.Add(labelUploadPhoto);
             panel1.Controls.Add(txtBoxAddInfo);
             panel1.Controls.Add(label6);
@@ -249,6 +255,27 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10F);
+            label7.ForeColor = Color.Gainsboro;
+            label7.Location = new Point(3, 314);
+            label7.Name = "label7";
+            label7.Size = new Size(112, 19);
+            label7.TabIndex = 15;
+            label7.Text = "Uploaded Photo:";
+            // 
+            // labelUploadedPhoto
+            // 
+            labelUploadedPhoto.AutoSize = true;
+            labelUploadedPhoto.Font = new Font("Segoe UI", 10F);
+            labelUploadedPhoto.ForeColor = Color.Gainsboro;
+            labelUploadedPhoto.Location = new Point(121, 313);
+            labelUploadedPhoto.Name = "labelUploadedPhoto";
+            labelUploadedPhoto.Size = new Size(0, 19);
+            labelUploadedPhoto.TabIndex = 16;
+            // 
             // formAddingClient
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -284,5 +311,7 @@
         private TextBox txtBoxAddInfo;
         private Label label6;
         private Label labelUploadPhoto;
+        private Label labelUploadedPhoto;
+        private Label label7;
     }
 }
