@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             panelLoadingScreen = new Panel();
-            label1 = new Label();
-            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            progressBar1 = new ColoredProgressBar();
             labelPercentage = new Label();
+            progressBar1 = new ColoredProgressBar();
+            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            label1 = new Label();
             panelLoadingScreen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             SuspendLayout();
@@ -50,16 +50,26 @@
             panelLoadingScreen.Size = new Size(800, 350);
             panelLoadingScreen.TabIndex = 0;
             // 
-            // label1
+            // labelPercentage
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift SemiBold SemiConden", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.Crimson;
-            label1.Location = new Point(352, 124);
-            label1.Name = "label1";
-            label1.Size = new Size(212, 77);
-            label1.TabIndex = 0;
-            label1.Text = "Display";
+            labelPercentage.AutoSize = true;
+            labelPercentage.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            labelPercentage.ForeColor = Color.Crimson;
+            labelPercentage.Location = new Point(376, 315);
+            labelPercentage.Name = "labelPercentage";
+            labelPercentage.Size = new Size(42, 19);
+            labelPercentage.TabIndex = 3;
+            labelPercentage.Text = "label2";
+            // 
+            // progressBar1
+            // 
+            progressBar1.Dock = DockStyle.Bottom;
+            progressBar1.ForeColor = Color.Crimson;
+            progressBar1.Location = new Point(0, 337);
+            progressBar1.Name = "progressBar1";
+            progressBar1.ProgressColor = Color.Crimson;
+            progressBar1.Size = new Size(800, 13);
+            progressBar1.TabIndex = 2;
             // 
             // iconPictureBox1
             // 
@@ -75,26 +85,16 @@
             iconPictureBox1.TabIndex = 1;
             iconPictureBox1.TabStop = false;
             // 
-            // progressBar1
+            // label1
             // 
-            progressBar1.Dock = DockStyle.Bottom;
-            progressBar1.ForeColor = Color.Crimson;
-            progressBar1.Location = new Point(0, 337);
-            progressBar1.Name = "progressBar1";
-            progressBar1.ProgressColor = Color.Crimson;
-            progressBar1.Size = new Size(800, 13);
-            progressBar1.TabIndex = 2;
-            // 
-            // labelPercentage
-            // 
-            labelPercentage.AutoSize = true;
-            labelPercentage.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelPercentage.ForeColor = Color.Crimson;
-            labelPercentage.Location = new Point(376, 315);
-            labelPercentage.Name = "labelPercentage";
-            labelPercentage.Size = new Size(42, 19);
-            labelPercentage.TabIndex = 3;
-            labelPercentage.Text = "label2";
+            label1.AutoSize = true;
+            label1.Font = new Font("Bahnschrift SemiBold SemiConden", 48F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.Crimson;
+            label1.Location = new Point(333, 119);
+            label1.Name = "label1";
+            label1.Size = new Size(212, 77);
+            label1.TabIndex = 0;
+            label1.Text = "Display";
             // 
             // LoadingScreen
             // 
