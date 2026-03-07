@@ -53,14 +53,15 @@ namespace Application.Forms
                 ? _report.DeviceModel
                 : string.IsNullOrWhiteSpace(_report.OperatingSystem) ? "N/A" : _report.OperatingSystem;
             lblIssueDescriptionReportsInfo.Text = _report.DamageSummary;
-            txtBoxRemarksReportsInfo.Text = string.IsNullOrWhiteSpace(_report.AdditionalInfo) ? string.Empty : _report.AdditionalInfo;
+            lblAdditionalInfoReports.Text = string.IsNullOrWhiteSpace(_report.AdditionalInfo)
+                ? "-"
+                : _report.AdditionalInfo;
             LoadDeviceImage();
             _hasChanges = false;
         }
 
         private void WireEvents()
         {
-            txtBoxRemarksReportsInfo.TextChanged += (_, _) => _hasChanges = true;
             btnUploadImage.Click += btnUploadImage_Click;
         }
 
@@ -139,8 +140,6 @@ namespace Application.Forms
             {
                 return;
             }
-
-            _report.AdditionalInfo = txtBoxRemarksReportsInfo.Text.Trim();
 
             try
             {
