@@ -307,6 +307,7 @@
             // 
             // pictureBoxReportsInfo
             // 
+            pictureBoxReportsInfo.BorderStyle = BorderStyle.FixedSingle;
             pictureBoxReportsInfo.Location = new Point(486, 47);
             pictureBoxReportsInfo.Name = "pictureBoxReportsInfo";
             pictureBoxReportsInfo.Size = new Size(292, 265);

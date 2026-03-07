@@ -97,7 +97,7 @@ namespace Application.Forms
 
                 var matchesStatus = string.IsNullOrWhiteSpace(_statusFilter) ||
                     string.Equals(report.Status, _statusFilter, StringComparison.OrdinalIgnoreCase) ||
-                    (string.Equals(_statusFilter, "On-hold", StringComparison.OrdinalIgnoreCase) &&
+                    (string.Equals(_statusFilter, "On-Hold", StringComparison.OrdinalIgnoreCase) &&
                         string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase));
 
                 if (matchesName && matchesStatus)
@@ -138,7 +138,7 @@ namespace Application.Forms
                     {
                         if (ShouldExpireNewStatus(report, now))
                         {
-                            report.Status = "On-hold";
+                            report.Status = "On-Hold";
                             hasUpdates = true;
                         }
                     }
@@ -224,7 +224,7 @@ namespace Application.Forms
 
         private void labelSortByOnHold_Click(object sender, EventArgs e)
         {
-            SetStatusFilter("On-hold");
+            SetStatusFilter("On-Hold");
         }
 
         private void labelSortByInProgress_Click(object sender, EventArgs e)

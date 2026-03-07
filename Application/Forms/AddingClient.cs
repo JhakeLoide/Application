@@ -14,7 +14,7 @@ namespace Application.Forms
     public partial class formAddingClient : Form
     {
         public DamageReports? CreatedReport { get; private set; }
-        private byte[]? _deviceImage;
+        private readonly List<byte[]> _deviceImages = new();
 
         public formAddingClient()
         {
@@ -22,6 +22,7 @@ namespace Application.Forms
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MMMM dd, yyyy";
             dateTimePicker1.Value = DateTime.Today;
+            UpdateUploadedPhotoCount();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -58,9 +59,14 @@ namespace Application.Forms
                 DamageSummary = txtBoxSummary.Text.Trim(),
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
                 DateReceived = dateTimePicker1.Value.Date,
-                DeviceImage = _deviceImage,
+                DeviceImage = _deviceImages.FirstOrDefault(),
                 Status = "[New] On-Hold"
             };
+
+            if (_deviceImages.Count > 0)
+            {
+                CreatedReport.DeviceImages = new List<byte[]>(_deviceImages);
+            }
 
             DialogResult = DialogResult.OK;
             Close();
@@ -77,11 +83,21 @@ namespace Application.Forms
             using var openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select Device Image";
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+            openFileDialog.Multiselect = true;
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _deviceImage = File.ReadAllBytes(openFileDialog.FileName);
+                foreach (var fileName in openFileDialog.FileNames)
+                {
+                    _deviceImages.Add(File.ReadAllBytes(fileName));
+                }
+                UpdateUploadedPhotoCount();
             }
+        }
+
+        private void UpdateUploadedPhotoCount()
+        {
+            labelUploadedPhoto.Text = _deviceImages.Count.ToString();
         }
     }
 }
