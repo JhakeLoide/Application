@@ -56,12 +56,16 @@ namespace Application.Forms
             lblAdditionalInfoReports.Text = string.IsNullOrWhiteSpace(_report.AdditionalInfo)
                 ? "-"
                 : _report.AdditionalInfo;
+            txtBoxRemarksReportsInfo.Text = string.IsNullOrWhiteSpace(_report.Remarks)
+                ? string.Empty
+                : _report.Remarks;
             LoadDeviceImage();
             _hasChanges = false;
         }
 
         private void WireEvents()
         {
+            txtBoxRemarksReportsInfo.TextChanged += (_, _) => _hasChanges = true;
             btnUploadImage.Click += btnUploadImage_Click;
         }
 
@@ -140,6 +144,8 @@ namespace Application.Forms
             {
                 return;
             }
+
+            _report.Remarks = txtBoxRemarksReportsInfo.Text.Trim();
 
             try
             {

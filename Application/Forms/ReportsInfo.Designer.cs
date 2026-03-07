@@ -40,6 +40,9 @@
             lblIssueDescriptionReportsInfo = new Label();
             lblRemarks = new Label();
             panel1 = new Panel();
+            txtBoxRemarksReportsInfo = new TextBox();
+            lblAdditionalInfoReports = new Label();
+            label2 = new Label();
             btnUploadImage = new Button();
             iconButtonCancelReportsInfo = new FontAwesome.Sharp.IconButton();
             iconButtonSaveReportsInfo = new FontAwesome.Sharp.IconButton();
@@ -47,8 +50,6 @@
             labelPrevious = new Label();
             labelNext = new Label();
             pictureBoxReportsInfo = new PictureBox();
-            lblAdditionalInfoReports = new Label();
-            label2 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxReportsInfo).BeginInit();
             SuspendLayout();
@@ -58,7 +59,7 @@
             lblClientName.AutoSize = true;
             lblClientName.Font = new Font("Segoe UI", 10F);
             lblClientName.ForeColor = Color.White;
-            lblClientName.Location = new Point(398, 35);
+            lblClientName.Location = new Point(365, 36);
             lblClientName.Name = "lblClientName";
             lblClientName.Size = new Size(109, 19);
             lblClientName.TabIndex = 0;
@@ -69,7 +70,7 @@
             lblClientNameReportsInfo.AutoSize = true;
             lblClientNameReportsInfo.Font = new Font("Segoe UI", 10F);
             lblClientNameReportsInfo.ForeColor = Color.White;
-            lblClientNameReportsInfo.Location = new Point(560, 35);
+            lblClientNameReportsInfo.Location = new Point(480, 36);
             lblClientNameReportsInfo.Name = "lblClientNameReportsInfo";
             lblClientNameReportsInfo.Size = new Size(15, 19);
             lblClientNameReportsInfo.TabIndex = 1;
@@ -80,7 +81,7 @@
             lblDateReceived.AutoSize = true;
             lblDateReceived.Font = new Font("Segoe UI", 10F);
             lblDateReceived.ForeColor = Color.White;
-            lblDateReceived.Location = new Point(409, 73);
+            lblDateReceived.Location = new Point(376, 74);
             lblDateReceived.Name = "lblDateReceived";
             lblDateReceived.Size = new Size(98, 19);
             lblDateReceived.TabIndex = 4;
@@ -91,7 +92,7 @@
             lblDateReceivedReportsInfo.AutoSize = true;
             lblDateReceivedReportsInfo.Font = new Font("Segoe UI", 10F);
             lblDateReceivedReportsInfo.ForeColor = Color.White;
-            lblDateReceivedReportsInfo.Location = new Point(560, 73);
+            lblDateReceivedReportsInfo.Location = new Point(480, 74);
             lblDateReceivedReportsInfo.Name = "lblDateReceivedReportsInfo";
             lblDateReceivedReportsInfo.Size = new Size(15, 19);
             lblDateReceivedReportsInfo.TabIndex = 5;
@@ -102,7 +103,7 @@
             lblCompletedOn.AutoSize = true;
             lblCompletedOn.Font = new Font("Segoe UI", 10F);
             lblCompletedOn.ForeColor = Color.White;
-            lblCompletedOn.Location = new Point(405, 111);
+            lblCompletedOn.Location = new Point(372, 112);
             lblCompletedOn.Name = "lblCompletedOn";
             lblCompletedOn.Size = new Size(102, 19);
             lblCompletedOn.TabIndex = 6;
@@ -113,7 +114,7 @@
             lblCompletedOnReportsInfo.AutoSize = true;
             lblCompletedOnReportsInfo.Font = new Font("Segoe UI", 10F);
             lblCompletedOnReportsInfo.ForeColor = Color.White;
-            lblCompletedOnReportsInfo.Location = new Point(560, 111);
+            lblCompletedOnReportsInfo.Location = new Point(480, 112);
             lblCompletedOnReportsInfo.Name = "lblCompletedOnReportsInfo";
             lblCompletedOnReportsInfo.Size = new Size(15, 19);
             lblCompletedOnReportsInfo.TabIndex = 7;
@@ -124,7 +125,7 @@
             lblDeviceItem.AutoSize = true;
             lblDeviceItem.Font = new Font("Segoe UI", 10F);
             lblDeviceItem.ForeColor = Color.White;
-            lblDeviceItem.Location = new Point(422, 149);
+            lblDeviceItem.Location = new Point(389, 150);
             lblDeviceItem.Name = "lblDeviceItem";
             lblDeviceItem.Size = new Size(85, 19);
             lblDeviceItem.TabIndex = 10;
@@ -135,7 +136,7 @@
             lblDeviceItemReportsInfo.AutoSize = true;
             lblDeviceItemReportsInfo.Font = new Font("Segoe UI", 10F);
             lblDeviceItemReportsInfo.ForeColor = Color.White;
-            lblDeviceItemReportsInfo.Location = new Point(560, 149);
+            lblDeviceItemReportsInfo.Location = new Point(480, 150);
             lblDeviceItemReportsInfo.Name = "lblDeviceItemReportsInfo";
             lblDeviceItemReportsInfo.Size = new Size(15, 19);
             lblDeviceItemReportsInfo.TabIndex = 11;
@@ -146,7 +147,7 @@
             lblIssueDescription.AutoSize = true;
             lblIssueDescription.Font = new Font("Segoe UI", 10F);
             lblIssueDescription.ForeColor = Color.White;
-            lblIssueDescription.Location = new Point(390, 187);
+            lblIssueDescription.Location = new Point(357, 188);
             lblIssueDescription.Name = "lblIssueDescription";
             lblIssueDescription.Size = new Size(117, 19);
             lblIssueDescription.TabIndex = 12;
@@ -157,7 +158,7 @@
             lblIssueDescriptionReportsInfo.AutoSize = true;
             lblIssueDescriptionReportsInfo.Font = new Font("Segoe UI", 10F);
             lblIssueDescriptionReportsInfo.ForeColor = Color.White;
-            lblIssueDescriptionReportsInfo.Location = new Point(560, 187);
+            lblIssueDescriptionReportsInfo.Location = new Point(480, 188);
             lblIssueDescriptionReportsInfo.Name = "lblIssueDescriptionReportsInfo";
             lblIssueDescriptionReportsInfo.Size = new Size(15, 19);
             lblIssueDescriptionReportsInfo.TabIndex = 13;
@@ -168,7 +169,7 @@
             lblRemarks.AutoSize = true;
             lblRemarks.Font = new Font("Segoe UI", 10F);
             lblRemarks.ForeColor = Color.White;
-            lblRemarks.Location = new Point(443, 427);
+            lblRemarks.Location = new Point(410, 390);
             lblRemarks.Name = "lblRemarks";
             lblRemarks.Size = new Size(64, 19);
             lblRemarks.TabIndex = 14;
@@ -177,6 +178,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(24, 24, 38);
+            panel1.Controls.Add(txtBoxRemarksReportsInfo);
             panel1.Controls.Add(lblAdditionalInfoReports);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(btnUploadImage);
@@ -200,9 +202,44 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(800, 591);
+            panel1.Size = new Size(778, 523);
             panel1.TabIndex = 0;
             panel1.Paint += panel1_Paint;
+            // 
+            // txtBoxRemarksReportsInfo
+            // 
+            txtBoxRemarksReportsInfo.BackColor = Color.FromArgb(54, 53, 97);
+            txtBoxRemarksReportsInfo.BorderStyle = BorderStyle.FixedSingle;
+            txtBoxRemarksReportsInfo.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBoxRemarksReportsInfo.ForeColor = Color.White;
+            txtBoxRemarksReportsInfo.Location = new Point(480, 309);
+            txtBoxRemarksReportsInfo.Multiline = true;
+            txtBoxRemarksReportsInfo.Name = "txtBoxRemarksReportsInfo";
+            txtBoxRemarksReportsInfo.Size = new Size(275, 182);
+            txtBoxRemarksReportsInfo.TabIndex = 52;
+            // 
+            // lblAdditionalInfoReports
+            // 
+            lblAdditionalInfoReports.AutoSize = true;
+            lblAdditionalInfoReports.Font = new Font("Segoe UI", 10F);
+            lblAdditionalInfoReports.ForeColor = Color.White;
+            lblAdditionalInfoReports.Location = new Point(480, 230);
+            lblAdditionalInfoReports.MaximumSize = new Size(220, 0);
+            lblAdditionalInfoReports.Name = "lblAdditionalInfoReports";
+            lblAdditionalInfoReports.Size = new Size(15, 19);
+            lblAdditionalInfoReports.TabIndex = 51;
+            lblAdditionalInfoReports.Text = "-";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10F);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(376, 230);
+            label2.Name = "label2";
+            label2.Size = new Size(102, 19);
+            label2.TabIndex = 50;
+            label2.Text = "Additional Info:";
             // 
             // btnUploadImage
             // 
@@ -211,7 +248,7 @@
             btnUploadImage.FlatStyle = FlatStyle.Flat;
             btnUploadImage.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnUploadImage.ForeColor = Color.White;
-            btnUploadImage.Location = new Point(16, 281);
+            btnUploadImage.Location = new Point(35, 305);
             btnUploadImage.Name = "btnUploadImage";
             btnUploadImage.Size = new Size(85, 30);
             btnUploadImage.TabIndex = 49;
@@ -229,7 +266,7 @@
             iconButtonCancelReportsInfo.IconColor = Color.White;
             iconButtonCancelReportsInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonCancelReportsInfo.IconSize = 24;
-            iconButtonCancelReportsInfo.Location = new Point(108, 546);
+            iconButtonCancelReportsInfo.Location = new Point(104, 478);
             iconButtonCancelReportsInfo.Name = "iconButtonCancelReportsInfo";
             iconButtonCancelReportsInfo.Size = new Size(86, 33);
             iconButtonCancelReportsInfo.TabIndex = 46;
@@ -250,7 +287,7 @@
             iconButtonSaveReportsInfo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButtonSaveReportsInfo.IconSize = 24;
             iconButtonSaveReportsInfo.ImageAlign = ContentAlignment.MiddleLeft;
-            iconButtonSaveReportsInfo.Location = new Point(16, 546);
+            iconButtonSaveReportsInfo.Location = new Point(12, 478);
             iconButtonSaveReportsInfo.Name = "iconButtonSaveReportsInfo";
             iconButtonSaveReportsInfo.Size = new Size(86, 33);
             iconButtonSaveReportsInfo.TabIndex = 45;
@@ -264,7 +301,7 @@
             labelPictureNumber.AutoSize = true;
             labelPictureNumber.Font = new Font("Segoe UI", 10F);
             labelPictureNumber.ForeColor = Color.Gainsboro;
-            labelPictureNumber.Location = new Point(143, 288);
+            labelPictureNumber.Location = new Point(162, 312);
             labelPictureNumber.Name = "labelPictureNumber";
             labelPictureNumber.Size = new Size(0, 19);
             labelPictureNumber.TabIndex = 44;
@@ -275,7 +312,7 @@
             labelPrevious.Cursor = Cursors.Hand;
             labelPrevious.Font = new Font("Segoe UI", 10F);
             labelPrevious.ForeColor = Color.Gainsboro;
-            labelPrevious.Location = new Point(118, 288);
+            labelPrevious.Location = new Point(137, 312);
             labelPrevious.Name = "labelPrevious";
             labelPrevious.Size = new Size(19, 19);
             labelPrevious.TabIndex = 43;
@@ -288,7 +325,7 @@
             labelNext.Cursor = Cursors.Hand;
             labelNext.Font = new Font("Segoe UI", 10F);
             labelNext.ForeColor = Color.Gainsboro;
-            labelNext.Location = new Point(184, 288);
+            labelNext.Location = new Point(203, 312);
             labelNext.Name = "labelNext";
             labelNext.Size = new Size(19, 19);
             labelNext.TabIndex = 42;
@@ -298,41 +335,18 @@
             // pictureBoxReportsInfo
             // 
             pictureBoxReportsInfo.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxReportsInfo.Location = new Point(16, 12);
+            pictureBoxReportsInfo.Location = new Point(35, 36);
             pictureBoxReportsInfo.Name = "pictureBoxReportsInfo";
             pictureBoxReportsInfo.Size = new Size(292, 265);
             pictureBoxReportsInfo.TabIndex = 41;
             pictureBoxReportsInfo.TabStop = false;
             pictureBoxReportsInfo.Click += pictureBoxReportsInfo_Click;
             // 
-            // lblAdditionalInfoReports
-            // 
-            lblAdditionalInfoReports.AutoSize = true;
-            lblAdditionalInfoReports.Font = new Font("Segoe UI", 10F);
-            lblAdditionalInfoReports.ForeColor = Color.White;
-            lblAdditionalInfoReports.Location = new Point(560, 229);
-            lblAdditionalInfoReports.MaximumSize = new Size(220, 0);
-            lblAdditionalInfoReports.Name = "lblAdditionalInfoReports";
-            lblAdditionalInfoReports.Size = new Size(15, 19);
-            lblAdditionalInfoReports.TabIndex = 51;
-            lblAdditionalInfoReports.Text = "-";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(409, 229);
-            label2.Name = "label2";
-            label2.Size = new Size(102, 19);
-            label2.TabIndex = 50;
-            label2.Text = "Additional Info:";
-            // 
             // ReportsInfo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 591);
+            ClientSize = new Size(778, 523);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ReportsInfo";
@@ -368,5 +382,6 @@
         private Button btnUploadImage;
         private Label lblAdditionalInfoReports;
         private Label label2;
+        private TextBox txtBoxRemarksReportsInfo;
     }
 }

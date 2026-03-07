@@ -58,6 +58,7 @@ namespace Application.Forms
                 DeviceModel = txtBoxDeviceModel.Text.Trim(),
                 DamageSummary = txtBoxSummary.Text.Trim(),
                 AdditionalInfo = txtBoxAddInfo.Text.Trim(),
+                Remarks = string.Empty,
                 DateReceived = dateTimePicker1.Value.Date,
                 DeviceImage = _deviceImages.FirstOrDefault(),
                 Status = "[New] On-Hold"
