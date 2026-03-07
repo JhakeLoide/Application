@@ -16,6 +16,7 @@ namespace App.Domain.Entities
         public string DeviceModel { get; set; }
         public string DamageSummary { get; set; }
         public string AdditionalInfo { get; set; }
+        public string Remarks { get; set; }
         public DateTime DateReceived { get; set; }
         public byte[]? DeviceImage { get; set; }
         public DateTime? UpdatedOn { get; set; }
