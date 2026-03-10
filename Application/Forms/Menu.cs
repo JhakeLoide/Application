@@ -166,7 +166,7 @@ namespace Final_Project
         private void iconButton1_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-            OpenChildForm(new formDashboard());
+            OpenChildForm(new Dashboard_Remake_());
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
