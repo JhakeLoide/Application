@@ -484,7 +484,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(panel1);
             Name = "Dashboard_Remake_";
-            Text = "Dashboard_Remake_";
+            Text = "Dashboard";
             panel1.ResumeLayout(false);
             tableLayoutPanelMain.ResumeLayout(false);
             tableLayoutPanelSummary.ResumeLayout(false);
