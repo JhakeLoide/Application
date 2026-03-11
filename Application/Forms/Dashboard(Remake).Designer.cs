@@ -48,6 +48,7 @@
             label8 = new Label();
             iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
             panelWeeklyReport = new RoundedPanel();
+            panelBarChartLegend = new Panel();
             panelWeeklyReportChart = new Panel();
             panelWeeklyReportHeader = new Panel();
             panelWeeklyReportButtons = new FlowLayoutPanel();
@@ -330,6 +331,7 @@
             panelWeeklyReport.BorderColor = Color.FromArgb(60, 60, 90);
             panelWeeklyReport.BorderThickness = 1;
             tableLayoutPanelSummary.SetColumnSpan(panelWeeklyReport, 2);
+            panelWeeklyReport.Controls.Add(panelBarChartLegend);
             panelWeeklyReport.Controls.Add(panelWeeklyReportChart);
             panelWeeklyReport.Controls.Add(panelWeeklyReportHeader);
             panelWeeklyReport.CornerRadius = 16;
@@ -340,14 +342,23 @@
             panelWeeklyReport.Padding = new Padding(12);
             panelWeeklyReport.Size = new Size(414, 144);
             panelWeeklyReport.TabIndex = 5;
+            panelWeeklyReport.Paint += panelWeeklyReport_Paint;
+            // 
+            // panelBarChartLegend
+            // 
+            panelBarChartLegend.Dock = DockStyle.Bottom;
+            panelBarChartLegend.Location = new Point(12, 115);
+            panelBarChartLegend.Name = "panelBarChartLegend";
+            panelBarChartLegend.Size = new Size(390, 17);
+            panelBarChartLegend.TabIndex = 2;
             // 
             // panelWeeklyReportChart
             // 
             panelWeeklyReportChart.BackColor = Color.FromArgb(45, 45, 68);
             panelWeeklyReportChart.Dock = DockStyle.Fill;
-            panelWeeklyReportChart.Location = new Point(12, 47);
+            panelWeeklyReportChart.Location = new Point(12, 40);
             panelWeeklyReportChart.Name = "panelWeeklyReportChart";
-            panelWeeklyReportChart.Size = new Size(390, 85);
+            panelWeeklyReportChart.Size = new Size(390, 92);
             panelWeeklyReportChart.TabIndex = 1;
             // 
             // panelWeeklyReportHeader
@@ -358,7 +369,7 @@
             panelWeeklyReportHeader.Dock = DockStyle.Top;
             panelWeeklyReportHeader.Location = new Point(12, 12);
             panelWeeklyReportHeader.Name = "panelWeeklyReportHeader";
-            panelWeeklyReportHeader.Size = new Size(390, 35);
+            panelWeeklyReportHeader.Size = new Size(390, 28);
             panelWeeklyReportHeader.TabIndex = 0;
             // 
             // panelWeeklyReportButtons
@@ -542,5 +553,6 @@
         private Button buttonMonthly;
         private Button buttonYearly;
         private Label labelWeeklyReportTitle;
+        private Panel panelBarChartLegend;
     }
 }

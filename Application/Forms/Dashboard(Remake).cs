@@ -44,6 +44,10 @@ namespace Application.Forms
             panelOperatingSystemLegend.SizeChanged += (_, __) => RenderOperatingSystemLegend();
             panelOperatingSystemChart.Resize += (_, __) => panelOperatingSystemChart.Invalidate();
             panelWeeklyReportChart.Resize += (_, __) => panelWeeklyReportChart.Invalidate();
+            panelBarChartLegend.SizeChanged += (_, __) => RenderReportLegend();
+            labelOnHold.Click += (_, __) => OpenClientListWithStatus("On-Hold");
+            labelInProgress.Click += (_, __) => OpenClientListWithStatus("In-progress");
+            Activated += async (_, __) => await LoadSummaryAsync();
         }
 
         private async void Dashboard_Remake__Load(object sender, EventArgs e)
@@ -180,6 +184,7 @@ namespace Application.Forms
                 _reportBars.Clear();
                 _reportBars.AddRange(bars);
                 panelWeeklyReportChart.Invalidate();
+            RenderReportLegend();
             }
             catch (Exception ex)
             {
@@ -204,7 +209,7 @@ namespace Application.Forms
                     for (var offset = 0; offset < 7; offset++)
                     {
                         var day = startOfWeek.AddDays(offset);
-                        var label = day.ToString("ddd");
+                        var label = $"{day:ddd}\n{day:dd}";
                         bars.Add(CreateReportBar(label, reports, day, day.AddDays(1)));
                     }
                     break;
@@ -234,8 +239,7 @@ namespace Application.Forms
         private static ReportBar CreateReportBar(string label, List<ReportItem> reports, DateTime start, DateTime end)
         {
             var newCount = reports.Count(report =>
-                report.DateReceived.Date >= start && report.DateReceived.Date < end &&
-                string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase));
+                report.DateReceived.Date >= start && report.DateReceived.Date < end);
             var completedCount = reports.Count(report =>
                 report.DateReceived.Date >= start && report.DateReceived.Date < end &&
                 string.Equals(report.Status, "Completed", StringComparison.OrdinalIgnoreCase));
@@ -266,6 +270,8 @@ namespace Application.Forms
                 return;
             }
 
+            var scaledMaxValue = Math.Max(1, (int)Math.Ceiling(maxValue * 1.15f));
+
             var barCount = _reportBars.Count;
             var labelFont = panelWeeklyReportChart.Font;
             Font? customLabelFont = null;
@@ -277,9 +283,15 @@ namespace Application.Forms
 
             var padding = 10;
             var availableHeight = Math.Max(1, bounds.Height - padding * 2);
-            var labelHeight = Math.Min(availableHeight, (int)Math.Ceiling(labelFont.GetHeight(graphics)));
-            var plotAreaHeight = Math.Max(1, bounds.Height - padding * 2 - labelHeight);
-            var plotArea = new Rectangle(bounds.X + padding, bounds.Y + padding, bounds.Width - padding * 2, plotAreaHeight);
+            var labelLines = _reportBars.Select(bar => bar.Label.Split('\n').Length).DefaultIfEmpty(1).Max();
+            var labelPadding = 8;
+            var bottomPadding = 10;
+            var valueLabelHeight = (int)Math.Ceiling(labelFont.GetHeight(graphics)) + 6;
+            var labelHeight = Math.Min(availableHeight, (int)Math.Ceiling(labelFont.GetHeight(graphics) * labelLines) + labelPadding);
+            var plotAreaHeight = Math.Max(1, bounds.Height - padding * 2 - labelHeight - bottomPadding - valueLabelHeight);
+            var valueAreaTop = bounds.Y + padding;
+            var valueAreaBottom = bounds.Y + padding + valueLabelHeight;
+            var plotArea = new Rectangle(bounds.X + padding, valueAreaBottom, bounds.Width - padding * 2, plotAreaHeight);
             if (plotArea.Width <= 0)
             {
                 customLabelFont?.Dispose();
@@ -292,20 +304,21 @@ namespace Application.Forms
             var barWidth = Math.Max(4f, (groupWidth - barSpacing) / 2f);
 
             using var labelBrush = new SolidBrush(Color.WhiteSmoke);
-            using var labelFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+            using var labelFormat = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Near };
 
             for (var index = 0; index < barCount; index++)
             {
                 var bar = _reportBars[index];
                 var groupX = plotArea.X + index * (groupWidth + groupSpacing);
-                var newHeight = (float)bar.NewCount / maxValue * plotArea.Height;
-                var completedHeight = (float)bar.CompletedCount / maxValue * plotArea.Height;
+                var newHeight = (float)bar.NewCount / scaledMaxValue * plotArea.Height;
+                var completedHeight = (float)bar.CompletedCount / scaledMaxValue * plotArea.Height;
 
                 if (newHeight > 0)
                 {
                     var newRect = new RectangleF(groupX, plotArea.Bottom - newHeight, barWidth, newHeight);
                     using var newBrush = new SolidBrush(_reportBarNewColor);
                     graphics.FillRectangle(newBrush, newRect);
+                    DrawBarValue(graphics, bar.NewCount, labelFont, labelBrush, newRect, valueAreaTop, valueAreaBottom);
                 }
 
                 if (completedHeight > 0)
@@ -313,13 +326,70 @@ namespace Application.Forms
                     var completedRect = new RectangleF(groupX + barWidth + barSpacing, plotArea.Bottom - completedHeight, barWidth, completedHeight);
                     using var completedBrush = new SolidBrush(_reportBarCompletedColor);
                     graphics.FillRectangle(completedBrush, completedRect);
+                    DrawBarValue(graphics, bar.CompletedCount, labelFont, labelBrush, completedRect, valueAreaTop, valueAreaBottom);
                 }
 
-                var labelBounds = new Rectangle((int)groupX, plotArea.Bottom + 2, (int)groupWidth, labelHeight);
+                var labelY = bounds.Bottom - padding - labelHeight;
+                var labelBounds = new Rectangle((int)groupX, labelY, (int)groupWidth, labelHeight);
                 graphics.DrawString(bar.Label, labelFont, labelBrush, labelBounds, labelFormat);
             }
 
             customLabelFont?.Dispose();
+        }
+
+        private static void DrawBarValue(Graphics graphics, int value, Font labelFont, Brush labelBrush, RectangleF barRect, int valueAreaTop, int valueAreaBottom)
+        {
+            var valueText = value.ToString("N0");
+            var textSize = graphics.MeasureString(valueText, labelFont);
+            var valueX = barRect.X + (barRect.Width - textSize.Width) / 2f;
+            var valueY = Math.Max(valueAreaTop, barRect.Top - textSize.Height - 2f);
+
+            var valueBounds = new RectangleF(valueX, valueY, textSize.Width, textSize.Height);
+            graphics.DrawString(valueText, labelFont, labelBrush, valueBounds);
+        }
+
+        private void OpenClientListWithStatus(string status)
+        {
+            using var clientList = new formClientList(status);
+            clientList.ShowDialog(this);
+        }
+
+        private void RenderReportLegend()
+        {
+            panelBarChartLegend.SuspendLayout();
+            panelBarChartLegend.Controls.Clear();
+
+            var legendItems = new (string Text, Color Color)[]
+            {
+                ("New", _reportBarNewColor),
+                ("Completed", _reportBarCompletedColor)
+            };
+
+            var x = 0;
+            foreach (var item in legendItems)
+            {
+                var colorPanel = new Panel
+                {
+                    BackColor = item.Color,
+                    Size = new Size(12, 12),
+                    Location = new Point(x, 5)
+                };
+
+                var label = new Label
+                {
+                    AutoSize = true,
+                    ForeColor = Color.White,
+                    Location = new Point(x + 18, 3),
+                    Text = item.Text
+                };
+
+                panelBarChartLegend.Controls.Add(colorPanel);
+                panelBarChartLegend.Controls.Add(label);
+
+                x += label.PreferredWidth + 30;
+            }
+
+            panelBarChartLegend.ResumeLayout();
         }
 
         private static void DrawEmptyChartMessage(Graphics graphics, Rectangle bounds, string message)
@@ -468,6 +538,11 @@ namespace Application.Forms
         {
             return string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase) &&
                 report.DateReceived.Date <= today.AddDays(-1);
+        }
+
+        private void panelWeeklyReport_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
         private sealed record OperatingSystemSlice(string Name, int Count, Color Color);

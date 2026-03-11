@@ -21,9 +21,10 @@ namespace Application.Forms
         private static bool _databaseInitialized;
         private string? _statusFilter;
 
-        public formClientList()
+        public formClientList(string? statusFilter = null)
         {
             InitializeComponent();
+            _statusFilter = statusFilter;
             _reports.ListChanged += (_, __) => UpdateClientCount();
         }
 
@@ -119,6 +120,11 @@ namespace Application.Forms
         private void UpdateClientCount()
         {
             labelTotalClients.Text = _reports.Count.ToString();
+            labelOnHold.Text = _reports.Count(report =>
+                string.Equals(report.Status, "On-Hold", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(report.Status, "[New] On-Hold", StringComparison.OrdinalIgnoreCase)).ToString();
+            labelInProgress.Text = _reports.Count(report =>
+                string.Equals(report.Status, "In-progress", StringComparison.OrdinalIgnoreCase)).ToString();
         }
 
         private async Task LoadReportsAsync()
