@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            labelUploadedPhoto = new Label();
+            label7 = new Label();
             labelUploadPhoto = new Label();
             txtBoxAddInfo = new TextBox();
             label6 = new Label();
@@ -44,16 +46,12 @@
             label1 = new Label();
             btnAdd = new Button();
             btnCancel = new Button();
-            label7 = new Label();
-            labelUploadedPhoto = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(34, 33, 72);
-            panel1.Controls.Add(labelUploadedPhoto);
-            panel1.Controls.Add(label7);
             panel1.Controls.Add(labelUploadedPhoto);
             panel1.Controls.Add(label7);
             panel1.Controls.Add(labelUploadPhoto);
@@ -71,11 +69,31 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(btnAdd);
             panel1.Controls.Add(btnCancel);
-            panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(543, 361);
+            panel1.Size = new Size(491, 361);
             panel1.TabIndex = 0;
+            // 
+            // labelUploadedPhoto
+            // 
+            labelUploadedPhoto.AutoSize = true;
+            labelUploadedPhoto.Font = new Font("Segoe UI", 10F);
+            labelUploadedPhoto.ForeColor = Color.Gainsboro;
+            labelUploadedPhoto.Location = new Point(121, 313);
+            labelUploadedPhoto.Name = "labelUploadedPhoto";
+            labelUploadedPhoto.Size = new Size(0, 19);
+            labelUploadedPhoto.TabIndex = 16;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 10F);
+            label7.ForeColor = Color.Gainsboro;
+            label7.Location = new Point(13, 313);
+            label7.Name = "label7";
+            label7.Size = new Size(112, 19);
+            label7.TabIndex = 15;
+            label7.Text = "Uploaded Photo:";
             // 
             // labelUploadPhoto
             // 
@@ -83,7 +101,7 @@
             labelUploadPhoto.AutoSize = true;
             labelUploadPhoto.Cursor = Cursors.Hand;
             labelUploadPhoto.ForeColor = Color.White;
-            labelUploadPhoto.Location = new Point(3, 333);
+            labelUploadPhoto.Location = new Point(16, 332);
             labelUploadPhoto.Name = "labelUploadPhoto";
             labelUploadPhoto.Size = new Size(105, 19);
             labelUploadPhoto.TabIndex = 14;
@@ -95,10 +113,10 @@
             txtBoxAddInfo.BackColor = Color.FromArgb(54, 53, 97);
             txtBoxAddInfo.BorderStyle = BorderStyle.FixedSingle;
             txtBoxAddInfo.ForeColor = Color.WhiteSmoke;
-            txtBoxAddInfo.Location = new Point(204, 197);
+            txtBoxAddInfo.Location = new Point(127, 193);
             txtBoxAddInfo.Multiline = true;
             txtBoxAddInfo.Name = "txtBoxAddInfo";
-            txtBoxAddInfo.Size = new Size(191, 113);
+            txtBoxAddInfo.Size = new Size(216, 113);
             txtBoxAddInfo.TabIndex = 13;
             // 
             // label6
@@ -106,7 +124,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10F);
             label6.ForeColor = Color.Gainsboro;
-            label6.Location = new Point(133, 244);
+            label6.Location = new Point(56, 240);
             label6.Name = "label6";
             label6.Size = new Size(65, 19);
             label6.TabIndex = 12;
@@ -117,17 +135,18 @@
             txtBoxDeviceModel.BackColor = Color.FromArgb(54, 53, 97);
             txtBoxDeviceModel.BorderStyle = BorderStyle.FixedSingle;
             txtBoxDeviceModel.ForeColor = Color.WhiteSmoke;
-            txtBoxDeviceModel.Location = new Point(204, 83);
+            txtBoxDeviceModel.Location = new Point(127, 77);
             txtBoxDeviceModel.Name = "txtBoxDeviceModel";
-            txtBoxDeviceModel.Size = new Size(191, 25);
+            txtBoxDeviceModel.Size = new Size(216, 25);
             txtBoxDeviceModel.TabIndex = 11;
+            txtBoxDeviceModel.TextChanged += this.txtBoxDeviceModel_TextChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10F);
             label5.ForeColor = Color.Gainsboro;
-            label5.Location = new Point(103, 89);
+            label5.Location = new Point(26, 83);
             label5.Name = "label5";
             label5.Size = new Size(95, 19);
             label5.TabIndex = 10;
@@ -138,10 +157,10 @@
             txtBoxSummary.BackColor = Color.FromArgb(54, 53, 97);
             txtBoxSummary.BorderStyle = BorderStyle.FixedSingle;
             txtBoxSummary.ForeColor = Color.WhiteSmoke;
-            txtBoxSummary.Location = new Point(204, 143);
+            txtBoxSummary.Location = new Point(127, 137);
             txtBoxSummary.Multiline = true;
             txtBoxSummary.Name = "txtBoxSummary";
-            txtBoxSummary.Size = new Size(191, 50);
+            txtBoxSummary.Size = new Size(216, 50);
             txtBoxSummary.TabIndex = 9;
             // 
             // label4
@@ -149,7 +168,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10F);
             label4.ForeColor = Color.Gainsboro;
-            label4.Location = new Point(93, 158);
+            label4.Location = new Point(16, 155);
             label4.Name = "label4";
             label4.Size = new Size(105, 19);
             label4.TabIndex = 8;
@@ -163,17 +182,18 @@
             dateTimePicker1.CalendarTitleForeColor = Color.WhiteSmoke;
             dateTimePicker1.Enabled = false;
             dateTimePicker1.Font = new Font("Segoe UI", 10F);
-            dateTimePicker1.Location = new Point(204, 112);
+            dateTimePicker1.Location = new Point(127, 106);
             dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(191, 25);
+            dateTimePicker1.Size = new Size(216, 25);
             dateTimePicker1.TabIndex = 7;
+            dateTimePicker1.ValueChanged += this.dateTimePicker1_ValueChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10F);
             label3.ForeColor = Color.Gainsboro;
-            label3.Location = new Point(100, 118);
+            label3.Location = new Point(23, 112);
             label3.Name = "label3";
             label3.Size = new Size(98, 19);
             label3.TabIndex = 6;
@@ -188,17 +208,18 @@
             cmbBoxOS.ForeColor = Color.WhiteSmoke;
             cmbBoxOS.FormattingEnabled = true;
             cmbBoxOS.Items.AddRange(new object[] { "Windows 10", "Windows 11", "MacOS", "Linux", "ChromeOS", "Others" });
-            cmbBoxOS.Location = new Point(204, 54);
+            cmbBoxOS.Location = new Point(127, 48);
             cmbBoxOS.Name = "cmbBoxOS";
-            cmbBoxOS.Size = new Size(192, 25);
+            cmbBoxOS.Size = new Size(216, 25);
             cmbBoxOS.TabIndex = 5;
+            cmbBoxOS.SelectedIndexChanged += this.cmbBoxOS_SelectedIndexChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10F);
             label2.ForeColor = Color.Gainsboro;
-            label2.Location = new Point(169, 60);
+            label2.Location = new Point(91, 54);
             label2.Name = "label2";
             label2.Size = new Size(30, 19);
             label2.TabIndex = 4;
@@ -209,17 +230,18 @@
             txtBoxName.BackColor = Color.FromArgb(54, 53, 97);
             txtBoxName.BorderStyle = BorderStyle.FixedSingle;
             txtBoxName.ForeColor = Color.WhiteSmoke;
-            txtBoxName.Location = new Point(205, 23);
+            txtBoxName.Location = new Point(128, 17);
             txtBoxName.Name = "txtBoxName";
-            txtBoxName.Size = new Size(191, 25);
+            txtBoxName.Size = new Size(215, 25);
             txtBoxName.TabIndex = 3;
+            txtBoxName.TextChanged += txtBoxName_TextChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10F);
             label1.ForeColor = Color.Gainsboro;
-            label1.Location = new Point(151, 29);
+            label1.Location = new Point(73, 23);
             label1.Name = "label1";
             label1.Size = new Size(48, 19);
             label1.TabIndex = 2;
@@ -232,7 +254,7 @@
             btnAdd.FlatStyle = FlatStyle.Flat;
             btnAdd.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
-            btnAdd.Location = new Point(205, 316);
+            btnAdd.Location = new Point(380, 112);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(86, 30);
             btnAdd.TabIndex = 1;
@@ -247,7 +269,7 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(310, 316);
+            btnCancel.Location = new Point(380, 148);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(86, 30);
             btnCancel.TabIndex = 0;
@@ -255,32 +277,11 @@
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10F);
-            label7.ForeColor = Color.Gainsboro;
-            label7.Location = new Point(3, 314);
-            label7.Name = "label7";
-            label7.Size = new Size(112, 19);
-            label7.TabIndex = 15;
-            label7.Text = "Uploaded Photo:";
-            // 
-            // labelUploadedPhoto
-            // 
-            labelUploadedPhoto.AutoSize = true;
-            labelUploadedPhoto.Font = new Font("Segoe UI", 10F);
-            labelUploadedPhoto.ForeColor = Color.Gainsboro;
-            labelUploadedPhoto.Location = new Point(121, 313);
-            labelUploadedPhoto.Name = "labelUploadedPhoto";
-            labelUploadedPhoto.Size = new Size(0, 19);
-            labelUploadedPhoto.TabIndex = 16;
-            // 
             // formAddingClient
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(543, 361);
+            ClientSize = new Size(478, 361);
             ControlBox = false;
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 10F);

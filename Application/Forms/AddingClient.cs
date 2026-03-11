@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using App.Domain.Entities;
@@ -99,6 +100,26 @@ namespace Application.Forms
         private void UpdateUploadedPhotoCount()
         {
             labelUploadedPhoto.Text = _deviceImages.Count.ToString();
+        }
+
+        private void txtBoxName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBoxDeviceModel_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbBoxOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

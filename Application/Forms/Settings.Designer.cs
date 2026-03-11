@@ -33,9 +33,6 @@
             lblBuildVersion = new Label();
             cmbStartupPage = new ComboBox();
             lblStartupPage = new Label();
-            chkThemeLight = new CheckBox();
-            chkThemeDark = new CheckBox();
-            lblTheme = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -46,9 +43,6 @@
             panel1.Controls.Add(lblBuildVersion);
             panel1.Controls.Add(cmbStartupPage);
             panel1.Controls.Add(lblStartupPage);
-            panel1.Controls.Add(chkThemeLight);
-            panel1.Controls.Add(chkThemeDark);
-            panel1.Controls.Add(lblTheme);
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
@@ -98,40 +92,6 @@
             lblStartupPage.TabIndex = 6;
             lblStartupPage.Text = "Startup page";
             // 
-            // chkThemeLight
-            // 
-            chkThemeLight.AutoSize = true;
-            chkThemeLight.ForeColor = Color.White;
-            chkThemeLight.Location = new Point(246, 18);
-            chkThemeLight.Name = "chkThemeLight";
-            chkThemeLight.Size = new Size(55, 21);
-            chkThemeLight.TabIndex = 3;
-            chkThemeLight.Text = "Light";
-            chkThemeLight.UseVisualStyleBackColor = true;
-            // 
-            // chkThemeDark
-            // 
-            chkThemeDark.AutoSize = true;
-            chkThemeDark.Checked = true;
-            chkThemeDark.CheckState = CheckState.Checked;
-            chkThemeDark.ForeColor = Color.White;
-            chkThemeDark.Location = new Point(176, 18);
-            chkThemeDark.Name = "chkThemeDark";
-            chkThemeDark.Size = new Size(54, 21);
-            chkThemeDark.TabIndex = 2;
-            chkThemeDark.Text = "Dark";
-            chkThemeDark.UseVisualStyleBackColor = true;
-            // 
-            // lblTheme
-            // 
-            lblTheme.AutoSize = true;
-            lblTheme.ForeColor = Color.White;
-            lblTheme.Location = new Point(24, 20);
-            lblTheme.Name = "lblTheme";
-            lblTheme.Size = new Size(47, 17);
-            lblTheme.TabIndex = 1;
-            lblTheme.Text = "Theme";
-            // 
             // formSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -149,9 +109,6 @@
         #endregion
 
         private Panel panel1;
-        private Label lblTheme;
-        private CheckBox chkThemeDark;
-        private CheckBox chkThemeLight;
         private Label lblStartupPage;
         private ComboBox cmbStartupPage;
         private Label lblBuildVersion;
