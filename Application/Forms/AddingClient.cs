@@ -16,6 +16,7 @@ namespace Application.Forms
     {
         public DamageReports? CreatedReport { get; private set; }
         private readonly List<byte[]> _deviceImages = new();
+        private int _currentImageIndex = -1;
 
         public formAddingClient()
         {
@@ -23,7 +24,9 @@ namespace Application.Forms
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MMMM dd, yyyy";
             dateTimePicker1.Value = DateTime.Today;
+            picBoxAddingClient.SizeMode = PictureBoxSizeMode.Zoom;
             UpdateUploadedPhotoCount();
+            UpdateImagePreview();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -82,6 +85,16 @@ namespace Application.Forms
 
         private void labelUploadPhoto_Click(object sender, EventArgs e)
         {
+            UploadImages();
+        }
+
+        private void btnUploadImageAddingClient_Click(object sender, EventArgs e)
+        {
+            UploadImages();
+        }
+
+        private void UploadImages()
+        {
             using var openFileDialog = new OpenFileDialog();
             openFileDialog.Title = "Select Device Image";
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
@@ -93,13 +106,145 @@ namespace Application.Forms
                 {
                     _deviceImages.Add(File.ReadAllBytes(fileName));
                 }
+                if (_currentImageIndex < 0 && _deviceImages.Count > 0)
+                {
+                    _currentImageIndex = 0;
+                }
                 UpdateUploadedPhotoCount();
+                UpdateImagePreview();
+            }
+        }
+
+        private void btnRemoveImageAddingClient_Click(object sender, EventArgs e)
+        {
+            if (_deviceImages.Count == 0 || _currentImageIndex < 0)
+            {
+                return;
+            }
+
+            _deviceImages.RemoveAt(_currentImageIndex);
+            if (_deviceImages.Count == 0)
+            {
+                _currentImageIndex = -1;
+            }
+            else if (_currentImageIndex >= _deviceImages.Count)
+            {
+                _currentImageIndex = _deviceImages.Count - 1;
+            }
+
+            UpdateUploadedPhotoCount();
+            UpdateImagePreview();
+        }
+
+        private void picBoxAddingClient_Click(object sender, EventArgs e)
+        {
+            ShowFullImage();
+        }
+
+        private void labelPrevious_Click(object sender, EventArgs e)
+        {
+            if (_deviceImages.Count == 0)
+            {
+                return;
+            }
+
+            _currentImageIndex = (_currentImageIndex - 1 + _deviceImages.Count) % _deviceImages.Count;
+            UpdateImagePreview();
+        }
+
+        private void labelNext_Click(object sender, EventArgs e)
+        {
+            if (_deviceImages.Count == 0)
+            {
+                return;
+            }
+
+            _currentImageIndex = (_currentImageIndex + 1) % _deviceImages.Count;
+            UpdateImagePreview();
+        }
+
+        private void labelPictureNumber_Click(object sender, EventArgs e)
+        {
+            ShowFullImage();
+        }
+
+        private void ShowFullImage()
+        {
+            if (_currentImageIndex < 0 || _currentImageIndex >= _deviceImages.Count)
+            {
+                return;
+            }
+
+            using var image = CreateImageFromBytes(_deviceImages[_currentImageIndex]);
+            if (image == null)
+            {
+                return;
+            }
+
+            using var preview = new Form
+            {
+                Text = "Image Preview",
+                StartPosition = FormStartPosition.CenterParent,
+                BackColor = Color.FromArgb(34, 33, 72),
+                ClientSize = new Size(800, 600)
+            };
+
+            using var previewBox = new PictureBox
+            {
+                Dock = DockStyle.Fill,
+                Image = (Image)image.Clone(),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                BackColor = Color.FromArgb(34, 33, 72)
+            };
+
+            preview.Controls.Add(previewBox);
+            preview.ShowDialog(this);
+        }
+
+        private void UpdateImagePreview()
+        {
+            picBoxAddingClient.Image?.Dispose();
+            picBoxAddingClient.Image = null;
+
+            if (_currentImageIndex < 0 || _currentImageIndex >= _deviceImages.Count)
+            {
+                labelPictureNumber.Text = string.Empty;
+                return;
+            }
+
+            var image = CreateImageFromBytes(_deviceImages[_currentImageIndex]);
+            if (image != null)
+            {
+                picBoxAddingClient.Image = image;
+            }
+
+            labelPictureNumber.Text = $"{_currentImageIndex + 1}/{_deviceImages.Count}";
+        }
+
+        private static Image? CreateImageFromBytes(byte[] data)
+        {
+            try
+            {
+                using var stream = new MemoryStream(data);
+                using var image = Image.FromStream(stream);
+                return new Bitmap(image);
+            }
+            catch
+            {
+                return null;
             }
         }
 
         private void UpdateUploadedPhotoCount()
         {
-            labelUploadedPhoto.Text = _deviceImages.Count.ToString();
+            if (_deviceImages.Count == 0)
+            {
+                labelPictureNumber.Text = string.Empty;
+                return;
+            }
+
+            var index = _currentImageIndex < 0 ? 1 : _currentImageIndex + 1;
+            labelPictureNumber.Text = $"{index}/{_deviceImages.Count}";
         }
 
         private void txtBoxName_TextChanged(object sender, EventArgs e)
@@ -118,6 +263,11 @@ namespace Application.Forms
         }
 
         private void cmbBoxOS_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

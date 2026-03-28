@@ -271,6 +271,45 @@ namespace Application.Forms
             _hasChanges = true;
         }
 
+        private void btnRemoveReports_Click(object sender, EventArgs e)
+        {
+            var images = GetDeviceImages();
+            if (images.Count == 0)
+            {
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                "Are you sure you want to remove this image?",
+                "Remove Image",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (confirm != DialogResult.Yes)
+            {
+                return;
+            }
+
+            _currentImageIndex = Math.Clamp(_currentImageIndex, 0, images.Count - 1);
+            images.RemoveAt(_currentImageIndex);
+
+            if (images.Count == 0)
+            {
+                _currentImageIndex = 0;
+                if (_report is not null)
+                {
+                    _report.DeviceImage = null;
+                }
+            }
+            else if (_currentImageIndex >= images.Count)
+            {
+                _currentImageIndex = images.Count - 1;
+            }
+
+            UpdateImageDisplay();
+            _hasChanges = true;
+        }
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 

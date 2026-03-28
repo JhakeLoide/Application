@@ -19,7 +19,18 @@ namespace Application.Forms
         private static bool _databaseInitialized;
         private readonly List<OperatingSystemSlice> _operatingSystemSlices = new();
         private readonly List<ReportBar> _reportBars = new();
-        private readonly Color[] _operatingSystemPalette =
+        private readonly Dictionary<string, Color> _operatingSystemColorMap = new(StringComparer.OrdinalIgnoreCase)
+        {
+            ["Windows 11"] = Color.SkyBlue,
+            ["Windows 10"] = Color.DodgerBlue,
+            ["Others"] = Color.Orange,
+            ["Linux"] = Color.Gold,
+            ["CromeOS"] = Color.MediumSeaGreen,
+            ["ChromeOS"] = Color.MediumSeaGreen,
+            ["MacOS"] = Color.HotPink,
+            ["macOS"] = Color.HotPink
+        };
+        private readonly Color[] _operatingSystemFallbackPalette =
         {
             Color.DeepSkyBlue,
             Color.MediumSpringGreen,
@@ -132,7 +143,7 @@ namespace Application.Forms
                     for (var index = 0; index < operatingSystemData.Count; index++)
                     {
                         var item = operatingSystemData[index];
-                        var color = _operatingSystemPalette[index % _operatingSystemPalette.Length];
+                        var color = ResolveOperatingSystemColor(item.OperatingSystem, index);
                         _operatingSystemSlices.Add(new OperatingSystemSlice(item.OperatingSystem, item.Count, color));
                     }
                 }
@@ -346,6 +357,16 @@ namespace Application.Forms
 
             var valueBounds = new RectangleF(valueX, valueY, textSize.Width, textSize.Height);
             graphics.DrawString(valueText, labelFont, labelBrush, valueBounds);
+        }
+
+        private Color ResolveOperatingSystemColor(string operatingSystem, int fallbackIndex)
+        {
+            if (_operatingSystemColorMap.TryGetValue(operatingSystem, out var color))
+            {
+                return color;
+            }
+
+            return _operatingSystemFallbackPalette[fallbackIndex % _operatingSystemFallbackPalette.Length];
         }
 
         private void OpenClientListWithStatus(string status)
