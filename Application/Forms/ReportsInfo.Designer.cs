@@ -44,6 +44,7 @@
             lblAdditionalInfoReports = new Label();
             label2 = new Label();
             btnUploadImage = new Button();
+            btnRemoveReports = new Button();
             iconButtonCancelReportsInfo = new FontAwesome.Sharp.IconButton();
             iconButtonSaveReportsInfo = new FontAwesome.Sharp.IconButton();
             labelPictureNumber = new Label();
@@ -181,6 +182,7 @@
             panel1.Controls.Add(txtBoxRemarksReportsInfo);
             panel1.Controls.Add(lblAdditionalInfoReports);
             panel1.Controls.Add(label2);
+            panel1.Controls.Add(btnRemoveReports);
             panel1.Controls.Add(btnUploadImage);
             panel1.Controls.Add(iconButtonCancelReportsInfo);
             panel1.Controls.Add(iconButtonSaveReportsInfo);
@@ -254,6 +256,21 @@
             btnUploadImage.TabIndex = 49;
             btnUploadImage.Text = "Upload";
             btnUploadImage.UseVisualStyleBackColor = false;
+            // 
+            // btnRemoveReports
+            // 
+            btnRemoveReports.BackColor = Color.FromArgb(88, 86, 147);
+            btnRemoveReports.FlatAppearance.BorderSize = 0;
+            btnRemoveReports.FlatStyle = FlatStyle.Flat;
+            btnRemoveReports.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold);
+            btnRemoveReports.ForeColor = Color.White;
+            btnRemoveReports.Location = new Point(35, 341);
+            btnRemoveReports.Name = "btnRemoveReports";
+            btnRemoveReports.Size = new Size(85, 30);
+            btnRemoveReports.TabIndex = 53;
+            btnRemoveReports.Text = "Remove";
+            btnRemoveReports.UseVisualStyleBackColor = false;
+            btnRemoveReports.Click += btnRemoveReports_Click;
             // 
             // iconButtonCancelReportsInfo
             // 
@@ -380,6 +397,7 @@
         private FontAwesome.Sharp.IconButton iconButtonCancelReportsInfo;
         private FontAwesome.Sharp.IconButton iconButtonSaveReportsInfo;
         private Button btnUploadImage;
+        private Button btnRemoveReports;
         private Label lblAdditionalInfoReports;
         private Label label2;
         private TextBox txtBoxRemarksReportsInfo;
